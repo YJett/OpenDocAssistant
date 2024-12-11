@@ -1,0 +1,20 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建新文档并添加标题\"销售业绩报告\"，添加水印\"机密\"。",
+    "Feasible API sequence": "create_and_save_docx(doc_path, \"\");add_heading(doc_path, \"销售业绩报告\", level=1);add_watermark(doc_path, \"机密\");",
+    "Base File": "Word_Base_File/Create_new_doc/44_0.docx",
+    "Label File": "Word_Label_File/Create_new_doc/44_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/44_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/44_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "插入一个柱状图展示各季度销售额。",
+    "Feasible API sequence": "create_bar_chart([\"Q1\", \"Q2\", \"Q3\", \"Q4\"], [120, 150, 180, 200], title=\"季度销售额\", xlabel=\"季度\", ylabel=\"销售额（万元）\");",
+    "Base File": "Word_Base_File/Create_new_doc/44_1.docx",
+    "Label File": "Word_Label_File/Create_new_doc/44_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/44_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/44_1.docx"
+  }
+] 

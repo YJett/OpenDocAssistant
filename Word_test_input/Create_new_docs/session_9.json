@@ -1,0 +1,39 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建五个新页面，并将它们的背景都设置为黄色。",
+    "Feasible API sequence": "add_page_numbers(doc_path);set_background_color(\"yellow\");add_page_numbers(doc_path);set_background_color(\"yellow\");add_page_numbers(doc_path);set_background_color(\"yellow\");add_page_numbers(doc_path);set_background_color(\"yellow\");add_page_numbers(doc_path);set_background_color(\"yellow\");",
+    "Base File": "Word_Base_File/Create_new_doc/9_0.docx",
+    "Label File": "Word_Label_File/Create_new_doc/9_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/9_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/9_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "在第一页添加标题\"幸福家庭\"，并将字体设置为\"Microsoft JhengHei\"。",
+    "Feasible API sequence": "add_heading(doc_path, \"幸福家庭\", level=1);set_font_style(\"Microsoft JhengHei\");",
+    "Base File": "Word_Base_File/Create_new_doc/9_1.docx",
+    "Label File": "Word_Label_File/Create_new_doc/9_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/9_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/9_1.docx"
+  },
+
+  {
+    "Turn": 2,
+    "User instruction": "在第三页插入一个2行2列的表格。",
+    "Feasible API sequence": "add_table(doc_path, 2, 2);",
+    "Base File": "Word_Base_File/Create_new_doc/9_3.docx",
+    "Label File": "Word_Label_File/Create_new_doc/9_3.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/9_3.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/9_3.docx"
+  },
+  {
+    "Turn": 3,
+    "User instruction": "在表格中填入\"父亲\"、\"母亲\"、\"祖父\"、\"孩子\"。",
+    "Feasible API sequence": "set_cell_text(table, 0, 0, \"父亲\");set_cell_text(table, 0, 1, \"母亲\");set_cell_text(table, 1, 0, \"祖父\");set_cell_text(table, 1, 1, \"孩子\");",
+    "Base File": "Word_Base_File/Create_new_doc/9_4.docx",
+    "Label File": "Word_Label_File/Create_new_doc/9_4.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/9_4.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/9_4.docx"
+  }
+] 

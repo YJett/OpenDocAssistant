@@ -1,0 +1,29 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建一个4行4列的相关性矩阵表格，包含表头行和列。",
+    "Feasible API sequence": "add_table(doc_path, 4, 4);set_cell_text(table, 0, 0, \"变量\");set_cell_text(table, 0, 1, \"变量1\");set_cell_text(table, 0, 2, \"变量2\");set_cell_text(table, 0, 3, \"变量3\");set_font_bold();",
+    "Base File": "Word_Base_File/Edit_Word_template/8_0.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/8_0.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/8_0.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/8_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "插入一个饼图显示样本人口统计。",
+    "Feasible API sequence": "create_pie_chart([\"男性\", \"女性\", \"其他\"], [45, 48, 7], title=\"样本人口统计\");",
+    "Base File": "Word_Base_File/Edit_Word_template/8_1.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/8_1.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/8_1.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/8_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "在图表下方添加带编号的研究局限性列表。",
+    "Feasible API sequence": "add_list_item(doc_path, \"样本量限制\", style=\"List Number\");add_list_item(doc_path, \"地域限制\", style=\"List Number\");add_list_item(doc_path, \"时间限制\", style=\"List Number\");",
+    "Base File": "Word_Base_File/Edit_Word_template/8_2.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/8_2.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/8_2.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/8_2.docx"
+  }
+] 

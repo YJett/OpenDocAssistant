@@ -1,0 +1,29 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建新文档并添加标题\"产品规格说明\"，设置字体为\"Arial\"。",
+    "Feasible API sequence": "create_and_save_docx(doc_path, \"\");add_heading(doc_path, \"产品规格说明\", level=1);set_font_style(\"Arial\");",
+    "Base File": "Word_Base_File/Create_new_doc/25_0.docx",
+    "Label File": "Word_Label_File/Create_new_doc/25_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/25_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/25_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "插入一个4行3列的表格用于展示产品参数。",
+    "Feasible API sequence": "add_table(doc_path, 4, 3);",
+    "Base File": "Word_Base_File/Create_new_doc/25_1.docx",
+    "Label File": "Word_Label_File/Create_new_doc/25_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/25_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/25_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "在表格第一行填入\"参数名称\"、\"参数值\"和\"单位\"。",
+    "Feasible API sequence": "set_cell_text(table, 0, 0, \"参数名称\");set_cell_text(table, 0, 1, \"参数值\");set_cell_text(table, 0, 2, \"单位\");",
+    "Base File": "Word_Base_File/Create_new_doc/25_2.docx",
+    "Label File": "Word_Label_File/Create_new_doc/25_2.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/25_2.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/25_2.docx"
+  }
+] 

@@ -1,0 +1,38 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建新文档并添加标题\"冥想的好处\"。",
+    "Feasible API sequence": "add_heading(doc_path, \"冥想的好处\", level=1);",
+    "Base File": "Word_Base_File/Create_new_doc/6_0.docx",
+    "Label File": "Word_Label_File/Create_new_doc/6_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/6_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/6_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "插入一张冥想者的图片并将其居中。",
+    "Feasible API sequence": "add_image(doc_path, 0, \"meditation.jpg\");align_image_center(paragraph);",
+    "Base File": "Word_Base_File/Create_new_doc/6_1.docx",
+    "Label File": "Word_Label_File/Create_new_doc/6_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/6_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/6_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "在正文部分添加\"冥想是一种简单而强大的技巧，可以帮助你达到内心平静和宁静的状态。\"",
+    "Feasible API sequence": "add_paragraph(doc_path, \"冥想是一种简单而强大的技巧，可以帮助你达到内心平静和宁静的状态。\");",
+    "Base File": "Word_Base_File/Create_new_doc/6_2.docx",
+    "Label File": "Word_Label_File/Create_new_doc/6_2.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/6_2.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/6_2.docx"
+  },
+  {
+    "Turn": 3,
+    "User instruction": "将正文字体大小设为24磅，颜色设为深蓝色。",
+    "Feasible API sequence": "set_font_size(24);set_font_color(\"dark blue\");",
+    "Base File": "Word_Base_File/Create_new_doc/6_3.docx",
+    "Label File": "Word_Label_File/Create_new_doc/6_3.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/6_3.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/6_3.docx"
+  }
+] 

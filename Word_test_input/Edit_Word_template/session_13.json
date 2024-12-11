@@ -1,0 +1,29 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建一个4行4列的统计分析表格并设置背景为浅灰色。",
+    "Feasible API sequence": "add_table(doc_path, 4, 4);set_cell_text(table, 0, 0, \"变量\");set_cell_text(table, 0, 1, \"均值\");set_cell_text(table, 0, 2, \"标准差\");set_cell_text(table, 0, 3, \"P值\");set_background_color(\"light gray\");",
+    "Base File": "Word_Base_File/Edit_Word_template/13_0.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/13_0.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/13_0.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/13_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "插入一个雷达图比较五个不同参数。",
+    "Feasible API sequence": "create_radar_chart([\"速度\", \"准确率\", \"可靠性\", \"效率\", \"成本\"], [85, 92, 78, 88, 95], title=\"性能指标\");",
+    "Base File": "Word_Base_File/Edit_Word_template/13_1.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/13_1.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/13_1.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/13_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "添加页码并设置字体为\"Georgia\"。",
+    "Feasible API sequence": "add_page_numbers(doc_path);set_font_style(\"Georgia\");",
+    "Base File": "Word_Base_File/Edit_Word_template/13_2.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/13_2.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/13_2.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/13_2.docx"
+  }
+] 

@@ -1,0 +1,65 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建新文档并添加标题\"软件开发规范\"，设置字体为\"Microsoft YaHei\"。",
+    "Feasible API sequence": "create_and_save_docx(doc_path, \"\");add_heading(doc_path, \"软件开发规范\", level=1);set_font_style(\"Microsoft YaHei\");",
+    "Base File": "Word_Base_File/Create_new_doc/152_0.docx",
+    "Label File": "Word_Label_File/Create_new_doc/152_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/152_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/152_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "添加目录，并设置为三级目录。",
+    "Feasible API sequence": "add_table_of_contents(doc_path, levels=3);",
+    "Base File": "Word_Base_File/Create_new_doc/152_1.docx",
+    "Label File": "Word_Label_File/Create_new_doc/152_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/152_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/152_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "添加二级标题\"编码规范\"、\"文档规范\"和\"版本控制\"。",
+    "Feasible API sequence": "add_heading(doc_path, \"编码规范\", level=2);add_heading(doc_path, \"文档规范\", level=2);add_heading(doc_path, \"版本控制\", level=2);",
+    "Base File": "Word_Base_File/Create_new_doc/152_2.docx",
+    "Label File": "Word_Label_File/Create_new_doc/152_2.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/152_2.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/152_2.docx"
+  },
+  {
+    "Turn": 3,
+    "User instruction": "在每个二级标题下添加三级标题\"基本要求\"和\"具体规范\"。",
+    "Feasible API sequence": "add_heading(doc_path, \"基本要求\", level=3);add_heading(doc_path, \"具体规范\", level=3);add_heading(doc_path, \"基本要求\", level=3);add_heading(doc_path, \"具体规范\", level=3);add_heading(doc_path, \"基本要求\", level=3);add_heading(doc_path, \"具体规范\", level=3);",
+    "Base File": "Word_Base_File/Create_new_doc/152_3.docx",
+    "Label File": "Word_Label_File/Create_new_doc/152_3.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/152_3.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/152_3.docx"
+  },
+  {
+    "Turn": 4,
+    "User instruction": "在\"编码规范\"下的\"具体规范\"下添加带编号的列表项。",
+    "Feasible API sequence": "add_list_item(doc_path, \"命名规范\", style=\"List Number\");add_list_item(doc_path, \"注释规范\", style=\"List Number\");add_list_item(doc_path, \"格式规范\", style=\"List Number\");",
+    "Base File": "Word_Base_File/Create_new_doc/152_4.docx",
+    "Label File": "Word_Label_File/Create_new_doc/152_4.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/152_4.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/152_4.docx"
+  },
+  {
+    "Turn": 5,
+    "User instruction": "在\"文档规范\"下的\"基本要求\"下插入一个4行3列的表格。",
+    "Feasible API sequence": "add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, \"文档类型\");set_cell_text(table, 0, 1, \"更新频率\");set_cell_text(table, 0, 2, \"审核要求\");",
+    "Base File": "Word_Base_File/Create_new_doc/152_5.docx",
+    "Label File": "Word_Label_File/Create_new_doc/152_5.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/152_5.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/152_5.docx"
+  },
+  {
+    "Turn": 6,
+    "User instruction": "在\"版本控制\"下的\"具体规范\"下插入一个流程图。",
+    "Feasible API sequence": "add_shape(doc_path, \"flowchart\");",
+    "Base File": "Word_Base_File/Create_new_doc/152_6.docx",
+    "Label File": "Word_Label_File/Create_new_doc/152_6.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/152_6.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/152_6.docx"
+  }
+] 

@@ -1,0 +1,47 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建新文档并添加标题\"运营数据分析\"，设置字体为\"STXihei\"。",
+    "Feasible API sequence": "create_and_save_docx(doc_path, \"\");add_heading(doc_path, \"运营数据分析\", level=1);set_font_style(\"STXihei\");",
+    "Base File": "Word_Base_File/Create_new_doc/99_0.docx",
+    "Label File": "Word_Label_File/Create_new_doc/99_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/99_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/99_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "添加二级标题\"用户增长\"、\"活跃度分析\"和\"转化率分析\"。",
+    "Feasible API sequence": "add_heading(doc_path, \"用户增长\", level=2);add_heading(doc_path, \"活跃度分析\", level=2);add_heading(doc_path, \"转化率分析\", level=2);",
+    "Base File": "Word_Base_File/Create_new_doc/99_1.docx",
+    "Label File": "Word_Label_File/Create_new_doc/99_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/99_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/99_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "在\"用户增长\"下插入一个折线图展示月度新增用户数。",
+    "Feasible API sequence": "create_line_chart([\"1月\", \"2月\", \"3月\", \"4月\", \"5月\", \"6月\"], [1000, 1500, 2000, 2800, 3500, 4200], title=\"月度新增用户数\", xlabel=\"月份\", ylabel=\"新增用户数\");",
+    "Base File": "Word_Base_File/Create_new_doc/99_2.docx",
+    "Label File": "Word_Label_File/Create_new_doc/99_2.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/99_2.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/99_2.docx"
+  },
+  {
+    "Turn": 3,
+    "User instruction": "在\"活跃度分析\"下插入一个柱状图展示各时段活跃用户数。",
+    "Feasible API sequence": "create_bar_chart([\"早上\", \"中午\", \"下午\", \"晚上\", \"深夜\"], [2000, 3500, 4000, 4500, 1500], title=\"各时段活跃用户数\", xlabel=\"时段\", ylabel=\"活跃用户数\");",
+    "Base File": "Word_Base_File/Create_new_doc/99_3.docx",
+    "Label File": "Word_Label_File/Create_new_doc/99_3.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/99_3.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/99_3.docx"
+  },
+  {
+    "Turn": 4,
+    "User instruction": "在\"转化率分析\"下添加一个4行3列的表格。",
+    "Feasible API sequence": "add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, \"渠道\");set_cell_text(table, 0, 1, \"访问量\");set_cell_text(table, 0, 2, \"转化率\");",
+    "Base File": "Word_Base_File/Create_new_doc/99_4.docx",
+    "Label File": "Word_Label_File/Create_new_doc/99_4.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/99_4.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/99_4.docx"
+  }
+] 

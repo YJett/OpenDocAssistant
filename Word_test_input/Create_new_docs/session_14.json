@@ -1,0 +1,29 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建新文档并设置浅绿色背景。",
+    "Feasible API sequence": "create_and_save_docx(doc_path, \"\");set_background_color(\"light green\");",
+    "Base File": "Word_Base_File/Create_new_doc/15_0.docx",
+    "Label File": "Word_Label_File/Create_new_doc/15_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/15_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/15_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "添加标题\"环境保护\"，字体颜色设为深绿色。",
+    "Feasible API sequence": "add_heading(doc_path, \"环境保护\", level=1);set_font_color(\"dark green\");",
+    "Base File": "Word_Base_File/Create_new_doc/15_1.docx",
+    "Label File": "Word_Label_File/Create_new_doc/15_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/15_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/15_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "在正文中添加\"让我们一起保护地球家园\"，并设置为18磅字体。",
+    "Feasible API sequence": "add_paragraph(doc_path, \"让我们一起保护地球家园\");set_font_size(18);",
+    "Base File": "Word_Base_File/Create_new_doc/15_2.docx",
+    "Label File": "Word_Label_File/Create_new_doc/15_2.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/15_2.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/15_2.docx"
+  }
+] 

@@ -1,0 +1,29 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "添加二级标题\"文献综述\"，并将字体设置为\"Arial\"。",
+    "Feasible API sequence": "add_heading(doc_path, \"文献综述\", level=2);set_font_style(\"Arial\");",
+    "Base File": "Word_Base_File/Edit_Word_template/1_0.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/1_0.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/1_0.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/1_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "插入一个4行3列的表格来总结之前的研究发现。",
+    "Feasible API sequence": "add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, \"作者\");set_cell_text(table, 0, 1, \"年份\");set_cell_text(table, 0, 2, \"研究发现\");",
+    "Base File": "Word_Base_File/Edit_Word_template/1_1.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/1_1.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/1_1.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/1_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "将表格第一行设置为粗体和灰色背景。",
+    "Feasible API sequence": "set_cell_bg_color(table, 0, 0, \"gray\");set_cell_bg_color(table, 0, 1, \"gray\");set_cell_bg_color(table, 0, 2, \"gray\");set_font_bold();",
+    "Base File": "Word_Base_File/Edit_Word_template/1_2.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/1_2.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/1_2.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/1_2.docx"
+  }
+] 

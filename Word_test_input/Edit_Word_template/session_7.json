@@ -1,0 +1,29 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "插入一个柱状图比较三个研究组的数据。",
+    "Feasible API sequence": "create_bar_chart([\"实验组A\", \"实验组B\", \"实验组C\"], [75, 82, 68], title=\"研究结果对比\", xlabel=\"实验组\", ylabel=\"得分\");",
+    "Base File": "Word_Base_File/Edit_Word_template/7_0.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/7_0.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/7_0.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/7_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "添加二级标题\"数据分析\"并在其下方插入流程图。",
+    "Feasible API sequence": "add_heading(doc_path, \"数据分析\", level=2);add_shape(doc_path, \"flowchart\");",
+    "Base File": "Word_Base_File/Edit_Word_template/7_1.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/7_1.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/7_1.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/7_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "添加\"草稿\"水印并设置为浅灰色。",
+    "Feasible API sequence": "add_watermark(doc_path, \"草稿\");set_font_color(\"light gray\");",
+    "Base File": "Word_Base_File/Edit_Word_template/7_2.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/7_2.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/7_2.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/7_2.docx"
+  }
+] 

@@ -1,0 +1,29 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "添加一级标题\"结果与讨论\"并设置浅黄色背景。",
+    "Feasible API sequence": "add_heading(doc_path, \"结果与讨论\", level=1);set_background_color(\"light yellow\");",
+    "Base File": "Word_Base_File/Edit_Word_template/5_0.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/5_0.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/5_0.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/5_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "创建一个折线图显示6个月的趋势分析。",
+    "Feasible API sequence": "create_line_chart([\"一月\", \"二月\", \"三月\", \"四月\", \"五月\", \"六月\"], [10, 15, 18, 22, 25, 30], title=\"六个月趋势分析\", xlabel=\"月份\", ylabel=\"数值\");",
+    "Base File": "Word_Base_File/Edit_Word_template/5_1.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/5_1.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/5_1.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/5_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "在图表下方添加4个带编号的关键发现。",
+    "Feasible API sequence": "add_list_item(doc_path, \"观察到显著上升趋势\", style=\"List Number\");add_list_item(doc_path, \"六月达到峰值\", style=\"List Number\");add_list_item(doc_path, \"月度增长稳定\", style=\"List Number\");add_list_item(doc_path, \"波动幅度较小\", style=\"List Number\");",
+    "Base File": "Word_Base_File/Edit_Word_template/5_2.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/5_2.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/5_2.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/5_2.docx"
+  }
+] 

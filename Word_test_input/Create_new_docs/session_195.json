@@ -1,0 +1,56 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建新文档并添加标题\"供应商评估报告\"，设置字体为\"STXihei\"。",
+    "Feasible API sequence": "create_and_save_docx(doc_path, \"\");add_heading(doc_path, \"供应商评估报告\", level=1);set_font_style(\"STXihei\");",
+    "Base File": "Word_Base_File/Create_new_docs/196_0.docx",
+    "Label File": "Word_Label_File/Create_new_docs/196_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/196_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/196_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "添加目录，并设置为三级目录。",
+    "Feasible API sequence": "add_table_of_contents(doc_path, levels=3);",
+    "Base File": "Word_Base_File/Create_new_docs/196_1.docx",
+    "Label File": "Word_Label_File/Create_new_docs/196_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/196_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/196_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "添加二级标题\"供应商概况\"、\"评估结果\"和\"合作建议\"。",
+    "Feasible API sequence": "add_heading(doc_path, \"供应商概况\", level=2);add_heading(doc_path, \"评估结果\", level=2);add_heading(doc_path, \"合作建议\", level=2);",
+    "Base File": "Word_Base_File/Create_new_docs/196_2.docx",
+    "Label File": "Word_Label_File/Create_new_docs/196_2.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/196_2.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/196_2.docx"
+  },
+  {
+    "Turn": 3,
+    "User instruction": "在\"评估结果\"下插入一个柱状图展示各项评分。",
+    "Feasible API sequence": "create_bar_chart([\"产品质量\", \"交付能力\", \"价格水平\", \"服务态度\"], [85, 90, 75, 88], title=\"供应商评估得分\", xlabel=\"评估项目\", ylabel=\"得分\");",
+    "Base File": "Word_Base_File/Create_new_docs/196_3.docx",
+    "Label File": "Word_Label_File/Create_new_docs/196_3.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/196_3.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/196_3.docx"
+  },
+  {
+    "Turn": 4,
+    "User instruction": "在\"供应商概况\"下添加一个4行3列的表格。",
+    "Feasible API sequence": "add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, \"供应商名称\");set_cell_text(table, 0, 1, \"主营业务\");set_cell_text(table, 0, 2, \"合作年限\");",
+    "Base File": "Word_Base_File/Create_new_docs/196_4.docx",
+    "Label File": "Word_Label_File/Create_new_docs/196_4.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/196_4.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/196_4.docx"
+  },
+  {
+    "Turn": 5,
+    "User instruction": "在\"合作建议\"下添加带编号的列表项。",
+    "Feasible API sequence": "add_list_item(doc_path, \"继续合作\", style=\"List Number\");add_list_item(doc_path, \"加强监督\", style=\"List Number\");add_list_item(doc_path, \"价格谈判\", style=\"List Number\");add_list_item(doc_path, \"深化合作\", style=\"List Number\");",
+    "Base File": "Word_Base_File/Create_new_docs/196_5.docx",
+    "Label File": "Word_Label_File/Create_new_docs/196_5.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/196_5.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/196_5.docx"
+  }
+] 

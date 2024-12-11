@@ -1,0 +1,20 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "在文档左侧插入一个云形状。",
+    "Feasible API sequence": "add_shape(doc_path, \"cloud\");align_shape_left();",
+    "Base File": "Word_Base_File/Create_new_doc/4_0.docx",
+    "Label File": "Word_Label_File/Create_new_doc/4_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/4_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/4_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "在文档右侧插入一张时钟图片。",
+    "Feasible API sequence": "add_image(doc_path, 0, \"clock.jpg\");align_image_right(paragraph);",
+    "Base File": "Word_Base_File/Create_new_doc/4_1.docx",
+    "Label File": "Word_Label_File/Create_new_doc/4_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/4_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/4_1.docx"
+  }
+] 

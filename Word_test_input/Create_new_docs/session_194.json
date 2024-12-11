@@ -1,0 +1,56 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建新文档并添加标题\"研发项目评估\"，设置字体为\"Microsoft YaHei\"。",
+    "Feasible API sequence": "create_and_save_docx(doc_path, \"\");add_heading(doc_path, \"研发项目评估\", level=1);set_font_style(\"Microsoft YaHei\");",
+    "Base File": "Word_Base_File/Create_new_docs/195_0.docx",
+    "Label File": "Word_Label_File/Create_new_docs/195_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/195_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/195_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "添加目录，并设置为三级目录。",
+    "Feasible API sequence": "add_table_of_contents(doc_path, levels=3);",
+    "Base File": "Word_Base_File/Create_new_docs/195_1.docx",
+    "Label File": "Word_Label_File/Create_new_docs/195_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/195_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/195_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "���加二级标题\"项目概述\"、\"评估指标\"和\"评估结果\"。",
+    "Feasible API sequence": "add_heading(doc_path, \"项目概述\", level=2);add_heading(doc_path, \"评估指标\", level=2);add_heading(doc_path, \"评估结果\", level=2);",
+    "Base File": "Word_Base_File/Create_new_docs/195_2.docx",
+    "Label File": "Word_Label_File/Create_new_docs/195_2.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/195_2.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/195_2.docx"
+  },
+  {
+    "Turn": 3,
+    "User instruction": "在\"评估指标\"下添加一个5行4列的表格。",
+    "Feasible API sequence": "add_table(doc_path, 5, 4);set_cell_text(table, 0, 0, \"评估项目\");set_cell_text(table, 0, 1, \"评估标准\");set_cell_text(table, 0, 2, \"权重\");set_cell_text(table, 0, 3, \"得分\");",
+    "Base File": "Word_Base_File/Create_new_docs/195_3.docx",
+    "Label File": "Word_Label_File/Create_new_docs/195_3.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/195_3.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/195_3.docx"
+  },
+  {
+    "Turn": 4,
+    "User instruction": "在\"评估结果\"下插入一个雷���图展示各维度得分。",
+    "Feasible API sequence": "create_radar_chart([\"技术\", \"市场\", \"成本\", \"风险\", \"团队\"], [85, 75, 80, 70, 90], title=\"项目评估得分\");",
+    "Base File": "Word_Base_File/Create_new_docs/195_4.docx",
+    "Label File": "Word_Label_File/Create_new_docs/195_4.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/195_4.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/195_4.docx"
+  },
+  {
+    "Turn": 5,
+    "User instruction": "在\"项目概述\"下添加带编号的列表项。",
+    "Feasible API sequence": "add_list_item(doc_path, \"项目背景\", style=\"List Number\");add_list_item(doc_path, \"项目目标\", style=\"List Number\");add_list_item(doc_path, \"项目范围\", style=\"List Number\");add_list_item(doc_path, \"关键里程碑\", style=\"List Number\");",
+    "Base File": "Word_Base_File/Create_new_docs/195_5.docx",
+    "Label File": "Word_Label_File/Create_new_docs/195_5.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/195_5.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/195_5.docx"
+  }
+] 

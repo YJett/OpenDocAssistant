@@ -1,0 +1,56 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建新文档并添加标题\"数字化转型方案\"，设置字体为\"STXihei\"。",
+    "Feasible API sequence": "create_and_save_docx(doc_path, \"\");add_heading(doc_path, \"数字化转型方案\", level=1);set_font_style(\"STXihei\");",
+    "Base File": "Word_Base_File/Create_new_docs/212_0.docx",
+    "Label File": "Word_Label_File/Create_new_docs/212_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/212_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/212_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "添加目录，并设置为三级目录。",
+    "Feasible API sequence": "add_table_of_contents(doc_path, levels=3);",
+    "Base File": "Word_Base_File/Create_new_docs/212_1.docx",
+    "Label File": "Word_Label_File/Create_new_docs/212_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/212_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/212_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "添加二级标题\"现状分析\"、\"转型目标\"和\"实施路径\"。",
+    "Feasible API sequence": "add_heading(doc_path, \"现状分析\", level=2);add_heading(doc_path, \"转型目标\", level=2);add_heading(doc_path, \"实施路径\", level=2);",
+    "Base File": "Word_Base_File/Create_new_docs/212_2.docx",
+    "Label File": "Word_Label_File/Create_new_docs/212_2.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/212_2.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/212_2.docx"
+  },
+  {
+    "Turn": 3,
+    "User instruction": "在\"现状分析\"下插入一个雷达图展示各维度评分。",
+    "Feasible API sequence": "create_radar_chart([\"业务数字化\", \"流程自动化\", \"数据分析\", \"技术架构\", \"人才储备\"], [60, 45, 55, 40, 50], title=\"数字化成熟度评估\");",
+    "Base File": "Word_Base_File/Create_new_docs/212_3.docx",
+    "Label File": "Word_Label_File/Create_new_docs/212_3.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/212_3.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/212_3.docx"
+  },
+  {
+    "Turn": 4,
+    "User instruction": "在\"转型目标\"下添加一个4行4列的表格。",
+    "Feasible API sequence": "add_table(doc_path, 4, 4);set_cell_text(table, 0, 0, \"转型领域\");set_cell_text(table, 0, 1, \"现状水平\");set_cell_text(table, 0, 2, \"目标水平\");set_cell_text(table, 0, 3, \"提升方向\");",
+    "Base File": "Word_Base_File/Create_new_docs/212_4.docx",
+    "Label File": "Word_Label_File/Create_new_docs/212_4.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/212_4.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/212_4.docx"
+  },
+  {
+    "Turn": 5,
+    "User instruction": "在\"实施路径\"下插入一个流程图。",
+    "Feasible API sequence": "add_shape(doc_path, \"flowchart\");",
+    "Base File": "Word_Base_File/Create_new_docs/212_5.docx",
+    "Label File": "Word_Label_File/Create_new_docs/212_5.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/212_5.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/212_5.docx"
+  }
+] 

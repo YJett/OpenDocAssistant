@@ -1,0 +1,47 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建新文档并添加标题\"销售业绩报告\"，添加页眉显示\"销售部\"。",
+    "Feasible API sequence": "create_and_save_docx(doc_path, \"\");add_heading(doc_path, \"销售业绩报告\", level=1);add_header(doc_path, \"销售部\");",
+    "Base File": "Word_Base_File/Create_new_doc/116_0.docx",
+    "Label File": "Word_Label_File/Create_new_doc/116_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/116_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/116_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "添加二级标题\"销售概况\"、\"业绩分析\"和\"未来展望\"。",
+    "Feasible API sequence": "add_heading(doc_path, \"销售概况\", level=2);add_heading(doc_path, \"业绩分析\", level=2);add_heading(doc_path, \"未来展望\", level=2);",
+    "Base File": "Word_Base_File/Create_new_doc/116_1.docx",
+    "Label File": "Word_Label_File/Create_new_doc/116_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/116_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/116_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "在\"销售概况\"下插入一个折线图展示月度销售额。",
+    "Feasible API sequence": "create_line_chart([\"1月\", \"2月\", \"3月\", \"4月\", \"5月\", \"6月\"], [100, 120, 150, 140, 160, 180], title=\"月度销售额趋势\", xlabel=\"月份\", ylabel=\"销售额（万元）\");",
+    "Base File": "Word_Base_File/Create_new_doc/116_2.docx",
+    "Label File": "Word_Label_File/Create_new_doc/116_2.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/116_2.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/116_2.docx"
+  },
+  {
+    "Turn": 3,
+    "User instruction": "在\"业绩分析\"下插入一个饼图展示各产品线销售占比。",
+    "Feasible API sequence": "create_pie_chart([\"产品A\", \"产品B\", \"产品C\", \"产品D\"], [40, 30, 20, 10], title=\"产品线销售占比\");",
+    "Base File": "Word_Base_File/Create_new_doc/116_3.docx",
+    "Label File": "Word_Label_File/Create_new_doc/116_3.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/116_3.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/116_3.docx"
+  },
+  {
+    "Turn": 4,
+    "User instruction": "在\"未来展望\"下添加带编号的列表项。",
+    "Feasible API sequence": "add_list_item(doc_path, \"扩大市场份额\", style=\"List Number\");add_list_item(doc_path, \"开发新产品线\", style=\"List Number\");add_list_item(doc_path, \"提升客户满意度\", style=\"List Number\");",
+    "Base File": "Word_Base_File/Create_new_doc/116_4.docx",
+    "Label File": "Word_Label_File/Create_new_doc/116_4.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/116_4.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/116_4.docx"
+  }
+] 

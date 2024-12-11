@@ -1,0 +1,56 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建新文档并添加标题\"产品测评报告\"，设置字体为\"Microsoft YaHei\"。",
+    "Feasible API sequence": "create_and_save_docx(doc_path, \"\");add_heading(doc_path, \"产品测评报告\", level=1);set_font_style(\"Microsoft YaHei\");",
+    "Base File": "Word_Base_File/Create_new_docs/186_0.docx",
+    "Label File": "Word_Label_File/Create_new_docs/186_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/186_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/186_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "添加目录，并设置为三级目录。",
+    "Feasible API sequence": "add_table_of_contents(doc_path, levels=3);",
+    "Base File": "Word_Base_File/Create_new_docs/186_1.docx",
+    "Label File": "Word_Label_File/Create_new_docs/186_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/186_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/186_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "添加二级标题\"产品介绍\"、\"测试结果\"和\"用户反馈\"。",
+    "Feasible API sequence": "add_heading(doc_path, \"产品介绍\", level=2);add_heading(doc_path, \"测试结果\", level=2);add_heading(doc_path, \"用户反馈\", level=2);",
+    "Base File": "Word_Base_File/Create_new_docs/186_2.docx",
+    "Label File": "Word_Label_File/Create_new_docs/186_2.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/186_2.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/186_2.docx"
+  },
+  {
+    "Turn": 3,
+    "User instruction": "在\"测试结果\"下插入一个柱状图展示各项指标得分。",
+    "Feasible API sequence": "create_bar_chart([\"性能\", \"稳定性\", \"易用性\", \"安全性\"], [85, 90, 88, 92], title=\"产品测评得分\", xlabel=\"测评指标\", ylabel=\"得分\");",
+    "Base File": "Word_Base_File/Create_new_docs/186_3.docx",
+    "Label File": "Word_Label_File/Create_new_docs/186_3.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/186_3.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/186_3.docx"
+  },
+  {
+    "Turn": 4,
+    "User instruction": "在\"用户反馈\"下插入一个饼图展示用户满意度分布。",
+    "Feasible API sequence": "create_pie_chart([\"非常满意\", \"满意\", \"一般\", \"不满意\"], [40, 35, 15, 10], title=\"用户满意度分布\");",
+    "Base File": "Word_Base_File/Create_new_docs/186_4.docx",
+    "Label File": "Word_Label_File/Create_new_docs/186_4.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/186_4.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/186_4.docx"
+  },
+  {
+    "Turn": 5,
+    "User instruction": "在\"产品介绍\"下添加带编号的列表项。",
+    "Feasible API sequence": "add_list_item(doc_path, \"产品功能\", style=\"List Number\");add_list_item(doc_path, \"技术特点\", style=\"List Number\");add_list_item(doc_path, \"应用场景\", style=\"List Number\");add_list_item(doc_path, \"产品优势\", style=\"List Number\");",
+    "Base File": "Word_Base_File/Create_new_docs/186_5.docx",
+    "Label File": "Word_Label_File/Create_new_docs/186_5.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/186_5.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/186_5.docx"
+  }
+] 

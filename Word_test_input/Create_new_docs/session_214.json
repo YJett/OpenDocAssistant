@@ -1,0 +1,56 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建新文档并添加标题\"能源管理制度\"，设置字体为\"Microsoft YaHei\"。",
+    "Feasible API sequence": "create_and_save_docx(doc_path, \"\");add_heading(doc_path, \"能源管理制度\", level=1);set_font_style(\"Microsoft YaHei\");",
+    "Base File": "Word_Base_File/Create_new_docs/215_0.docx",
+    "Label File": "Word_Label_File/Create_new_docs/215_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/215_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/215_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "添加目录，并设置为三级目录。",
+    "Feasible API sequence": "add_table_of_contents(doc_path, levels=3);",
+    "Base File": "Word_Base_File/Create_new_docs/215_1.docx",
+    "Label File": "Word_Label_File/Create_new_docs/215_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/215_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/215_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "添加二级标题\"能源监控\"、\"节能措施\"和\"考核奖惩\"。",
+    "Feasible API sequence": "add_heading(doc_path, \"能源监控\", level=2);add_heading(doc_path, \"节能措施\", level=2);add_heading(doc_path, \"考核奖惩\", level=2);",
+    "Base File": "Word_Base_File/Create_new_docs/215_2.docx",
+    "Label File": "Word_Label_File/Create_new_docs/215_2.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/215_2.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/215_2.docx"
+  },
+  {
+    "Turn": 3,
+    "User instruction": "在\"能源监控\"下插入一个折线图展示能耗趋势。",
+    "Feasible API sequence": "create_line_chart([\"1月\", \"2月\", \"3月\", \"4月\", \"5月\", \"6月\"], [100, 95, 85, 80, 75, 70], title=\"月度能耗趋势\", xlabel=\"月份\", ylabel=\"能耗指数\");",
+    "Base File": "Word_Base_File/Create_new_docs/215_3.docx",
+    "Label File": "Word_Label_File/Create_new_docs/215_3.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/215_3.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/215_3.docx"
+  },
+  {
+    "Turn": 4,
+    "User instruction": "在\"节能措施\"添加一个4行3列的表格。",
+    "Feasible API sequence": "add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, \"措施类型\");set_cell_text(table, 0, 1, \"具体内容\");set_cell_text(table, 0, 2, \"预期效果\");",
+    "Base File": "Word_Base_File/Create_new_docs/215_4.docx",
+    "Label File": "Word_Label_File/Create_new_docs/215_4.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/215_4.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/215_4.docx"
+  },
+  {
+    "Turn": 5,
+    "User instruction": "在\"考核奖惩\"下添加带编号的列表项。",
+    "Feasible API sequence": "add_list_item(doc_path, \"考核标准\", style=\"List Number\");add_list_item(doc_path, \"奖励措施\", style=\"List Number\");add_list_item(doc_path, \"处罚规定\", style=\"List Number\");add_list_item(doc_path, \"申诉流程\", style=\"List Number\");",
+    "Base File": "Word_Base_File/Create_new_docs/215_5.docx",
+    "Label File": "Word_Label_File/Create_new_docs/215_5.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/215_5.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/215_5.docx"
+  }
+] 

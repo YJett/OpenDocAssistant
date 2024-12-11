@@ -1,0 +1,29 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "添加一级标题\"研究方法\"并设置字体为\"Times New Roman\"，大小为14。",
+    "Feasible API sequence": "add_heading(doc_path, \"研究方法\", level=1);set_font_style(\"Times New Roman\");set_font_size(14);",
+    "Base File": "Word_Base_File/Edit_Word_template/11_0.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/11_0.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/11_0.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/11_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "创建一个6行3列的表格显示参与者人口统计信息，并设置第一行为表头。",
+    "Feasible API sequence": "add_table(doc_path, 6, 3);set_cell_text(table, 0, 0, \"年龄组\");set_cell_text(table, 0, 1, \"性别\");set_cell_text(table, 0, 2, \"教育程度\");set_font_bold();",
+    "Base File": "Word_Base_File/Edit_Word_template/11_1.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/11_1.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/11_1.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/11_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "插入一个柱状图显示参与者的年龄分布。",
+    "Feasible API sequence": "create_bar_chart([\"18-25岁\", \"26-35岁\", \"36-45岁\", \"46岁以上\"], [30, 45, 15, 10], title=\"年龄分布\", xlabel=\"年龄段\", ylabel=\"参与者人数\");",
+    "Base File": "Word_Base_File/Edit_Word_template/11_2.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/11_2.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/11_2.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/11_2.docx"
+  }
+] 

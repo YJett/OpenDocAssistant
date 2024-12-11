@@ -1,0 +1,1073 @@
+init_docx();
+add_heading("Human Assessment", level=1);
+text_align_right();add_footer("Human Assessment");
+add_paragraph("Generally, the translation is scored anonymously by multiple reviewers, and then the final score is given by combining the evaluation results of all reviewers");
+add_table(2, 2);
+set_cell_text(0, 0, "Advantages");set_cell_text(1, 0, "Disadvantages");set_cell_text(0, 1, "Accurately reflect the translation quality of sentences, the most authoritative, the highest credibility");set_cell_text(1, 1, "Long time assessment");
+set_font_size(20);set_font_style("Arial");
+
+add_image("tower.jpg", width=4, height=3);align_image_bottom();
+
+set_background_color("green");
+add_shape("cloud");align_shape_bottom();
+add_paragraph("你跑得太慢了");
+
+add_image("study.jpg");align_image_center();
+add_shape("rectangle");align_shape_center();
+add_heading("英雄联盟", level=1);add_paragraph("英雄联盟是一个拥有140多个英雄的团队游戏。现在免费游玩。");
+
+add_shape("cloud");align_shape_left();
+add_image("clock.jpg");align_image_right();
+
+add_heading("三月日程", level=1);set_font_color("red");
+set_font_size(28);set_font_color("dark blue");
+add_table(1, 3);set_cell_text(0, 0, "1-10日学习");set_cell_text(0, 1, "11-20日工作");set_cell_text(0, 2, "21-31日旅行");
+
+add_heading("冥想的好处", level=1);
+add_image("meditation.jpg");align_image_center();
+add_paragraph("冥想是一种简单而强大的技巧，可以帮助你达到内心平静和宁静的状态。");
+set_font_size(24);set_font_color("dark blue");
+
+create_and_save_docx("");set_background_color("green");
+add_image("grassland.jpg");align_image_left();
+set_image_size(width=6.5, height=5.5);add_heading("森林的功能", level=1);
+set_font_color("orange");set_font_size(40);
+
+create_and_save_docx("");add_table(2, 2);
+set_cell_text(0, 0, "树的类型");set_cell_text(0, 1, "用途");set_cell_text(1, 0, "不同种类的树");set_cell_text(1, 1, "不同颜色的叶子");
+add_paragraph("请记住今天种一棵树！");
+set_font_size(20);set_font_color("green");set_font_underline();
+
+add_page_numbers();set_background_color("yellow");add_page_numbers();set_background_color("yellow");add_page_numbers();set_background_color("yellow");add_page_numbers();set_background_color("yellow");add_page_numbers();set_background_color("yellow");
+add_heading("幸福家庭", level=1);set_font_style("Microsoft JhengHei");
+add_table(2, 2);
+set_cell_text(0, 0, "父亲");set_cell_text(0, 1, "母亲");set_cell_text(1, 0, "祖父");set_cell_text(1, 1, "孩子");
+
+create_and_save_docx("");add_heading("商业计划", level=1);
+add_image("light_bulb.jpg");align_image_left();
+
+create_and_save_docx("");add_heading("大规模建模的要点", level=1);set_font_size(24);
+set_font_style("Arial");
+add_table(1, 2);
+set_cell_text(0, 0, "重要性");set_font_size(18);set_font_color("light blue");
+
+create_and_save_docx("");add_heading("人工智能的应用", level=1);
+add_image("robot.jpg");
+
+create_and_save_docx("");add_heading("数据分析报告", level=1);set_font_style("Times New Roman");
+add_table(3, 4);
+set_cell_text(0, 0, "季度");set_cell_text(0, 1, "销售额");set_cell_text(0, 2, "成本");set_cell_text(0, 3, "利润");
+
+create_and_save_docx("");set_background_color("light green");
+add_heading("环境保护", level=1);set_font_color("dark green");
+add_paragraph("让我们一起保护地球家园");set_font_size(18);
+
+create_and_save_docx("");add_heading("项目计划书", level=1);
+add_table_of_contents(levels=3);
+add_page_numbers();
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "销售报表", level=1);
+create_line_chart([1,2,3,4], [100,150,130,200], title="销售趋势", xlabel="季度", ylabel="销售额");
+add_paragraph(doc_path, "销售额整体呈上升趋势");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "会议纪要", level=1);add_header(doc_path, "部门周会");
+add_page_numbers(doc_path);
+add_list_item(doc_path, "项目进展");add_list_item(doc_path, "下周计划");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品说明书", level=1);add_watermark(doc_path, "机密文件");
+add_hyperlink(doc_path, 0, "点击查看详情", "www.example.com");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "数据可视化报告", level=1);
+create_pie_chart(["产品A", "产品B", "产品C"], [45, 35, 20], title="市场份额分布");
+add_table(doc_path, 2, 3);
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "研究报告", level=1);set_font_style("Times New Roman");
+add_table_of_contents(doc_path, levels=3);
+add_list_item(doc_path, "研究背景");add_list_item(doc_path, "研究方法");add_list_item(doc_path, "研究结论");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "月度财务报表", level=1);
+create_bar_chart(["一月", "二月", "三月"], [10000, 12000, 15000], title="月度收入", xlabel="月份", ylabel="收入（元）");
+add_table(doc_path, 3, 4);
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "工作计划", level=1);add_header(doc_path, "部门：研发部");
+add_page_numbers(doc_path);
+add_list_item(doc_path, "本周任务");add_list_item(doc_path, "下周计划");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "用户手册", level=1);set_background_color("light blue");
+add_list_item(doc_path, "安装说明", style="List Number");add_list_item(doc_path, "使用方法", style="List Number");add_list_item(doc_path, "常见问题", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品规格说明", level=1);set_font_style("Arial");
+add_table(doc_path, 4, 3);
+set_cell_text(table, 0, 0, "参数名称");set_cell_text(table, 0, 1, "参数值");set_cell_text(table, 0, 2, "单位");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "团队介绍", level=1);add_watermark(doc_path, "内部文件");
+add_list_item(doc_path, "研发团队", style="List Number");add_list_item(doc_path, "市场团队", style="List Number");add_list_item(doc_path, "运营团队", style="List Number");
+add_image(doc_path, 0, "team_photo.jpg");align_image_center(paragraph);
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "市场分析报告", level=1);add_header(doc_path, "商业机密");
+create_pie_chart(["公司A", "公司B", "公司C", "其他"], [40, 30, 20, 10], title="市场份额分布");
+add_paragraph(doc_path, "数据来源：市场调研报告");set_font_italic();
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "项目进度表", level=1);set_background_color("light yellow");
+add_table(doc_path, 3, 4);set_cell_text(table, 0, 0, "项目名称");set_cell_text(table, 0, 1, "开始时间");set_cell_text(table, 0, 2, "结束时间");set_cell_text(table, 0, 3, "负责人");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "客户反馈分析", level=1);set_font_style("Calibri");
+create_bar_chart(["非常满意", "满意", "一般", "不满意"], [45, 30, 15, 10], title="客户满意度调查", xlabel="满意度", ylabel="人数");
+add_paragraph(doc_path, "调查时间：2024年第一季度");set_font_italic();
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "年度总结报告", level=1);add_header(doc_path, "2024年度");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "业务发展", level=2);
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品发布会", level=1);set_background_color("light gray");
+add_image(doc_path, 0, "product.jpg");add_caption(doc, "新一代智能手机");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "技术规范书", level=1);set_font_style("Consolas");
+add_table(doc_path, 4, 3);
+set_cell_text(table, 0, 0, "参数名称");set_cell_text(table, 0, 1, "参数值");set_cell_text(table, 0, 2, "备注");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "培训计划", level=1);set_font_style("Microsoft YaHei");
+add_heading(doc_path, "培训目标", level=2);add_heading(doc_path, "培训内容", level=2);
+add_list_item(doc_path, "提升团队专业技能");add_list_item(doc_path, "增强团队协作能力");add_list_item(doc_path, "技术培训课程");add_list_item(doc_path, "团队建设活动");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "季度财务分析", level=1);add_header(doc_path, "财务部");
+create_line_chart(["Q1", "Q2", "Q3", "Q4"], [100, 120, 115, 135], title="季度收入趋势", xlabel="季度", ylabel="收入（万元）");
+add_table(doc_path, 2, 4);set_cell_text(table, 0, 0, "Q1");set_cell_text(table, 0, 1, "Q2");set_cell_text(table, 0, 2, "Q3");set_cell_text(table, 0, 3, "Q4");set_cell_text(table, 1, 0, "100");set_cell_text(table, 1, 1, "120");set_cell_text(table, 1, 2, "115");set_cell_text(table, 1, 3, "135");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "项目总结", level=1);set_background_color("light blue");
+add_list_item(doc_path, "项目概述", style="List Number");add_list_item(doc_path, "主要成果", style="List Number");add_list_item(doc_path, "经验总结", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "用户调研报告", level=1);set_font_style("SimSun");
+create_pie_chart(["18-25岁", "26-35岁", "36-45岁", "45岁以上"], [30, 40, 20, 10], title="用户年龄分布");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品发展规划", level=1);set_font_style("Microsoft YaHei");
+create_bar_chart(["产品A", "产品B", "产品C", "产品D"], [200, 150, 300, 180], title="产品销售数据", xlabel="产品线", ylabel="销售额（万元）");
+add_table(doc_path, 2, 4);set_cell_text(table, 0, 0, "产品线销售数据");merge_cells(table, 0, 0, 0, 3);set_cell_text(table, 1, 0, "产品A");set_cell_text(table, 1, 1, "产品B");set_cell_text(table, 1, 2, "产品C");set_cell_text(table, 1, 3, "产品D");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "会议纪要", level=1);add_header(doc_path, "技术部周会");
+add_heading(doc_path, "会议主题", level=2);add_heading(doc_path, "参会人员", level=2);
+add_table(doc_path, 2, 3);
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "市场调研报告", level=1);set_background_color("light yellow");
+create_pie_chart(["我司", "竞品A", "竞品B", "其他"], [45, 25, 20, 10], title="市场占比分析");
+add_paragraph(doc_path, "数据截至2024年3月");set_font_italic();
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "员工手册", level=1);add_watermark(doc_path, "内部文件");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "公司制度", level=2);add_heading(doc_path, "员工福利", level=2);
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "项目预算表", level=1);set_font_style("SimHei");
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "项目名称");set_cell_text(table, 0, 1, "预算金额");set_cell_text(table, 0, 2, "负责人");
+set_cell_bg_color(table, 0, 0, "gray");set_cell_bg_color(table, 0, 1, "gray");set_cell_bg_color(table, 0, 2, "gray");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "技术方案", level=1);add_header(doc_path, "研发部");
+add_heading(doc_path, "系统架构", level=2);add_heading(doc_path, "技术特点", level=2);
+add_list_item(doc_path, "高性能", style="List Number");add_list_item(doc_path, "易扩展", style="List Number");add_list_item(doc_path, "���全可靠", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品说明书", level=1);set_background_color("light blue");
+add_image(doc_path, 0, "product.jpg");add_caption(doc, "产品外观图");
+add_hyperlink(doc_path, 0, "点击查看详细参数", "www.example.com/specs");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "销售业绩报告", level=1);add_watermark(doc_path, "机密");
+create_bar_chart(["Q1", "Q2", "Q3", "Q4"], [150, 180, 200, 220], title="季度销售额", xlabel="季度", ylabel="销售额（万元）");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "质量检测报告", level=1);set_font_style("KaiTi");
+add_table(doc_path, 4, 4);set_cell_text(table, 0, 0, "检测项目");set_cell_text(table, 0, 1, "检测标准");set_cell_text(table, 0, 2, "检测结果");set_cell_text(table, 0, 3, "是否合格");
+create_line_chart(["1月", "2月", "3月", "4月", "5月", "6月"], [95, 93, 96, 98, 97, 99], title="合格率趋势", xlabel="月份", ylabel="合格率(%)");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "员工培训计划", level=1);add_header(doc_path, "人力资源部");
+add_heading(doc_path, "培训目标", level=2);add_heading(doc_path, "培训内容", level=2);
+add_list_item(doc_path, "提升专业技能");add_list_item(doc_path, "团队建设");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "项目进度报告", level=1);set_background_color("light green");
+add_table(doc_path, 3, 4);set_cell_text(table, 0, 0, "项目名称");set_cell_text(table, 0, 1, "开始时间");set_cell_text(table, 0, 2, "计划完成时间");set_cell_text(table, 0, 3, "实际进度");
+create_bar_chart(["项目A", "项目B", "项目C"], [80, 60, 45], title="项目完成进度", xlabel="项目", ylabel="完成度(%)");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "客户服务手册", level=1);add_watermark(doc_path, "内部培训资料");
+add_table_of_contents(doc_path, levels=2);
+add_heading(doc_path, "服务流程", level=2);add_heading(doc_path, "注意事项", level=2);
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品开发计划", level=1);set_font_style("FangSong");
+add_heading(doc_path, "开发目标", level=2);add_heading(doc_path, "开发周期", level=2);
+create_gantt_chart(["需求分析", "设计", "开发", "测试"], [2, 3, 8, 3], title="开发周期甘特图");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "会议记录", level=1);add_header(doc_path, "管理部");
+add_heading(doc_path, "会议主题", level=2);add_heading(doc_path, "参会人员", level=2);add_heading(doc_path, "会议内容", level=2);
+add_list_item(doc_path, "项目进展汇报", style="List Number");add_list_item(doc_path, "问题讨论", style="List Number");add_list_item(doc_path, "下一步计划", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "财务分析报告", level=1);set_background_color("light gray");
+create_line_chart(["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"], [100, 120, 110, 130, 125, 140, 135, 150, 145, 160, 155, 170], title="月度收入趋势", xlabel="月份", ylabel="收入（万元）");
+add_paragraph(doc_path, "数据来源：财务部月度报表");set_font_italic();
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "项目验收报告", level=1);add_watermark(doc_path, "待审核");
+add_heading(doc_path, "验收内容", level=2);add_heading(doc_path, "验收结果", level=2);
+add_table(doc_path, 3, 2);
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "研发计划书", level=1);set_font_style("SimSun");
+add_heading(doc_path, "研发目标", level=2);add_heading(doc_path, "技术路线", level=2);add_heading(doc_path, "进度安排", level=2);
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "阶段");set_cell_text(table, 0, 1, "时间");set_cell_text(table, 0, 2, "目标");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "市场调研分析", level=1);add_header(doc_path, "市场部");
+create_pie_chart(["18-25岁", "26-35岁", "36-45岁", "46岁以上"], [35, 40, 15, 10], title="用户年龄分布");
+add_paragraph(doc_path, "数据来源：问卷调查");set_font_italic();
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品说明书", level=1);set_background_color("light yellow");
+add_heading(doc_path, "产品特点", level=2);add_heading(doc_path, "使用说明", level=2);
+add_list_item(doc_path, "安装步骤", style="List Number");add_list_item(doc_path, "操作方法", style="List Number");add_list_item(doc_path, "注意事项", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "销售策略报告", level=1);add_watermark(doc_path, "内部文件");
+create_bar_chart(["华东", "华南", "华北", "西部"], [300, 250, 200, 150], title="区域销售额", xlabel="区域", ylabel="销售额（万元）");
+add_table(doc_path, 3, 5);
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "人力资源规划", level=1);set_font_style("LiSu");
+add_heading(doc_path, "人员配置", level=2);add_heading(doc_path, "培训计划", level=2);
+add_table(doc_path, 3, 4);set_cell_text(table, 0, 0, "部门");set_cell_text(table, 0, 1, "现有人数");set_cell_text(table, 0, 2, "需求人数");set_cell_text(table, 0, 3, "缺口");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "项目风险评估", level=1);add_header(doc_path, "项目管理部");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "风险项");set_cell_text(table, 0, 1, "风险等级");set_cell_text(table, 0, 2, "应对措施");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "季度工作总结", level=1);set_background_color("light blue");
+add_heading(doc_path, "工作成果", level=2);add_heading(doc_path, "存在问题", level=2);
+create_bar_chart(["一月", "二月", "三月"], [85, 90, 95], title="季度工作完成情况", xlabel="月份", ylabel="完成率(%)");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "客户满意度调查", level=1);add_watermark(doc_path, "调研报告");
+create_pie_chart(["非常满意", "满意", "一般", "不满意"], [50, 30, 15, 5], title="客户满意度分布");
+add_hyperlink(doc_path, 0, "查看详细数据", "www.example.com/survey");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "技术开发规划", level=1);set_font_style("NSimSun");
+add_heading(doc_path, "开发目标", level=2);add_heading(doc_path, "技术路线", level=2);
+add_list_item(doc_path, "提升系统性能", style="List Number");add_list_item(doc_path, "优化用户体验", style="List Number");add_list_item(doc_path, "增强安全性", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品发布说明", level=1);add_header(doc_path, "产品部");
+add_heading(doc_path, "版本特性", level=2);add_heading(doc_path, "更新内容", level=2);
+add_table(doc_path, 3, 2);set_cell_text(table, 0, 0, "功能");set_cell_text(table, 0, 1, "说明");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "项目管理手册", level=1);set_font_style("YouYuan");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "项目启动", level=2);add_heading(doc_path, "项目执行", level=2);add_heading(doc_path, "项目收尾", level=2);
+add_heading(doc_path, "关键任务", level=3);add_heading(doc_path, "注意事项", level=3);add_heading(doc_path, "关键任务", level=3);add_heading(doc_path, "注意事项", level=3);add_heading(doc_path, "关键任务", level=3);add_heading(doc_path, "注意事项", level=3);
+add_page_numbers(doc_path);
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "市场竞争分析", level=1);set_background_color("light green");
+create_pie_chart(["我司", "竞争对手A", "竞争对手B", "其他"], [40, 30, 20, 10], title="主要竞争对手市场份额");
+add_table(doc_path, 4, 3);
+set_cell_text(table, 0, 0, "公司名称");set_cell_text(table, 0, 1, "市场份额");set_cell_text(table, 0, 2, "主要优势");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");
+add_hyperlink(doc_path, 0, "查看完整报告", "www.example.com/report");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品开发流程", level=1);set_font_style("STXihei");
+add_heading(doc_path, "需求分析", level=2);add_heading(doc_path, "设计开发", level=2);add_heading(doc_path, "测试验证", level=2);add_heading(doc_path, "发布上线", level=2);
+add_list_item(doc_path, "收集用户需求", style="List Number");add_list_item(doc_path, "分析可行性", style="List Number");add_list_item(doc_path, "制定开发计划", style="List Number");add_list_item(doc_path, "进行详细设计", style="List Number");add_list_item(doc_path, "编写测试用例", style="List Number");add_list_item(doc_path, "执行系统测试", style="List Number");add_list_item(doc_path, "准备发布材料", style="List Number");add_list_item(doc_path, "部署上线", style="List Number");
+create_bar_chart(["需求分析", "设计开发", "测试验证", "发布上线"], [2, 6, 3, 1], title="项目进度甘特图", xlabel="阶段", ylabel="周数");
+add_page_numbers(doc_path);add_header(doc_path, "产品部");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "软件测试报告", level=1);set_font_style("STSong");
+add_heading(doc_path, "测试环境", level=2);add_heading(doc_path, "测试用例", level=2);add_heading(doc_path, "测试结果", level=2);
+create_pie_chart(["通过", "失败", "阻塞", "未执行"], [75, 15, 5, 5], title="测试用例执行情况");
+add_table(doc_path, 4, 3);
+set_cell_text(table, 0, 0, "测试模块");set_cell_text(table, 0, 1, "用例数量");set_cell_text(table, 0, 2, "通过率");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "员工手册", level=1);add_watermark(doc_path, "内部文件");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "公司制度", level=2);add_heading(doc_path, "员工福利", level=2);add_heading(doc_path, "办公指南", level=2);
+add_heading(doc_path, "考勤制度", level=3);add_heading(doc_path, "请假制度", level=3);add_heading(doc_path, "社会保险", level=3);add_heading(doc_path, "带薪休假", level=3);add_heading(doc_path, "办公环境", level=3);add_heading(doc_path, "IT支持", level=3);
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品发布计划", level=1);set_font_style("STFangsong");
+add_heading(doc_path, "发布准备", level=2);add_heading(doc_path, "发布流程", level=2);add_heading(doc_path, "发布后跟踪", level=2);
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 3, 4);
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "季度销售报告", level=1);add_header(doc_path, "销售部");
+create_line_chart(["一月", "二月", "三月"], [120, 150, 180], title="月度销售趋势", xlabel="月份", ylabel="销售额（万元）");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "月份");set_cell_text(table, 0, 1, "销售额");set_cell_text(table, 0, 2, "同比增长");
+add_page_numbers(doc_path);add_watermark(doc_path, "内部资料");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "技术创新报告", level=1);set_font_style("Microsoft YaHei");
+add_heading(doc_path, "创新方向", level=2);add_heading(doc_path, "研发成果", level=2);
+create_bar_chart(["2021", "2022", "2023"], [10, 15, 22], title="年度专利数量", xlabel="年份", ylabel="专利数量");
+add_table(doc_path, 3, 3);set_cell_text(table, 0, 0, "年份");set_cell_text(table, 0, 1, "专利数量");set_cell_text(table, 0, 2, "主要领域");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "人工智能发展趋势", level=1);set_font_style("FangSong");
+add_heading(doc_path, "技术突破", level=2);add_heading(doc_path, "应用领域", level=2);add_heading(doc_path, "未来展望", level=2);
+create_pie_chart(["医疗", "金融", "教育", "制造业", "其他"], [25, 20, 15, 25, 15], title="AI应用领域分布");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "行业");set_cell_text(table, 0, 1, "应用比例");set_cell_text(table, 0, 2, "典型应用");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "企业文化手册", level=1);set_font_style("KaiTi");
+add_heading(doc_path, "核心价值观", level=2);add_heading(doc_path, "企业使命", level=2);add_heading(doc_path, "发展愿景", level=2);
+add_list_item(doc_path, "诚信", style="List Number");add_list_item(doc_path, "创新", style="List Number");add_list_item(doc_path, "责任", style="List Number");
+add_paragraph(doc_path, "我们致力于通过持续创新和卓越执行，为客户创造最大价值，推动行业进步，实现共同成长。");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "科技创新报告", level=1);set_font_style("Microsoft YaHei");
+add_heading(doc_path, "研发投入", level=2);add_heading(doc_path, "技术突破", level=2);add_heading(doc_path, "未来展望", level=2);
+create_bar_chart(["2021", "2022", "2023"], [500, 750, 1000], title="年度研发投入", xlabel="年份", ylabel="研发经费（万元）");
+add_table(doc_path, 3, 3);set_cell_text(table, 0, 0, "年份");set_cell_text(table, 0, 1, "研发经费");set_cell_text(table, 0, 2, "同比增长");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "市场调研分析", level=1);set_font_style("SimHei");
+add_heading(doc_path, "调研目的", level=2);add_heading(doc_path, "调研方法", level=2);add_heading(doc_path, "调研结果", level=2);
+create_pie_chart(["产品A", "产品B", "产品C", "其他"], [40, 30, 20, 10], title="用户偏好分布");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "项目进度报告", level=1);add_header(doc_path, "项目管理部");
+add_heading(doc_path, "项目概况", level=2);add_heading(doc_path, "进度情况", level=2);add_heading(doc_path, "风险管理", level=2);
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "阶段");set_cell_text(table, 0, 1, "计划完成时间");set_cell_text(table, 0, 2, "实际进度");
+create_line_chart(["1月", "2月", "3月", "4月"], [25, 45, 70, 85], title="项目进度趋势", xlabel="月份", ylabel="完成度(%)");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品说明书", level=1);set_background_color("light blue");
+add_heading(doc_path, "产品特点", level=2);add_heading(doc_path, "使用说明", level=2);add_heading(doc_path, "注意事项", level=2);
+add_list_item(doc_path, "高性能", style="List Number");add_list_item(doc_path, "易操作", style="List Number");add_list_item(doc_path, "节能环保", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "质量管理手册", level=1);set_font_style("STXihei");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "质量方针", level=2);add_heading(doc_path, "质量目标", level=2);add_heading(doc_path, "管理职责", level=2);
+add_heading(doc_path, "具体要求", level=3);add_heading(doc_path, "实施细则", level=3);add_heading(doc_path, "具体要求", level=3);add_heading(doc_path, "实施细则", level=3);add_heading(doc_path, "具体要求", level=3);add_heading(doc_path, "实施细则", level=3);
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "财务分析报告", level=1);add_header(doc_path, "财务部");
+create_line_chart(["1月", "2月", "3月", "4月", "5月", "6月"], [100, 120, 115, 130, 140, 150], title="月度收入趋势", xlabel="月份", ylabel="收入（万元）");
+add_table(doc_path, 7, 2);set_cell_text(table, 0, 0, "月份");set_cell_text(table, 0, 1, "收入（万元）");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "研发项目计划", level=1);set_background_color("light green");
+add_heading(doc_path, "项目概述", level=2);add_heading(doc_path, "技术路线", level=2);add_heading(doc_path, "进度安排", level=2);
+create_bar_chart(["需求分析", "概要设计", "详细设计", "编码实现", "测试验证"], [2, 3, 4, 8, 3], title="项目进度甘特图", xlabel="阶段", ylabel="周数");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "客户服务手册", level=1);set_font_style("Microsoft YaHei");
+add_table_of_contents(doc_path, levels=2);
+add_heading(doc_path, "服务理念", level=2);add_heading(doc_path, "服务流程", level=2);add_heading(doc_path, "服务标准", level=2);
+add_list_item(doc_path, "客户至上", style="List Number");add_list_item(doc_path, "专业高效", style="List Number");add_list_item(doc_path, "持续改进", style="List Number");
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 3, 4);set_cell_text(table, 0, 0, "服务项目");set_cell_text(table, 0, 1, "响应时间");set_cell_text(table, 0, 2, "处理时限");set_cell_text(table, 0, 3, "质量要求");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_cell_bg_color(table, 0, 3, "light gray");set_font_bold();
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "年度工作总结", level=1);set_font_style("SimSun");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "工作成果", level=2);add_heading(doc_path, "存在问题", level=2);add_heading(doc_path, "改进计划", level=2);
+create_bar_chart(["第一季度", "第二季度", "第三季度", "第四季度"], [85, 92, 88, 95], title="季度业绩完成情况", xlabel="季度", ylabel="完成率(%)");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "季度");set_cell_text(table, 0, 1, "完成率");set_cell_text(table, 0, 2, "同比增长");
+add_list_item(doc_path, "沟通效率需要提升", style="List Number");add_list_item(doc_path, "项目进度有所延迟", style="List Number");add_list_item(doc_path, "资源配置不够合理", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "项目验收报告", level=1);add_watermark(doc_path, "待审核");
+add_heading(doc_path, "验收内容", level=2);add_heading(doc_path, "验收结果", level=2);add_heading(doc_path, "遗留问题", level=2);
+create_pie_chart(["通过", "有条件通过", "未通过"], [75, 20, 5], title="验收结果分布");
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "验收项目");set_cell_text(table, 0, 1, "验收结果");set_cell_text(table, 0, 2, "备注");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_font_bold();
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "软件开发规范", level=1);set_font_style("STXihei");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "编码规范", level=2);add_heading(doc_path, "文档规范", level=2);add_heading(doc_path, "版本控制", level=2);
+add_heading(doc_path, "命名规范", level=3);add_heading(doc_path, "注释规范", level=3);
+add_list_item(doc_path, "使用有意义的变量名", style="List Number");add_list_item(doc_path, "类名使用大驼峰命名法", style="List Number");add_list_item(doc_path, "方法名使用小驼峰命名法", style="List Number");
+add_shape(doc_path, "flowchart");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "项目进度报告", level=1);add_header(doc_path, "项目管理部");
+add_heading(doc_path, "项目概况", level=2);add_heading(doc_path, "进度情况", level=2);add_heading(doc_path, "风险管理", level=2);
+create_bar_chart(["需求分析", "设计", "开发", "测试", "部署"], [2, 3, 6, 2, 1], title="项目进度甘特图", xlabel="阶段", ylabel="周数");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "阶段");set_cell_text(table, 0, 1, "计划完成时间");set_cell_text(table, 0, 2, "实际进度");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");
+add_list_item(doc_path, "人员变动风险", style="List Number");add_list_item(doc_path, "技术风险", style="List Number");add_list_item(doc_path, "进度风险", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品设计规范", level=1);set_font_style("STXihei");
+add_heading(doc_path, "设计原则", level=2);add_heading(doc_path, "设计流程", level=2);add_heading(doc_path, "设计规范", level=2);
+add_list_item(doc_path, "以用户为中心", style="List Number");add_list_item(doc_path, "简洁易用", style="List Number");add_list_item(doc_path, "一致性", style="List Number");
+add_shape(doc_path, "flowchart");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "员工培训计划", level=1);add_header(doc_path, "人力资源部");
+add_heading(doc_path, "培训目标", level=2);add_heading(doc_path, "培训内容", level=2);add_heading(doc_path, "培训安排", level=2);
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "培训主题");set_cell_text(table, 0, 1, "培训时间");set_cell_text(table, 0, 2, "培训地点");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "软件测试报告", level=1);set_font_style("STXihei");
+add_heading(doc_path, "测试环境", level=2);add_heading(doc_path, "测试用例", level=2);add_heading(doc_path, "测试结果", level=2);
+add_table(doc_path, 5, 4);set_cell_text(table, 0, 0, "用例编号");set_cell_text(table, 0, 1, "测试项目");set_cell_text(table, 0, 2, "预期结果");set_cell_text(table, 0, 3, "实际结果");
+create_pie_chart(["通过", "未通过", "阻塞", "未执行"], [80, 10, 5, 5], title="测试用例执行情况");
+add_paragraph(doc_path, "测试时间：2024年3月15日");set_font_italic();
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品发布说明", level=1);add_watermark(doc_path, "内部文件");
+add_heading(doc_path, "版本信息", level=2);add_heading(doc_path, "更新内容", level=2);add_heading(doc_path, "注意事项", level=2);
+add_list_item(doc_path, "新增功能A", style="List Number");add_list_item(doc_path, "优化功能B", style="List Number");add_list_item(doc_path, "修复已知问题", style="List Number");
+add_shape(doc_path, "warning");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "研发管理制度", level=1);set_font_style("STKaiti");
+add_heading(doc_path, "研发流程", level=2);add_heading(doc_path, "质量控制", level=2);add_heading(doc_path, "文档管理", level=2);
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 3, 4);set_cell_text(table, 0, 0, "检查项目");set_cell_text(table, 0, 1, "检查频率");set_cell_text(table, 0, 2, "负责人");set_cell_text(table, 0, 3, "检查标准");
+add_list_item(doc_path, "文档命名规范", style="List Number");add_list_item(doc_path, "版本控制要求", style="List Number");add_list_item(doc_path, "存储位置规定", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "客户满意度调查报告", level=1);set_background_color("light yellow");
+add_heading(doc_path, "调查概况", level=2);add_heading(doc_path, "调查结果", level=2);add_heading(doc_path, "改进建议", level=2);
+create_pie_chart(["非常满意", "满意", "一般", "不满意"], [45, 35, 15, 5], title="客户满意度分布");
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "满意度级别");set_cell_text(table, 0, 1, "人数");set_cell_text(table, 0, 2, "占比");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "项目风险评估", level=1);set_font_style("Microsoft YaHei");
+add_heading(doc_path, "风险识别", level=2);add_heading(doc_path, "风险分析", level=2);add_heading(doc_path, "应对措施", level=2);
+add_table(doc_path, 4, 4);set_cell_text(table, 0, 0, "风险项");set_cell_text(table, 0, 1, "发生概率");set_cell_text(table, 0, 2, "影响程度");set_cell_text(table, 0, 3, "风险等级");
+add_list_item(doc_path, "制定应急预案", style="List Number");add_list_item(doc_path, "定期风险评估", style="List Number");add_list_item(doc_path, "加强团队培训", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品发布计划", level=1);add_header(doc_path, "产品部");
+add_heading(doc_path, "发布准备", level=2);add_heading(doc_path, "发布流程", level=2);add_heading(doc_path, "发布后运维", level=2);
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 3, 3);set_cell_text(table, 0, 0, "监控项目");set_cell_text(table, 0, 1, "监控频率");set_cell_text(table, 0, 2, "负责人");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "质量管理手册", level=1);set_font_style("SimHei");
+add_heading(doc_path, "质量方针", level=2);add_heading(doc_path, "质量目标", level=2);add_heading(doc_path, "管理评审", level=2);
+create_bar_chart(["研发部", "生产部", "质检部", "销售部"], [95, 92, 98, 90], title="部门质量目标达标率", xlabel="部门", ylabel="达标率(%)");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "评审项目");set_cell_text(table, 0, 1, "评审结果");set_cell_text(table, 0, 2, "改进措施");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_font_bold();
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "研发项目总结", level=1);add_header(doc_path, "研发部");
+add_heading(doc_path, "项目概述", level=2);add_heading(doc_path, "技术创新", level=2);add_heading(doc_path, "经验总结", level=2);
+add_table(doc_path, 3, 4);set_cell_text(table, 0, 0, "创新点");set_cell_text(table, 0, 1, "技术难度");set_cell_text(table, 0, 2, "解决方案");set_cell_text(table, 0, 3, "应用效果");
+add_list_item(doc_path, "加强需求分析", style="List Number");add_list_item(doc_path, "优化开发流程", style="List Number");add_list_item(doc_path, "提高测试覆盖率", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "市场营销策略", level=1);set_font_style("STKaiti");
+add_heading(doc_path, "市场分析", level=2);add_heading(doc_path, "营销策略", level=2);add_heading(doc_path, "预期效果", level=2);
+create_pie_chart(["现有市场", "潜在市场", "竞争市场", "其他"], [40, 30, 20, 10], title="市场份额分布");
+add_list_item(doc_path, "产品差异化", style="List Number");add_list_item(doc_path, "价格策略", style="List Number");add_list_item(doc_path, "渠道建设", style="List Number");add_list_item(doc_path, "品牌推广", style="List Number");
+create_line_chart(["Q1", "Q2", "Q3", "Q4"], [100, 150, 200, 250], title="销售预测趋势", xlabel="季度", ylabel="销售额（万元）");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "人员培训计划", level=1);add_header(doc_path, "人力资源部");
+add_heading(doc_path, "培训对象", level=2);add_heading(doc_path, "培训内容", level=2);add_heading(doc_path, "培训安排", level=2);
+add_table(doc_path, 5, 4);set_cell_text(table, 0, 0, "培训主题");set_cell_text(table, 0, 1, "培训时间");set_cell_text(table, 0, 2, "培训地点");set_cell_text(table, 0, 3, "培训讲师");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "技术架构设计", level=1);set_font_style("Microsoft YaHei");
+add_heading(doc_path, "系统概述", level=2);add_heading(doc_path, "技术选型", level=2);add_heading(doc_path, "部署架构", level=2);
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "技术组件");set_cell_text(table, 0, 1, "版本");set_cell_text(table, 0, 2, "说明");
+add_shape(doc_path, "flowchart");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品需求分析", level=1);add_header(doc_path, "产品部");
+add_heading(doc_path, "用户需求", level=2);add_heading(doc_path, "功能需求", level=2);add_heading(doc_path, "非功能需求", level=2);
+add_table(doc_path, 5, 4);set_cell_text(table, 0, 0, "需求ID");set_cell_text(table, 0, 1, "需求描述");set_cell_text(table, 0, 2, "优先级");set_cell_text(table, 0, 3, "状态");
+add_list_item(doc_path, "性能需求", style="List Number");add_list_item(doc_path, "安全需求", style="List Number");add_list_item(doc_path, "可用性需求", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "运营数据分析", level=1);set_font_style("STXihei");
+add_heading(doc_path, "用户增长", level=2);add_heading(doc_path, "活跃度分析", level=2);add_heading(doc_path, "转化率分析", level=2);
+create_line_chart(["1月", "2月", "3月", "4月", "5月", "6月"], [1000, 1500, 2000, 2800, 3500, 4200], title="月度新增用户数", xlabel="月份", ylabel="新增用户数");
+create_bar_chart(["早上", "中午", "下午", "晚上", "深夜"], [2000, 3500, 4000, 4500, 1500], title="各时段活跃用户数", xlabel="时段", ylabel="活跃用户数");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "渠道");set_cell_text(table, 0, 1, "访问量");set_cell_text(table, 0, 2, "转化率");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "项目验收报告", level=1);add_watermark(doc_path, "待审核");
+add_heading(doc_path, "验收内容", level=2);add_heading(doc_path, "验收结果", level=2);add_heading(doc_path, "遗留问题", level=2);
+create_pie_chart(["通过", "有条件通过", "未通过"], [75, 20, 5], title="验收结果分布");
+add_list_item(doc_path, "性能优化", style="List Number");add_list_item(doc_path, "接口完善", style="List Number");add_list_item(doc_path, "文档补充", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "系统架构设计", level=1);set_font_style("STXihei");
+add_heading(doc_path, "系统概述", level=2);add_heading(doc_path, "架构设计", level=2);add_heading(doc_path, "部署方案", level=2);
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "服务器");set_cell_text(table, 0, 1, "配置");set_cell_text(table, 0, 2, "用途");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_font_bold();
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "绩效考核标准", level=1);add_header(doc_path, "人力资源部");
+add_heading(doc_path, "考核指标", level=2);add_heading(doc_path, "考核方法", level=2);add_heading(doc_path, "考核周期", level=2);
+add_table(doc_path, 5, 4);set_cell_text(table, 0, 0, "考核项目");set_cell_text(table, 0, 1, "权重");set_cell_text(table, 0, 2, "评分标准");set_cell_text(table, 0, 3, "得分");
+add_list_item(doc_path, "自评", style="List Number");add_list_item(doc_path, "主管评价", style="List Number");add_list_item(doc_path, "360度评估", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品发布计划", level=1);add_header(doc_path, "产品部");
+add_heading(doc_path, "发布准备", level=2);add_heading(doc_path, "发布流程", level=2);add_heading(doc_path, "风险控制", level=2);
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 3, 4);set_cell_text(table, 0, 0, "风险点");set_cell_text(table, 0, 1, "影响程度");set_cell_text(table, 0, 2, "发生概率");set_cell_text(table, 0, 3, "应对措施");
+add_list_item(doc_path, "系统稳定性", style="List Number");add_list_item(doc_path, "数据安全", style="List Number");add_list_item(doc_path, "用户体验", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品质量标准", level=1);set_font_style("Microsoft YaHei");
+add_heading(doc_path, "质量要求", level=2);add_heading(doc_path, "检测方法", level=2);add_heading(doc_path, "不合格处理", level=2);
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "检测项目");set_cell_text(table, 0, 1, "检测标准");set_cell_text(table, 0, 2, "检测频率");
+add_list_item(doc_path, "返工处理", style="List Number");add_list_item(doc_path, "降级使用", style="List Number");add_list_item(doc_path, "报废处理", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "数据安全规范", level=1);set_font_style("STFangsong");
+add_heading(doc_path, "安全策略", level=2);add_heading(doc_path, "访问控制", level=2);add_heading(doc_path, "数据备份", level=2);
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "用户角色");set_cell_text(table, 0, 1, "权限级别");set_cell_text(table, 0, 2, "访问范围");
+add_list_item(doc_path, "定期备份", style="List Number");add_list_item(doc_path, "增量备份", style="List Number");add_list_item(doc_path, "异地备份", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "研发项目计划", level=1);add_header(doc_path, "研发部");
+add_heading(doc_path, "项目概述", level=2);add_heading(doc_path, "技术方案", level=2);add_heading(doc_path, "进度安排", level=2);
+create_bar_chart(["需求分析", "设计", "开发", "测试", "部署"], [2, 3, 8, 3, 2], title="项目进度甘特图", xlabel="阶段", ylabel="周数");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "阶段");set_cell_text(table, 0, 1, "开始时间");set_cell_text(table, 0, 2, "结束时间");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "客户服务规范", level=1);set_font_style("STKaiti");
+add_heading(doc_path, "服务标准", level=2);add_heading(doc_path, "投诉处理", level=2);add_heading(doc_path, "服务评价", level=2);
+add_shape(doc_path, "flowchart");
+create_pie_chart(["非常满意", "满意", "一般", "不满意"], [45, 35, 15, 5], title="客户满意度分布");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品开发规范", level=1);set_font_style("Microsoft YaHei");
+add_heading(doc_path, "开发流程", level=2);add_heading(doc_path, "质量标准", level=2);add_heading(doc_path, "文档要求", level=2);
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "检查项目");set_cell_text(table, 0, 1, "标准要求");set_cell_text(table, 0, 2, "检查方法");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "员工手册", level=1);add_watermark(doc_path, "内部文件");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "公司制度", level=2);add_heading(doc_path, "员工福利", level=2);add_heading(doc_path, "办公指南", level=2);
+add_heading(doc_path, "考勤制度", level=3);add_heading(doc_path, "请假制度", level=3);add_heading(doc_path, "社会保险", level=3);add_heading(doc_path, "带薪休假", level=3);add_heading(doc_path, "办公环境", level=3);add_heading(doc_path, "IT支持", level=3);
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "技术评估报告", level=1);set_font_style("STXihei");
+add_heading(doc_path, "技术现状", level=2);add_heading(doc_path, "评估方法", level=2);add_heading(doc_path, "评估结果", level=2);
+create_bar_chart(["性能", "可靠性", "安全性", "可维护性", "扩展性"], [85, 90, 95, 88, 92], title="技术评估得分", xlabel="评估项目", ylabel="得分");
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "评估项目");set_cell_text(table, 0, 1, "得分");set_cell_text(table, 0, 2, "评估意见");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "项目风险评估", level=1);add_header(doc_path, "项目管理部");
+add_heading(doc_path, "风险识别", level=2);add_heading(doc_path, "风险分析", level=2);add_heading(doc_path, "应对措施", level=2);
+add_table(doc_path, 4, 4);set_cell_text(table, 0, 0, "风险项");set_cell_text(table, 0, 1, "发生概率");set_cell_text(table, 0, 2, "影响程度");set_cell_text(table, 0, 3, "风险等级");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "运营分析报告", level=1);add_header(doc_path, "运营部");
+add_heading(doc_path, "运营数据", level=2);add_heading(doc_path, "问题分析", level=2);add_heading(doc_path, "改进建议", level=2);
+create_line_chart(["1月", "2月", "3月", "4月", "5月", "6月"], [5000, 5500, 6000, 5800, 6200, 6500], title="月度活跃用户数", xlabel="月份", ylabel="用户数");
+add_list_item(doc_path, "用户增长放缓", style="List Number");add_list_item(doc_path, "留存率下降", style="List Number");add_list_item(doc_path, "转化率不足", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品发布规范", level=1);set_font_style("Microsoft YaHei");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "发布准备", level=2);add_heading(doc_path, "发布流程", level=2);add_heading(doc_path, "质量控制", level=2);
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 5, 4);set_cell_text(table, 0, 0, "检查项目");set_cell_text(table, 0, 1, "检查标准");set_cell_text(table, 0, 2, "负责人");set_cell_text(table, 0, 3, "完成状态");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_cell_bg_color(table, 0, 3, "light gray");set_font_bold();
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "市场调研报告", level=1);add_header(doc_path, "市场部");
+add_heading(doc_path, "调研目的", level=2);add_heading(doc_path, "调研方法", level=2);add_heading(doc_path, "调研结果", level=2);
+add_list_item(doc_path, "问卷调查", style="List Number");add_list_item(doc_path, "深度访谈", style="List Number");add_list_item(doc_path, "数据分析", style="List Number");
+create_pie_chart(["产品A", "产品B", "产品C", "其他"], [40, 30, 20, 10], title="用户偏好分布");
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "产品类型");set_cell_text(table, 0, 1, "选择人数");set_cell_text(table, 0, 2, "占比");
+add_page_numbers(doc_path);add_watermark(doc_path, "内部资料");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "项目管理手册", level=1);set_font_style("STXihei");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "项目立项", level=2);add_heading(doc_path, "项目执行", level=2);add_heading(doc_path, "项目验收", level=2);
+add_heading(doc_path, "工作内容", level=3);add_heading(doc_path, "质量要求", level=3);add_heading(doc_path, "工作内容", level=3);add_heading(doc_path, "质量要求", level=3);add_heading(doc_path, "工作内容", level=3);add_heading(doc_path, "质量要求", level=3);
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "检查项目");set_cell_text(table, 0, 1, "检查标准");set_cell_text(table, 0, 2, "负责人");
+add_list_item(doc_path, "验收准备", style="List Number");add_list_item(doc_path, "验收测试", style="List Number");add_list_item(doc_path, "问题修复", style="List Number");add_list_item(doc_path, "文档归档", style="List Number");
+add_page_numbers(doc_path);add_watermark(doc_path, "内部规范");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "销售业绩报告", level=1);add_header(doc_path, "销售部");
+add_heading(doc_path, "销售概况", level=2);add_heading(doc_path, "业绩分析", level=2);add_heading(doc_path, "未来展望", level=2);
+create_line_chart(["1月", "2月", "3月", "4月", "5月", "6月"], [100, 120, 150, 140, 160, 180], title="月度销售额趋势", xlabel="月份", ylabel="销售额（万元）");
+create_pie_chart(["产品A", "产品B", "产品C", "产品D"], [40, 30, 20, 10], title="产品线销售占比");
+add_list_item(doc_path, "扩大市场份额", style="List Number");add_list_item(doc_path, "开发新产品线", style="List Number");add_list_item(doc_path, "提升客户满意度", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "软件开发规范", level=1);set_font_style("Microsoft YaHei");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "编码规范", level=2);add_heading(doc_path, "文档规范", level=2);add_heading(doc_path, "版本控制", level=2);
+add_heading(doc_path, "基本要求", level=3);add_heading(doc_path, "具体规范", level=3);add_heading(doc_path, "基本要求", level=3);add_heading(doc_path, "具体规范", level=3);add_heading(doc_path, "基本要求", level=3);add_heading(doc_path, "具体规范", level=3);
+add_list_item(doc_path, "命名规范", style="List Number");add_list_item(doc_path, "注释规范", style="List Number");add_list_item(doc_path, "格式规范", style="List Number");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "文档类型");set_cell_text(table, 0, 1, "更新频率");set_cell_text(table, 0, 2, "审核要求");
+add_shape(doc_path, "flowchart");
+add_page_numbers(doc_path);add_watermark(doc_path, "内部规范");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "研发进度报告", level=1);set_font_style("STKaiti");
+add_heading(doc_path, "项目概述", level=2);add_heading(doc_path, "进度情况", level=2);add_heading(doc_path, "风险管理", level=2);
+create_bar_chart(["需求分析", "设计", "开发", "测试", "部署"], [2, 3, 8, 3, 2], title="项目进度甘特图", xlabel="阶段", ylabel="周数");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "风险项");set_cell_text(table, 0, 1, "风险等级");set_cell_text(table, 0, 2, "应对措施");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "项目管理规范", level=1);set_font_style("STXihei");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "项目立项", level=2);add_heading(doc_path, "项目执行", level=2);add_heading(doc_path, "项目验收", level=2);
+add_heading(doc_path, "工作内容", level=3);add_heading(doc_path, "质量要求", level=3);add_heading(doc_path, "工作内容", level=3);add_heading(doc_path, "质量要求", level=3);add_heading(doc_path, "工作内容", level=3);add_heading(doc_path, "质量要求", level=3);
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "检查项目");set_cell_text(table, 0, 1, "检查标准");set_cell_text(table, 0, 2, "负责人");
+add_list_item(doc_path, "验收准备", style="List Number");add_list_item(doc_path, "验收测试", style="List Number");add_list_item(doc_path, "问题修复", style="List Number");add_list_item(doc_path, "文档归档", style="List Number");
+add_page_numbers(doc_path);add_watermark(doc_path, "内部规范");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "质量检测标准", level=1);add_header(doc_path, "质检部");
+add_heading(doc_path, "检测项目", level=2);add_heading(doc_path, "检测方法", level=2);add_heading(doc_path, "质量要求", level=2);
+add_list_item(doc_path, "外观检查", style="List Number");add_list_item(doc_path, "性能测试", style="List Number");add_list_item(doc_path, "可靠性测试", style="List Number");add_list_item(doc_path, "安全性测试", style="List Number");
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "检测项目");set_cell_text(table, 0, 1, "合格标准");set_cell_text(table, 0, 2, "不合格处理");
+add_page_numbers(doc_path);add_watermark(doc_path, "质量标准");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品研发计划", level=1);set_font_style("Microsoft YaHei");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "市场分析", level=2);add_heading(doc_path, "技术方案", level=2);add_heading(doc_path, "实施计划", level=2);
+create_pie_chart(["现有市场", "潜在市场", "竞争市场", "其他"], [40, 30, 20, 10], title="市场份额分布");
+add_shape(doc_path, "flowchart");
+create_bar_chart(["需求分析", "设计", "开发", "测试", "部署"], [2, 3, 8, 3, 2], title="项目进度甘特图", xlabel="阶段", ylabel="周数");
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "阶段");set_cell_text(table, 0, 1, "开始时间");set_cell_text(table, 0, 2, "结束时间");
+add_page_numbers(doc_path);add_watermark(doc_path, "内部文件");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "人力资源规划", level=1);set_font_style("STXihei");
+add_heading(doc_path, "人员配置", level=2);add_heading(doc_path, "培训计划", level=2);add_heading(doc_path, "绩效管理", level=2);
+add_table(doc_path, 4, 4);set_cell_text(table, 0, 0, "部门");set_cell_text(table, 0, 1, "现有人数");set_cell_text(table, 0, 2, "需求人数");set_cell_text(table, 0, 3, "缺口");
+add_list_item(doc_path, "新员工培训", style="List Number");add_list_item(doc_path, "专业技能培训", style="List Number");add_list_item(doc_path, "管理能力培训", style="List Number");
+create_bar_chart(["研发部", "市场部", "销售部", "运营部"], [85, 88, 92, 87], title="部门绩效分布", xlabel="部门", ylabel="平均得分");
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "部门");set_cell_text(table, 0, 1, "平均得分");set_cell_text(table, 0, 2, "评价等级");
+add_page_numbers(doc_path);add_watermark(doc_path, "内部资料");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "市场调研报告", level=1);set_font_style("SimSun");
+add_heading(doc_path, "调研目的", level=2);add_heading(doc_path, "调研方法", level=2);add_heading(doc_path, "调研结果", level=2);
+add_list_item(doc_path, "问卷调查", style="List Number");add_list_item(doc_path, "深度访谈", style="List Number");add_list_item(doc_path, "竞品分析", style="List Number");add_list_item(doc_path, "数据分析", style="List Number");
+create_pie_chart(["18-25岁", "26-35岁", "36-45岁", "45岁以上"], [30, 40, 20, 10], title="用户年龄分布");
+create_bar_chart(["非常满意", "满意", "一般", "不满意"], [45, 35, 15, 5], title="用户满意度分布", xlabel="满意度", ylabel="占比(%)");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "满意度");set_cell_text(table, 0, 1, "人数");set_cell_text(table, 0, 2, "占比");
+add_page_numbers(doc_path);add_watermark(doc_path, "调研报告");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "技术架构设计", level=1);set_font_style("STXihei");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "系统概述", level=2);add_heading(doc_path, "技术选型", level=2);add_heading(doc_path, "部署架构", level=2);
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "技术组件");set_cell_text(table, 0, 1, "版本");set_cell_text(table, 0, 2, "说明");
+add_shape(doc_path, "flowchart");
+add_page_numbers(doc_path);add_watermark(doc_path, "内部文件");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品发布说明", level=1);set_font_style("Microsoft YaHei");
+add_table_of_contents(doc_path, levels=2);
+add_heading(doc_path, "版本信息", level=2);add_heading(doc_path, "更新内容", level=2);add_heading(doc_path, "注意事项", level=2);
+add_list_item(doc_path, "新增功能", style="List Number");add_list_item(doc_path, "性能优化", style="List Number");add_list_item(doc_path, "问题修复", style="List Number");
+add_shape(doc_path, "warning");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "研发项目规划", level=1);set_font_style("STXihei");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "项目背景", level=2);add_heading(doc_path, "技术方案", level=2);add_heading(doc_path, "实施计划", level=2);
+add_heading(doc_path, "主要内容", level=3);add_heading(doc_path, "关键点", level=3);add_heading(doc_path, "主要内容", level=3);add_heading(doc_path, "关键点", level=3);add_heading(doc_path, "主要内容", level=3);add_heading(doc_path, "关键点", level=3);
+add_shape(doc_path, "flowchart");
+create_bar_chart(["需求分析", "设计", "开发", "测试", "部署"], [2, 3, 8, 3, 2], title="项目进度甘特图", xlabel="阶段", ylabel="周数");
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "阶段");set_cell_text(table, 0, 1, "开始时间");set_cell_text(table, 0, 2, "结束时间");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_font_bold();
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "市场分析报告", level=1);set_font_style("Microsoft YaHei");
+add_heading(doc_path, "市场概况", level=2);add_heading(doc_path, "竞争分析", level=2);add_heading(doc_path, "发展策略", level=2);
+create_pie_chart(["公司A", "公司B", "公司C", "其他"], [35, 25, 20, 20], title="市场份额分布");
+add_table(doc_path, 4, 4);set_cell_text(table, 0, 0, "公司名称");set_cell_text(table, 0, 1, "市场份额");set_cell_text(table, 0, 2, "产品特点");set_cell_text(table, 0, 3, "竞争优势");
+add_list_item(doc_path, "加强品牌建设", style="List Number");add_list_item(doc_path, "扩大市场份额", style="List Number");add_list_item(doc_path, "提升产品质量", style="List Number");add_list_item(doc_path, "优化服务体系", style="List Number");
+add_page_numbers(doc_path);add_watermark(doc_path, "内部资料");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品开发手册", level=1);set_font_style("KaiTi");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "开发流程", level=2);add_heading(doc_path, "质量标准", level=2);add_heading(doc_path, "文档要求", level=2);
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "检查项目");set_cell_text(table, 0, 1, "标准要求");set_cell_text(table, 0, 2, "检查方法");
+add_list_item(doc_path, "需求文档", style="List Number");add_list_item(doc_path, "设计文档", style="List Number");add_list_item(doc_path, "测试文档", style="List Number");add_list_item(doc_path, "使用手册", style="List Number");
+add_page_numbers(doc_path);add_watermark(doc_path, "内部规范");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "质量管理体系", level=1);set_font_style("STXihei");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "质量方针", level=2);add_heading(doc_path, "质量目标", level=2);add_heading(doc_path, "管理评审", level=2);
+add_heading(doc_path, "基本要求", level=3);add_heading(doc_path, "实施细则", level=3);add_heading(doc_path, "基本要求", level=3);add_heading(doc_path, "实施细则", level=3);add_heading(doc_path, "基本要求", level=3);add_heading(doc_path, "实施细则", level=3);
+create_bar_chart(["研发部", "生产部", "质检部", "销售部"], [95, 92, 98, 90], title="部门质量目标达标率", xlabel="部门", ylabel="达标率(%)");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "评审项目");set_cell_text(table, 0, 1, "评审频率");set_cell_text(table, 0, 2, "责任人");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_font_bold();
+add_page_numbers(doc_path);add_watermark(doc_path, "质量管理");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "研发项目总结", level=1);set_font_style("Microsoft YaHei");
+add_heading(doc_path, "项目概述", level=2);add_heading(doc_path, "技术创新", level=2);add_heading(doc_path, "经验总结", level=2);
+add_table(doc_path, 3, 4);set_cell_text(table, 0, 0, "创新点");set_cell_text(table, 0, 1, "技术难度");set_cell_text(table, 0, 2, "解决方案");set_cell_text(table, 0, 3, "应用效果");
+add_list_item(doc_path, "加强需求分析", style="List Number");add_list_item(doc_path, "优化开发流程", style="List Number");add_list_item(doc_path, "提高测试覆盖率", style="List Number");add_list_item(doc_path, "完善文档管理", style="List Number");
+add_page_numbers(doc_path);add_watermark(doc_path, "项目总结");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "软件测试规范", level=1);set_font_style("STXihei");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "测试计划", level=2);add_heading(doc_path, "测试用例", level=2);add_heading(doc_path, "测试报告", level=2);
+add_heading(doc_path, "编写要求", level=3);add_heading(doc_path, "模板示例", level=3);add_heading(doc_path, "编写要求", level=3);add_heading(doc_path, "模板示例", level=3);add_heading(doc_path, "编写要求", level=3);add_heading(doc_path, "模板示例", level=3);
+add_table(doc_path, 5, 4);set_cell_text(table, 0, 0, "用例编号");set_cell_text(table, 0, 1, "测试步骤");set_cell_text(table, 0, 2, "预期结果");set_cell_text(table, 0, 3, "实际结果");
+create_pie_chart(["通过", "未通过", "阻塞", "未执行"], [75, 15, 5, 5], title="测试结果分布");
+add_page_numbers(doc_path);add_watermark(doc_path, "测试规范");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品发布计划", level=1);set_font_style("Microsoft YaHei");
+add_heading(doc_path, "发布准备", level=2);add_heading(doc_path, "发布流程", level=2);add_heading(doc_path, "风险控制", level=2);
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 3, 4);set_cell_text(table, 0, 0, "风险点");set_cell_text(table, 0, 1, "影响程度");set_cell_text(table, 0, 2, "发生概率");set_cell_text(table, 0, 3, "应对措施");
+add_list_item(doc_path, "系统稳定性", style="List Number");add_list_item(doc_path, "数据安全", style="List Number");add_list_item(doc_path, "用户体验", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "项目管理手册", level=1);set_font_style("STKaiti");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "项目启动", level=2);add_heading(doc_path, "项目执行", level=2);add_heading(doc_path, "项目收尾", level=2);
+add_heading(doc_path, "工作内容", level=3);add_heading(doc_path, "注意事项", level=3);add_heading(doc_path, "工作内容", level=3);add_heading(doc_path, "注意事项", level=3);add_heading(doc_path, "工作内容", level=3);add_heading(doc_path, "注意事项", level=3);
+add_shape(doc_path, "flowchart");
+add_list_item(doc_path, "文档归档", style="List Number");add_list_item(doc_path, "资源释放", style="List Number");add_list_item(doc_path, "总结复盘", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "市场调研报告", level=1);set_font_style("SimSun");
+add_heading(doc_path, "调研目的", level=2);add_heading(doc_path, "调研方法", level=2);add_heading(doc_path, "调研结果", level=2);
+add_list_item(doc_path, "问卷调查", style="List Number");add_list_item(doc_path, "深度访谈", style="List Number");add_list_item(doc_path, "竞品分析", style="List Number");add_list_item(doc_path, "数据分析", style="List Number");
+create_pie_chart(["18-25岁", "26-35岁", "36-45岁", "45岁以上"], [30, 40, 20, 10], title="用户年龄分布");
+create_bar_chart(["非常满意", "满意", "一般", "不满意"], [45, 35, 15, 5], title="用户满意度分布", xlabel="满意度", ylabel="占比(%)");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "满意度");set_cell_text(table, 0, 1, "人数");set_cell_text(table, 0, 2, "占比");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "销售业绩分析", level=1);set_font_style("Microsoft YaHei");
+add_heading(doc_path, "销售概况", level=2);add_heading(doc_path, "业绩分析", level=2);add_heading(doc_path, "未来展望", level=2);
+create_line_chart(["1月", "2月", "3月", "4月", "5月", "6月"], [100, 120, 150, 140, 160, 180], title="月度销售额趋势", xlabel="月份", ylabel="销售额（万元）");
+create_pie_chart(["产品A", "产品B", "产品C", "产品D"], [40, 30, 20, 10], title="产品线销售占比");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "产品线");set_cell_text(table, 0, 1, "销售额");set_cell_text(table, 0, 2, "占比");
+add_list_item(doc_path, "扩大市场份额", style="List Number");add_list_item(doc_path, "开发新产品线", style="List Number");add_list_item(doc_path, "提升客户满意度", style="List Number");
+add_page_numbers(doc_path);add_watermark(doc_path, "销售分析");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "项目风险评估", level=1);set_font_style("STXihei");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "风险识别", level=2);add_heading(doc_path, "风险分析", level=2);add_heading(doc_path, "应对措施", level=2);
+add_table(doc_path, 5, 4);set_cell_text(table, 0, 0, "风险项");set_cell_text(table, 0, 1, "发生概率");set_cell_text(table, 0, 2, "影响程度");set_cell_text(table, 0, 3, "风险等级");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_cell_bg_color(table, 0, 3, "light gray");set_font_bold();
+add_list_item(doc_path, "制定应急预案", style="List Number");add_list_item(doc_path, "加强监控预警", style="List Number");add_list_item(doc_path, "定期风险评估", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品开发规范", level=1);set_font_style("Microsoft YaHei");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "开发流程", level=2);add_heading(doc_path, "质量标准", level=2);add_heading(doc_path, "文档要求", level=2);
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "检查项目");set_cell_text(table, 0, 1, "标准要求");set_cell_text(table, 0, 2, "检查方法");
+add_list_item(doc_path, "需求文档", style="List Number");add_list_item(doc_path, "设计文档", style="List Number");add_list_item(doc_path, "测试文档", style="List Number");add_list_item(doc_path, "使用手册", style="List Number");
+add_page_numbers(doc_path);add_watermark(doc_path, "内部规范");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "市场调研报告", level=1);set_font_style("SimSun");
+add_heading(doc_path, "调研目的", level=2);add_heading(doc_path, "调研方法", level=2);add_heading(doc_path, "调研结果", level=2);
+add_list_item(doc_path, "问卷调查", style="List Number");add_list_item(doc_path, "深度访谈", style="List Number");add_list_item(doc_path, "竞品分析", style="List Number");add_list_item(doc_path, "数据分析", style="List Number");
+create_pie_chart(["18-25岁", "26-35岁", "36-45岁", "45岁以上"], [30, 40, 20, 10], title="用户年龄分布");
+create_bar_chart(["非常满意", "满意", "一般", "不满意"], [45, 35, 15, 5], title="用户满意度分布", xlabel="满意度", ylabel="占比(%)");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "满意度");set_cell_text(table, 0, 1, "人数");set_cell_text(table, 0, 2, "占比");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "项目验收报告", level=1);set_font_style("KaiTi");
+add_heading(doc_path, "验收内容", level=2);add_heading(doc_path, "验收结果", level=2);add_heading(doc_path, "遗留问题", level=2);
+add_list_item(doc_path, "功能验收", style="List Number");add_list_item(doc_path, "性能验收", style="List Number");add_list_item(doc_path, "安全验收", style="List Number");add_list_item(doc_path, "文档验收", style="List Number");
+create_pie_chart(["通过", "有条件通过", "未通过"], [75, 20, 5], title="验收结果分布");
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "验收项目");set_cell_text(table, 0, 1, "验收结果");set_cell_text(table, 0, 2, "备注");
+add_list_item(doc_path, "性能优化", style="List Number");add_list_item(doc_path, "接口完善", style="List Number");add_list_item(doc_path, "文档补充", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "研发管理规范", level=1);set_font_style("STXihei");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "研发流程", level=2);add_heading(doc_path, "质量控制", level=2);add_heading(doc_path, "文档管理", level=2);
+add_heading(doc_path, "基本要求", level=3);add_heading(doc_path, "实施细则", level=3);add_heading(doc_path, "基本要求", level=3);add_heading(doc_path, "实施细则", level=3);add_heading(doc_path, "基本要求", level=3);add_heading(doc_path, "实施细则", level=3);
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "检查项目");set_cell_text(table, 0, 1, "检查标准");set_cell_text(table, 0, 2, "负责人");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_font_bold();
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品发布计划", level=1);set_font_style("Microsoft YaHei");
+add_heading(doc_path, "发布准备", level=2);add_heading(doc_path, "发布流程", level=2);add_heading(doc_path, "风险控制", level=2);
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 3, 4);set_cell_text(table, 0, 0, "风险点");set_cell_text(table, 0, 1, "影响程度");set_cell_text(table, 0, 2, "发生概率");set_cell_text(table, 0, 3, "应对措施");
+add_list_item(doc_path, "系统稳定性", style="List Number");add_list_item(doc_path, "数据安全", style="List Number");add_list_item(doc_path, "用户体验", style="List Number");
+add_page_numbers(doc_path);add_watermark(doc_path, "内部文件");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "项目进度报告", level=1);set_font_style("STKaiti");
+add_heading(doc_path, "项目概述", level=2);add_heading(doc_path, "进度情况", level=2);add_heading(doc_path, "风险管理", level=2);
+create_bar_chart(["需求分析", "设计", "开发", "测试", "部署"], [2, 3, 8, 3, 2], title="项目进度甘特图", xlabel="阶段", ylabel="周数");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "风险项");set_cell_text(table, 0, 1, "风险等级");set_cell_text(table, 0, 2, "应对措施");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "质量管理手册", level=1);set_font_style("STXihei");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "质量方针", level=2);add_heading(doc_path, "质量目标", level=2);add_heading(doc_path, "管理评审", level=2);
+add_heading(doc_path, "基本要求", level=3);add_heading(doc_path, "实施细则", level=3);add_heading(doc_path, "基本要求", level=3);add_heading(doc_path, "实施细则", level=3);add_heading(doc_path, "基本要求", level=3);add_heading(doc_path, "实施细则", level=3);
+create_bar_chart(["研发部", "生产部", "质检部", "销售部"], [95, 92, 98, 90], title="部门质量目标达标率", xlabel="部门", ylabel="达标率(%)");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "评审项目");set_cell_text(table, 0, 1, "评审频率");set_cell_text(table, 0, 2, "责任人");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_font_bold();
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "研发项目计划", level=1);set_font_style("Microsoft YaHei");
+add_heading(doc_path, "项目概述", level=2);add_heading(doc_path, "技术方案", level=2);add_heading(doc_path, "进度安排", level=2);
+add_shape(doc_path, "flowchart");
+create_bar_chart(["需求分析", "设计", "开发", "测试", "部署"], [2, 3, 8, 3, 2], title="项目进度甘特图", xlabel="阶段", ylabel="周数");
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "阶段");set_cell_text(table, 0, 1, "开始时间");set_cell_text(table, 0, 2, "结束时间");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_font_bold();
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "市场调研报告", level=1);set_font_style("SimSun");
+add_heading(doc_path, "调研目的", level=2);add_heading(doc_path, "调研方法", level=2);add_heading(doc_path, "调研结果", level=2);
+add_list_item(doc_path, "问卷调查", style="List Number");add_list_item(doc_path, "深度访谈", style="List Number");add_list_item(doc_path, "竞品分析", style="List Number");add_list_item(doc_path, "数据分析", style="List Number");
+create_pie_chart(["18-25岁", "26-35岁", "36-45岁", "45岁以上"], [30, 40, 20, 10], title="用户年龄分布");
+create_bar_chart(["非常满意", "满意", "一般", "不满意"], [45, 35, 15, 5], title="用户满意度分布", xlabel="满意度", ylabel="占比(%)");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "满意度");set_cell_text(table, 0, 1, "人数");set_cell_text(table, 0, 2, "占比");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "项目验收报告", level=1);set_font_style("KaiTi");
+add_heading(doc_path, "验收内容", level=2);add_heading(doc_path, "验收结果", level=2);add_heading(doc_path, "遗留问题", level=2);
+add_list_item(doc_path, "功能验收", style="List Number");add_list_item(doc_path, "性能验收", style="List Number");add_list_item(doc_path, "安全验收", style="List Number");add_list_item(doc_path, "文档验收", style="List Number");
+create_pie_chart(["通过", "有条件通过", "未通过"], [75, 20, 5], title="验收结果分布");
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "验收项目");set_cell_text(table, 0, 1, "验收结果");set_cell_text(table, 0, 2, "备注");
+add_list_item(doc_path, "性能优化", style="List Number");add_list_item(doc_path, "接口完善", style="List Number");add_list_item(doc_path, "文档补充", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "软件开发规范", level=1);set_font_style("Microsoft YaHei");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "编码规范", level=2);add_heading(doc_path, "文档规范", level=2);add_heading(doc_path, "版本控制", level=2);
+add_heading(doc_path, "基本要求", level=3);add_heading(doc_path, "具体规范", level=3);add_heading(doc_path, "基本要求", level=3);add_heading(doc_path, "具体规范", level=3);add_heading(doc_path, "基本要求", level=3);add_heading(doc_path, "具体规范", level=3);
+add_list_item(doc_path, "命名规范", style="List Number");add_list_item(doc_path, "注释规范", style="List Number");add_list_item(doc_path, "格式规范", style="List Number");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "文档类型");set_cell_text(table, 0, 1, "更新频率");set_cell_text(table, 0, 2, "审核要求");
+add_shape(doc_path, "flowchart");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "产品发布规范", level=1);set_font_style("STXihei");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "发布准备", level=2);add_heading(doc_path, "发布流程", level=2);add_heading(doc_path, "质量控制", level=2);
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 5, 4);set_cell_text(table, 0, 0, "检查项目");set_cell_text(table, 0, 1, "检查标准");set_cell_text(table, 0, 2, "负责人");set_cell_text(table, 0, 3, "完成状态");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_cell_bg_color(table, 0, 3, "light gray");set_font_bold();
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "项目管理手册", level=1);set_font_style("Microsoft YaHei");
+add_table_of_contents(doc_path, levels=3);
+add_heading(doc_path, "项目启动", level=2);add_heading(doc_path, "项目执行", level=2);add_heading(doc_path, "项目收尾", level=2);
+add_heading(doc_path, "工作内容", level=3);add_heading(doc_path, "注意事项", level=3);add_heading(doc_path, "工作内容", level=3);add_heading(doc_path, "注意事项", level=3);add_heading(doc_path, "工作内容", level=3);add_heading(doc_path, "注意事项", level=3);
+add_shape(doc_path, "flowchart");
+add_list_item(doc_path, "文档归档", style="List Number");add_list_item(doc_path, "资源释放", style="List Number");add_list_item(doc_path, "总结复盘", style="List Number");
+
+create_and_save_docx(doc_path, "");add_heading(doc_path, "市场调研报告", level=1);set_font_style("SimSun");
+add_heading(doc_path, "调研目的", level=2);add_heading(doc_path, "调研方法", level=2);add_heading(doc_path, "调研结果", level=2);
+add_list_item(doc_path, "问卷调查", style="List Number");add_list_item(doc_path, "深度访谈", style="List Number");add_list_item(doc_path, "竞品分析", style="List Number");add_list_item(doc_path, "数据分析", style="List Number");
+create_pie_chart(["18-25岁", "26-35岁", "36-45岁", "45岁以上"], [30, 40, 20, 10], title="用户年龄分布");
+create_bar_chart(["非常满意", "满意", "一般", "不满意"], [45, 35, 15, 5], title="用户满意度分布", xlabel="满意度", ylabel="占比(%)");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "满意度");set_cell_text(table, 0, 1, "人数");set_cell_text(table, 0, 2, "占比");
+
+add_list_item(doc_path, "功能验收", style="List Number");add_list_item(doc_path, "性能验收", style="List Number");add_list_item(doc_path, "安全验收", style="List Number");add_list_item(doc_path, "文档验收", style="List Number");
+create_pie_chart(["通过", "有条件通过", "未通过"], [75, 20, 5], title="验收结果分布");
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "验收项目");set_cell_text(table, 0, 1, "验收结果");set_cell_text(table, 0, 2, "备注");
+add_list_item(doc_path, "性能优化", style="List Number");add_list_item(doc_path, "接口完善", style="List Number");add_list_item(doc_path, "文档补充", style="List Number");
+
+add_table(doc_path, 3, 4);set_cell_text(table, 0, 0, "创新点");set_cell_text(table, 0, 1, "技术难度");set_cell_text(table, 0, 2, "解决方案");set_cell_text(table, 0, 3, "应用效果");
+add_list_item(doc_path, "加强需求分析", style="List Number");add_list_item(doc_path, "优化开发流程", style="List Number");add_list_item(doc_path, "提高测试覆盖率", style="List Number");add_list_item(doc_path, "完善文档管理", style="List Number");
+add_page_numbers(doc_path);add_watermark(doc_path, "内部文件");
+
+add_shape(doc_path, "flowchart");
+add_list_item(doc_path, "文档归档", style="List Number");add_list_item(doc_path, "资源释放", style="List Number");add_list_item(doc_path, "总结复盘", style="List Number");
+
+add_list_item(doc_path, "问卷调查", style="List Number");add_list_item(doc_path, "深度访谈", style="List Number");add_list_item(doc_path, "竞品分析", style="List Number");add_list_item(doc_path, "数据分析", style="List Number");
+create_pie_chart(["18-25岁", "26-35岁", "36-45岁", "45岁以上"], [30, 40, 20, 10], title="用户年龄分布");
+create_bar_chart(["非常满意", "满意", "一般", "不满意"], [45, 35, 15, 5], title="用户满意度分布", xlabel="满意度", ylabel="占比(%)");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "满意度");set_cell_text(table, 0, 1, "人数");set_cell_text(table, 0, 2, "占比");
+
+add_list_item(doc_path, "命名规范", style="List Number");add_list_item(doc_path, "注释规范", style="List Number");add_list_item(doc_path, "格式规范", style="List Number");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "文档类型");set_cell_text(table, 0, 1, "更新频率");set_cell_text(table, 0, 2, "审核要求");
+add_shape(doc_path, "flowchart");
+
+add_list_item(doc_path, "命名规范", style="List Number");add_list_item(doc_path, "注释规范", style="List Number");add_list_item(doc_path, "格式规范", style="List Number");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "文档类型");set_cell_text(table, 0, 1, "更新频率");set_cell_text(table, 0, 2, "审核要求");
+add_shape(doc_path, "flowchart");
+
+add_shape(doc_path, "flowchart");
+create_bar_chart(["需求分析", "设计", "开发", "测试", "部署"], [2, 3, 8, 3, 2], title="项目进度甘特图", xlabel="阶段", ylabel="周数");
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "阶段");set_cell_text(table, 0, 1, "开始时间");set_cell_text(table, 0, 2, "结束时间");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_font_bold();
+
+add_list_item(doc_path, "功能验收", style="List Number");add_list_item(doc_path, "性能验收", style="List Number");add_list_item(doc_path, "安全验收", style="List Number");add_list_item(doc_path, "文档验收", style="List Number");
+create_pie_chart(["通过", "有条件通过", "未通过"], [75, 20, 5], title="验收结果分布");
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "验收项目");set_cell_text(table, 0, 1, "验收结果");set_cell_text(table, 0, 2, "备注");
+add_list_item(doc_path, "性能优化", style="List Number");add_list_item(doc_path, "接口完善", style="List Number");add_list_item(doc_path, "文档补充", style="List Number");
+
+create_pie_chart(["公司A", "公司B", "公司C", "其他"], [35, 25, 20, 20], title="市场份额分布");
+add_table(doc_path, 4, 4);set_cell_text(table, 0, 0, "公司名称");set_cell_text(table, 0, 1, "市场份额");set_cell_text(table, 0, 2, "产品特点");set_cell_text(table, 0, 3, "竞争优势");
+add_list_item(doc_path, "加强品牌建设", style="List Number");add_list_item(doc_path, "扩大市场份额", style="List Number");add_list_item(doc_path, "提升产品质量", style="List Number");add_list_item(doc_path, "优化服务体系", style="List Number");
+
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "检查项目");set_cell_text(table, 0, 1, "标准要求");set_cell_text(table, 0, 2, "检查方法");
+add_list_item(doc_path, "需求文档", style="List Number");add_list_item(doc_path, "设计文档", style="List Number");add_list_item(doc_path, "测试文档", style="List Number");add_list_item(doc_path, "使用手册", style="List Number");
+
+add_list_item(doc_path, "功能验收", style="List Number");add_list_item(doc_path, "性能验收", style="List Number");add_list_item(doc_path, "安全验收", style="List Number");add_list_item(doc_path, "文档验收", style="List Number");
+create_pie_chart(["通过", "有条件通过", "未通过"], [75, 20, 5], title="验收结果分布");
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "验收项目");set_cell_text(table, 0, 1, "验收结果");set_cell_text(table, 0, 2, "备注");
+add_list_item(doc_path, "性能优化", style="List Number");add_list_item(doc_path, "接口完善", style="List Number");add_list_item(doc_path, "文档补充", style="List Number");
+
+add_table(doc_path, 5, 4);set_cell_text(table, 0, 0, "评估项目");set_cell_text(table, 0, 1, "评估标准");set_cell_text(table, 0, 2, "权重");set_cell_text(table, 0, 3, "得分");
+add_list_item(doc_path, "合同管理", style="List Number");add_list_item(doc_path, "质量控制", style="List Number");add_list_item(doc_path, "交付管理", style="List Number");add_list_item(doc_path, "价格管理", style="List Number");
+create_bar_chart(["供应商A", "供应商B", "供应商C", "供应商D"], [85, 92, 78, 88], title="供应商绩效得分", xlabel="供应商", ylabel="得分");
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "供应商");set_cell_text(table, 0, 1, "得分");set_cell_text(table, 0, 2, "等级");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_font_bold();
+
+create_pie_chart(["废水", "废气", "固废", "噪声"], [35, 30, 25, 10], title="污染物类型分布");
+create_line_chart(["1月", "2月", "3月", "4月", "5月", "6月"], [100, 95, 85, 80, 75, 70], title="月度能耗趋势", xlabel="月份", ylabel="能耗(千瓦时)");
+add_table(doc_path, 5, 4);set_cell_text(table, 0, 0, "监测项目");set_cell_text(table, 0, 1, "监测频率");set_cell_text(table, 0, 2, "监测标准");set_cell_text(table, 0, 3, "负责人");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_cell_bg_color(table, 0, 3, "light gray");set_font_bold();
+
+add_list_item(doc_path, "安全法规", style="List Number");add_list_item(doc_path, "事故案例", style="List Number");add_list_item(doc_path, "防护知识", style="List Number");add_list_item(doc_path, "安全责任", style="List Number");
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "事故类型");set_cell_text(table, 0, 1, "处置流程");set_cell_text(table, 0, 2, "负责人");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_font_bold();
+
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "维护项目");set_cell_text(table, 0, 1, "维护周期");set_cell_text(table, 0, 2, "负责人");
+add_list_item(doc_path, "故障诊断", style="List Number");add_list_item(doc_path, "应急处理", style="List Number");add_list_item(doc_path, "维修记录", style="List Number");
+
+add_list_item(doc_path, "提升专业能力", style="List Number");add_list_item(doc_path, "培养管理素质", style="List Number");add_list_item(doc_path, "增强创新意识", style="List Number");
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "考核项目");set_cell_text(table, 0, 1, "考核方式");set_cell_text(table, 0, 2, "分值权重");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_font_bold();
+
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "咨询类型");set_cell_text(table, 0, 1, "响应时间");set_cell_text(table, 0, 2, "处理标准");
+add_list_item(doc_path, "接收投诉", style="List Number");add_list_item(doc_path, "记录登记", style="List Number");add_list_item(doc_path, "调查核实", style="List Number");add_list_item(doc_path, "处理反馈", style="List Number");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_font_bold();
+
+create_bar_chart(["生产部", "研发部", "行政部", "销售部"], [500, 300, 100, 200], title="部门采购预算", xlabel="部门", ylabel="预算(万元)");
+add_table(doc_path, 5, 4);set_cell_text(table, 0, 0, "供应商名称");set_cell_text(table, 0, 1, "产品类别");set_cell_text(table, 0, 2, "合作年限");set_cell_text(table, 0, 3, "评级");
+add_shape(doc_path, "flowchart");
+add_list_item(doc_path, "需求提报", style="List Number");add_list_item(doc_path, "审批确认", style="List Number");add_list_item(doc_path, "询价比价", style="List Number");add_list_item(doc_path, "合同签订", style="List Number");add_list_item(doc_path, "验收入库", style="List Number");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_cell_bg_color(table, 0, 3, "light gray");set_font_bold();
+
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "物品类别");set_cell_text(table, 0, 1, "库存上限");set_cell_text(table, 0, 2, "库存下限");
+add_list_item(doc_path, "审核出库申请", style="List Number");add_list_item(doc_path, "核对物品信息", style="List Number");add_list_item(doc_path, "办理出库手续", style="List Number");add_list_item(doc_path, "更新库存记录", style="List Number");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_font_bold();
+
+add_table(doc_path, 4, 4);set_cell_text(table, 0, 0, "会议类型");set_cell_text(table, 0, 1, "参会人员");set_cell_text(table, 0, 2, "召开周期");set_cell_text(table, 0, 3, "会议时长");
+add_shape(doc_path, "flowchart");
+add_list_item(doc_path, "会议议题", style="List Number");add_list_item(doc_path, "参会人员", style="List Number");add_list_item(doc_path, "会议决议", style="List Number");add_list_item(doc_path, "后续跟进", style="List Number");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_cell_bg_color(table, 0, 3, "light gray");set_font_bold();
+
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "控制项目");set_cell_text(table, 0, 1, "控制标准");set_cell_text(table, 0, 2, "检验方法");
+add_list_item(doc_path, "外观检查", style="List Number");add_list_item(doc_path, "尺寸测量", style="List Number");add_list_item(doc_path, "性能测试", style="List Number");add_list_item(doc_path, "包装检查", style="List Number");
+
+create_bar_chart(["研发部", "市场部", "生产部", "行政部"], [300, 200, 400, 100], title="部门预算分配", xlabel="部门", ylabel="预算(万元)");
+add_table(doc_path, 4, 4);set_cell_text(table, 0, 0, "费用类型");set_cell_text(table, 0, 1, "报销标准");set_cell_text(table, 0, 2, "审批流程");set_cell_text(table, 0, 3, "备注");
+add_list_item(doc_path, "资金预算", style="List Number");add_list_item(doc_path, "资金调拨", style="List Number");add_list_item(doc_path, "资金监控", style="List Number");add_list_item(doc_path, "资金审计", style="List Number");
+
+add_shape(doc_path, "flowchart");
+add_list_item(doc_path, "数据分类", style="List Number");add_list_item(doc_path, "加密要求", style="List Number");add_list_item(doc_path, "备份策略", style="List Number");add_list_item(doc_path, "销毁流程", style="List Number");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "审计项目");set_cell_text(table, 0, 1, "审计周期");set_cell_text(table, 0, 2, "负责人");
+
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "检验项目");set_cell_text(table, 0, 1, "检验标准");set_cell_text(table, 0, 2, "检验方法");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_font_bold();
+
+create_bar_chart(["需求分析", "设计", "开发", "测试", "部署"], [2, 3, 8, 3, 2], title="项目进度甘特图", xlabel="阶段", ylabel="周数");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "风险项");set_cell_text(table, 0, 1, "风险等级");set_cell_text(table, 0, 2, "应对措施");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");
+add_list_item(doc_path, "项目目标", style="List Number");add_list_item(doc_path, "项目范围", style="List Number");add_list_item(doc_path, "项目团队", style="List Number");add_list_item(doc_path, "关键里程碑", style="List Number");
+
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "维护项目");set_cell_text(table, 0, 1, "维护周期");set_cell_text(table, 0, 2, "负责人");
+add_list_item(doc_path, "故障诊断", style="List Number");add_list_item(doc_path, "应急处理", style="List Number");add_list_item(doc_path, "维修记录", style="List Number");
+
+create_pie_chart(["重要客户", "普通客户", "潜在客户", "其他"], [40, 30, 20, 10], title="客户类型分布");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "客户类型");set_cell_text(table, 0, 1, "服务内容");set_cell_text(table, 0, 2, "响应时间");
+create_bar_chart(["产品质量", "服务态度", "响应速度", "问题解决"], [90, 85, 88, 92], title="客户满意度评分", xlabel="评价项目", ylabel="得分");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_font_bold();
+
+add_list_item(doc_path, "掌握专业知识", style="List Number");add_list_item(doc_path, "培养研究能力", style="List Number");add_list_item(doc_path, "提升创新思维", style="List Number");add_list_item(doc_path, "锻炼实践技能", style="List Number");
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "课程名称");set_cell_text(table, 0, 1, "学分");set_cell_text(table, 0, 2, "课程性质");
+add_shape(doc_path, "flowchart");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_font_bold();
+
+add_list_item(doc_path, "穿戴防护用品", style="List Number");add_list_item(doc_path, "保持环境整洁", style="List Number");add_list_item(doc_path, "遵守操作规程", style="List Number");add_list_item(doc_path, "及时报告异常", style="List Number");
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "事故类型");set_cell_text(table, 0, 1, "应急措施");set_cell_text(table, 0, 2, "负责人");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_font_bold();
+
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "培训项目");set_cell_text(table, 0, 1, "培训时长");set_cell_text(table, 0, 2, "培训讲师");
+add_list_item(doc_path, "领导力培训", style="List Number");add_list_item(doc_path, "团队管理", style="List Number");add_list_item(doc_path, "沟通技巧", style="List Number");add_list_item(doc_path, "决策能力", style="List Number");
+
+add_list_item(doc_path, "性能稳定", style="List Number");add_list_item(doc_path, "操作简便", style="List Number");add_list_item(doc_path, "节能环保", style="List Number");add_list_item(doc_path, "维护方便", style="List Number");
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "注意项目");set_cell_text(table, 0, 1, "可能后果");set_cell_text(table, 0, 2, "预防措施");
+
+add_shape(doc_path, "flowchart");
+add_list_item(doc_path, "诚信为本", style="List Number");add_list_item(doc_path, "创新发展", style="List Number");add_list_item(doc_path, "团队协作", style="List Number");add_list_item(doc_path, "客户至上", style="List Number");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "行为类别");set_cell_text(table, 0, 1, "具体要求");set_cell_text(table, 0, 2, "考核标准");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_font_bold();
+
+create_bar_chart(["性能", "稳定性", "易用性", "安全性"], [85, 90, 88, 92], title="产品测评得分", xlabel="测评指标", ylabel="得分");
+create_pie_chart(["非常满意", "满意", "一般", "不满意"], [40, 35, 15, 10], title="用户满意度分布");
+add_list_item(doc_path, "产品功能", style="List Number");add_list_item(doc_path, "技术特点", style="List Number");add_list_item(doc_path, "应用场景", style="List Number");add_list_item(doc_path, "产品优势", style="List Number");
+
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "事件等级");set_cell_text(table, 0, 1, "响应时间");set_cell_text(table, 0, 2, "处理流程");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_font_bold();
+
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "运输类型");set_cell_text(table, 0, 1, "管理要求");set_cell_text(table, 0, 2, "负责人");
+add_list_item(doc_path, "配送范围", style="List Number");add_list_item(doc_path, "时效要求", style="List Number");add_list_item(doc_path, "服务标准", style="List Number");add_list_item(doc_path, "质量控制", style="List Number");
+
+create_pie_chart(["类别A", "类别B", "类别C", "类别D"], [35, 25, 20, 20], title="数据分布情况");
+create_line_chart(["1月", "2月", "3月", "4月", "5月", "6月"], [100, 120, 110, 130, 150, 140], title="月度趋势变化", xlabel="月份", ylabel="数值");
+add_list_item(doc_path, "主要发现", style="List Number");add_list_item(doc_path, "问题分析", style="List Number");add_list_item(doc_path, "改进建议", style="List Number");add_list_item(doc_path, "后续计划", style="List Number");
+
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 4, 4);set_cell_text(table, 0, 0, "资源类型");set_cell_text(table, 0, 1, "需求数量");set_cell_text(table, 0, 2, "使用时间");set_cell_text(table, 0, 3, "负责人");
+create_bar_chart(["前期准备", "主体施工", "设备安装", "调试验收"], [2, 6, 3, 1], title="项目进度甘特图", xlabel="工作阶段", ylabel="工期(月)");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_cell_bg_color(table, 0, 3, "light gray");set_font_bold();
+
+create_bar_chart(["研发部", "市场部", "销售部", "运营部"], [15, 10, 12, 8], title="部门人员需求", xlabel="部门", ylabel="需求人数");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "职位名称");set_cell_text(table, 0, 1, "招聘人数");set_cell_text(table, 0, 2, "任职要求");
+add_list_item(doc_path, "新员工培训", style="List Number");add_list_item(doc_path, "专业技能培训", style="List Number");add_list_item(doc_path, "管理能力培训", style="List Number");add_list_item(doc_path, "职业发展规划", style="List Number");
+
+create_line_chart(["1月", "2月", "3月", "4月", "5月", "6月"], [100, 120, 110, 130, 150, 140], title="月度收入趋势", xlabel="月份", ylabel="收入(万元)");
+create_pie_chart(["原材料", "人工", "制造费用", "其他"], [45, 25, 20, 10], title="成本构成分析");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "项目");set_cell_text(table, 0, 1, "金额");set_cell_text(table, 0, 2, "同比增长");
+set_cell_bg_color(table, 0, 0, "light gray");set_cell_bg_color(table, 0, 1, "light gray");set_cell_bg_color(table, 0, 2, "light gray");set_font_bold();
+
+create_pie_chart(["我司", "竞争对手A", "竞争对手B", "其他"], [35, 30, 25, 10], title="市场份额分布");
+add_list_item(doc_path, "产品策略", style="List Number");add_list_item(doc_path, "价格策略", style="List Number");add_list_item(doc_path, "渠道策略", style="List Number");add_list_item(doc_path, "促销策略", style="List Number");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "营销项目");set_cell_text(table, 0, 1, "预算金额");set_cell_text(table, 0, 2, "执行周期");
+
+add_list_item(doc_path, "市场需求", style="List Number");add_list_item(doc_path, "用户需求", style="List Number");add_list_item(doc_path, "功能需求", style="List Number");add_list_item(doc_path, "性能需求", style="List Number");
+add_shape(doc_path, "flowchart");
+create_bar_chart(["需求分析", "概要设计", "详细设计", "编码实现", "测试验证"], [2, 3, 4, 8, 3], title="开发进度甘特图", xlabel="阶段", ylabel="周数");
+
+add_list_item(doc_path, "设备清洁", style="List Number");add_list_item(doc_path, "运行检查", style="List Number");add_list_item(doc_path, "记录填写", style="List Number");add_list_item(doc_path, "异常报告", style="List Number");
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "故障类型");set_cell_text(table, 0, 1, "维修标准");set_cell_text(table, 0, 2, "完成时限");
+
+add_list_item(doc_path, "安全制度", style="List Number");add_list_item(doc_path, "应急预案", style="List Number");add_list_item(doc_path, "安全培训", style="List Number");add_list_item(doc_path, "事故处理", style="List Number");
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "岗位名称");set_cell_text(table, 0, 1, "职责要求");set_cell_text(table, 0, 2, "考核标准");
+
+create_bar_chart(["产品A", "产品B", "产品C", "产品D"], [95, 92, 88, 90], title="产品合格率", xlabel="产品线", ylabel="合格率(%)");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "问题类型");set_cell_text(table, 0, 1, "原因分析");set_cell_text(table, 0, 2, "影响程度");
+add_list_item(doc_path, "工艺优化", style="List Number");add_list_item(doc_path, "设备升级", style="List Number");add_list_item(doc_path, "人员培训", style="List Number");add_list_item(doc_path, "质量监控", style="List Number");
+
+add_table(doc_path, 5, 4);set_cell_text(table, 0, 0, "评估项目");set_cell_text(table, 0, 1, "评估标准");set_cell_text(table, 0, 2, "权重");set_cell_text(table, 0, 3, "得分");
+create_radar_chart(["技术", "市场", "成本", "风险", "团队"], [85, 75, 80, 70, 90], title="项目评估得分");
+add_list_item(doc_path, "项目背景", style="List Number");add_list_item(doc_path, "项目目标", style="List Number");add_list_item(doc_path, "项目范围", style="List Number");add_list_item(doc_path, "关键里程碑", style="List Number");
+
+create_bar_chart(["产品质量", "交付能力", "价格水平", "服务态度"], [85, 90, 75, 88], title="供应商评估得分", xlabel="评估项目", ylabel="得分");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "供应商名称");set_cell_text(table, 0, 1, "主营业务");set_cell_text(table, 0, 2, "合作年限");
+add_list_item(doc_path, "继续合作", style="List Number");add_list_item(doc_path, "加强监督", style="List Number");add_list_item(doc_path, "价格谈判", style="List Number");add_list_item(doc_path, "深化合作", style="List Number");
+
+create_line_chart(["1月", "2月", "3月", "4月", "5月", "6月"], [100, 120, 110, 130, 150, 140], title="月度销售趋势", xlabel="月份", ylabel="销售额(万元)");
+add_table(doc_path, 4, 4);set_cell_text(table, 0, 0, "产品类别");set_cell_text(table, 0, 1, "销售额");set_cell_text(table, 0, 2, "同比增长");set_cell_text(table, 0, 3, "市场份额");
+add_list_item(doc_path, "优化产品结构", style="List Number");add_list_item(doc_path, "加强团队建设", style="List Number");add_list_item(doc_path, "拓展销售渠道", style="List Number");add_list_item(doc_path, "提升服务质量", style="List Number");
+
+create_bar_chart(["需求分析", "概要设计", "详细设计", "编码实现", "测试验证"], [2, 3, 4, 8, 3], title="项目进度甘特图", xlabel="阶段", ylabel="周数");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "风险项");set_cell_text(table, 0, 1, "风险等级");set_cell_text(table, 0, 2, "应对措施");
+add_list_item(doc_path, "项目背景", style="List Number");add_list_item(doc_path, "项目目标", style="List Number");add_list_item(doc_path, "项目范围", style="List Number");add_list_item(doc_path, "关键里程碑", style="List Number");
+
+add_list_item(doc_path, "提升专业能力", style="List Number");add_list_item(doc_path, "培养管理素质", style="List Number");add_list_item(doc_path, "增强创新意识", style="List Number");add_list_item(doc_path, "提高团队协作", style="List Number");
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "考核项目");set_cell_text(table, 0, 1, "考核方式");set_cell_text(table, 0, 2, "分值权重");
+
+add_table(doc_path, 4, 4);set_cell_text(table, 0, 0, "影响程度/发生概率");set_cell_text(table, 0, 1, "低");set_cell_text(table, 0, 2, "中");set_cell_text(table, 0, 3, "高");
+add_list_item(doc_path, "技术风险", style="List Number");add_list_item(doc_path, "市场风险", style="List Number");add_list_item(doc_path, "管理风险", style="List Number");add_list_item(doc_path, "资源风险", style="List Number");
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "风险类型");set_cell_text(table, 0, 1, "应对策略");set_cell_text(table, 0, 2, "责任人");
+
+add_shape(doc_path, "flowchart");
+create_bar_chart(["2024年", "2025年", "2026年", "2027年"], [100, 150, 220, 300], title="市场规模预测", xlabel="年份", ylabel="市场规模(亿元)");
+add_list_item(doc_path, "创新背景", style="List Number");add_list_item(doc_path, "创新内容", style="List Number");add_list_item(doc_path, "创新价值", style="List Number");add_list_item(doc_path, "创新团队", style="List Number");
+
+create_pie_chart(["原材料", "人工", "制造费用", "管理费用", "其他"], [40, 25, 15, 12, 8], title="成本构成分析");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "控制项目");set_cell_text(table, 0, 1, "控制方法");set_cell_text(table, 0, 2, "预期效果");
+create_line_chart(["1月", "2月", "3月", "4月", "5月", "6月"], [100, 95, 85, 80, 75, 70], title="成本控制趋势", xlabel="月份", ylabel="成本指数");
+
+create_pie_chart(["高端客户", "中端客户", "大众客户", "其他"], [30, 40, 25, 5], title="目标客户群分布");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "渠道类型");set_cell_text(table, 0, 1, "覆盖范围");set_cell_text(table, 0, 2, "投入预算");
+add_list_item(doc_path, "线上推广", style="List Number");add_list_item(doc_path, "线下活动", style="List Number");add_list_item(doc_path, "媒体合作", style="List Number");add_list_item(doc_path, "社群运营", style="List Number");
+
+create_bar_chart(["产线A", "产线B", "产线C", "产线D"], [85, 92, 78, 88], title="产能利用率", xlabel="产线", ylabel="利用率(%)");
+create_line_chart(["Q1", "Q2", "Q3", "Q4", "Q5", "Q6"], [100, 120, 150, 180, 220, 250], title="需求预测趋势", xlabel="季度", ylabel="需求量(万件)");
+add_table(doc_path, 5, 4);set_cell_text(table, 0, 0, "扩产项目");set_cell_text(table, 0, 1, "投资金额");set_cell_text(table, 0, 2, "建设周期");set_cell_text(table, 0, 3, "预期产能");
+
+create_pie_chart(["工艺问题", "设备问题", "人员问题", "材料问题"], [35, 25, 20, 20], title="问题类型分布");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "改进项目");set_cell_text(table, 0, 1, "具体措施");set_cell_text(table, 0, 2, "责任人");
+create_line_chart(["第1周", "第2周", "第3周", "第4周"], [85, 88, 92, 95], title="质量改进趋势", xlabel="时间", ylabel="合格率(%)");
+
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "维护项目");set_cell_text(table, 0, 1, "维护周期");set_cell_text(table, 0, 2, "负责人");
+
+create_pie_chart(["技术人才", "管理人才", "营销人才", "其他"], [40, 30, 20, 10], title="人才结构分布");
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "激励类型");set_cell_text(table, 0, 1, "激励标准");set_cell_text(table, 0, 2, "实施周期");
+
+create_line_chart(["2023Q1", "2023Q2", "2023Q3", "2023Q4", "2024Q1", "2024Q2"], [100, 120, 135, 155, 180, 210], title="市场规模趋势", xlabel="季度", ylabel="市场规模(亿元)");
+add_table(doc_path, 5, 4);set_cell_text(table, 0, 0, "财务指标");set_cell_text(table, 0, 1, "第一年");set_cell_text(table, 0, 2, "第二年");set_cell_text(table, 0, 3, "第三年");
+add_list_item(doc_path, "市场风险", style="List Number");add_list_item(doc_path, "政策风险", style="List Number");add_list_item(doc_path, "财务风险", style="List Number");add_list_item(doc_path, "运营风险", style="List Number");
+
+add_list_item(doc_path, "用户需求变化", style="List Number");add_list_item(doc_path, "技术发展趋势", style="List Number");add_list_item(doc_path, "竞品分析对比", style="List Number");add_list_item(doc_path, "市场竞争压力", style="List Number");
+add_table(doc_path, 4, 4);set_cell_text(table, 0, 0, "功能模块");set_cell_text(table, 0, 1, "当前版本");set_cell_text(table, 0, 2, "升级版本");set_cell_text(table, 0, 3, "优化效果");
+create_bar_chart(["需求分析", "方案设计", "开发测试", "灰度发布", "全面上线"], [2, 3, 6, 2, 1], title="升级实施进度", xlabel="阶段", ylabel="周数");
+
+create_pie_chart(["我司", "竞争对手A", "竞争对手B", "竞争对手C", "其他"], [30, 25, 20, 15, 10], title="市场份额分布");
+add_table(doc_path, 5, 5);set_cell_text(table, 0, 0, "对比项目");set_cell_text(table, 0, 1, "我司");set_cell_text(table, 0, 2, "竞争对手A");set_cell_text(table, 0, 3, "竞争对手B");set_cell_text(table, 0, 4, "竞争对手C");
+add_list_item(doc_path, "产品差异化", style="List Number");add_list_item(doc_path, "价格策略", style="List Number");add_list_item(doc_path, "服务升级", style="List Number");add_list_item(doc_path, "渠道优化", style="List Number");
+
+add_shape(doc_path, "flowchart");
+add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, "申请阶段");set_cell_text(table, 0, 1, "所需材料");set_cell_text(table, 0, 2, "处理时限");
+add_list_item(doc_path, "材料准备", style="List Number");add_list_item(doc_path, "时间规划", style="List Number");add_list_item(doc_path, "费用预算", style="List Number");add_list_item(doc_path, "文件归档", style="List Number");
+
+add_list_item(doc_path, "问卷调查", style="List Number");add_list_item(doc_path, "电话访谈", style="List Number");add_list_item(doc_path, "深度访谈", style="List Number");add_list_item(doc_path, "在线反馈", style="List Number");
+create_bar_chart(["产品质量", "服务态度", "响应速度", "价格水平", "售后支持"], [85, 90, 82, 78, 88], title="客户满意度评分", xlabel="评价项目", ylabel="满意度(%)");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "改进项目");set_cell_text(table, 0, 1, "具体措施");set_cell_text(table, 0, 2, "责任部门");
+
+create_radar_chart(["业务数字化", "流程自动化", "数据分析", "技术架构", "人才储备"], [60, 45, 55, 40, 50], title="数字化成熟度评估");
+add_table(doc_path, 4, 4);set_cell_text(table, 0, 0, "转型领域");set_cell_text(table, 0, 1, "现状水平");set_cell_text(table, 0, 2, "目标水平");set_cell_text(table, 0, 3, "提升方向");
+add_shape(doc_path, "flowchart");
+
+create_line_chart(["2018", "2019", "2020", "2021", "2022", "2023"], [100, 110, 95, 125, 150, 180], title="进出口贸易额趋势", xlabel="年份", ylabel="贸易额(亿美元)");
+add_table(doc_path, 5, 4);set_cell_text(table, 0, 0, "优势(S)");set_cell_text(table, 0, 1, "劣势(W)");set_cell_text(table, 0, 2, "机会(O)");set_cell_text(table, 0, 3, "威胁(T)");
+add_list_item(doc_path, "市场多元化", style="List Number");add_list_item(doc_path, "产品升级", style="List Number");add_list_item(doc_path, "贸易便利化", style="List Number");add_list_item(doc_path, "风险防控", style="List Number");
+
+create_line_chart(["1月", "2月", "3月", "4月", "5月", "6月"], [100, 95, 85, 80, 75, 70], title="月度能耗趋势", xlabel="月份", ylabel="能耗指数");
+add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, "措施类型");set_cell_text(table, 0, 1, "具体内容");set_cell_text(table, 0, 2, "预期效果");
+add_list_item(doc_path, "考核标准", style="List Number");add_list_item(doc_path, "奖励措施", style="List Number");add_list_item(doc_path, "处罚规定", style="List Number");add_list_item(doc_path, "申诉流程", style="List Number");
+
+add_list_item(doc_path, "环保理念", style="List Number");add_list_item(doc_path, "美观设计", style="List Number");add_list_item(doc_path, "功能性", style="List Number");add_list_item(doc_path, "品牌识别", style="List Number");
+add_table(doc_path, 4, 4);set_cell_text(table, 0, 0, "材料类型");set_cell_text(table, 0, 1, "环保等级");set_cell_text(table, 0, 2, "成本");set_cell_text(table, 0, 3, "适用范围");
+create_pie_chart(["材料成本", "加工成本", "运输成本", "其他成本"], [45, 30, 15, 10], title="包装成本构成");

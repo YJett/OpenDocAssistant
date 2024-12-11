@@ -1,0 +1,29 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建新文档并添加标题\"产品发展规划\"，设置字体为\"Microsoft YaHei\"。",
+    "Feasible API sequence": "create_and_save_docx(doc_path, \"\");add_heading(doc_path, \"产品发展规划\", level=1);set_font_style(\"Microsoft YaHei\");",
+    "Base File": "Word_Base_File/Create_new_doc/37_0.docx",
+    "Label File": "Word_Label_File/Create_new_doc/37_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/37_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/37_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "插入一个柱状图展示各产品线的销售数据。",
+    "Feasible API sequence": "create_bar_chart([\"产品A\", \"产品B\", \"产品C\", \"产品D\"], [200, 150, 300, 180], title=\"产品销售数据\", xlabel=\"产品线\", ylabel=\"销售额（万元）\");",
+    "Base File": "Word_Base_File/Create_new_doc/37_1.docx",
+    "Label File": "Word_Label_File/Create_new_doc/37_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/37_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/37_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "在图表下方添加一个表格展示详细数据，并合并第一行作为表头。",
+    "Feasible API sequence": "add_table(doc_path, 2, 4);set_cell_text(table, 0, 0, \"产品线销售数据\");merge_cells(table, 0, 0, 0, 3);set_cell_text(table, 1, 0, \"产品A\");set_cell_text(table, 1, 1, \"产品B\");set_cell_text(table, 1, 2, \"产品C\");set_cell_text(table, 1, 3, \"产品D\");",
+    "Base File": "Word_Base_File/Create_new_doc/37_2.docx",
+    "Label File": "Word_Label_File/Create_new_doc/37_2.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/37_2.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/37_2.docx"
+  }
+] 

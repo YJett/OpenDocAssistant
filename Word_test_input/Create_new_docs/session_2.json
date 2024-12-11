@@ -1,0 +1,29 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "将文档背景颜色设置为绿色。",
+    "Feasible API sequence": "set_background_color(\"green\");",
+    "Base File": "Word_Base_File/Create_new_doc/2_0.docx",
+    "Label File": "Word_Label_File/Create_new_doc/2_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/2_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/2_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "插入一个云形状，并将其移至文档底部。",
+    "Feasible API sequence": "add_shape(doc_path, \"cloud\");align_shape_bottom();",
+    "Base File": "Word_Base_File/Create_new_doc/2_1.docx",
+    "Label File": "Word_Label_File/Create_new_doc/2_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/2_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/2_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "在正文中添加\"你跑得太慢了\"。",
+    "Feasible API sequence": "add_paragraph(doc_path, \"你跑得太慢了\");",
+    "Base File": "Word_Base_File/Create_new_doc/2_2.docx",
+    "Label File": "Word_Label_File/Create_new_doc/2_2.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/2_2.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/2_2.docx"
+  }
+] 

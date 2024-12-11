@@ -1,0 +1,29 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建一个雷达图比较不同研究方法的优缺点。",
+    "Feasible API sequence": "create_radar_chart([\"可行性\", \"成本\", \"时效性\", \"准确度\", \"普适性\"], [90, 75, 85, 95, 80], title=\"研究方法对比\");",
+    "Base File": "Word_Base_File/Edit_Word_template/18_0.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/18_0.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/18_0.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/18_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "在图表下方添加一个4行3列的表格总结各方法特点。",
+    "Feasible API sequence": "add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, \"研究方法\");set_cell_text(table, 0, 1, \"主要特点\");set_cell_text(table, 0, 2, \"适用场景\");",
+    "Base File": "Word_Base_File/Edit_Word_template/18_1.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/18_1.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/18_1.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/18_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "将表格第一行设置为灰色背景并加粗文字。",
+    "Feasible API sequence": "set_cell_bg_color(table, 0, 0, \"gray\");set_cell_bg_color(table, 0, 1, \"gray\");set_cell_bg_color(table, 0, 2, \"gray\");set_font_bold();",
+    "Base File": "Word_Base_File/Edit_Word_template/18_2.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/18_2.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/18_2.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/18_2.docx"
+  }
+] 

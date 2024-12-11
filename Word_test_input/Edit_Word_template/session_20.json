@@ -1,0 +1,29 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "添加二级标题\"未来研究方向\"并设置背景为浅灰色。",
+    "Feasible API sequence": "add_heading(doc_path, \"未来研究方向\", level=2);set_background_color(\"light gray\");",
+    "Base File": "Word_Base_File/Edit_Word_template/20_0.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/20_0.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/20_0.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/20_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "创建一个柱状图显示不同研究方向的优先级。",
+    "Feasible API sequence": "create_bar_chart([\"方向A\", \"方向B\", \"方向C\"], [70, 85, 60], title=\"研究方向优先级\", xlabel=\"方向\", ylabel=\"优先级\");",
+    "Base File": "Word_Base_File/Edit_Word_template/20_1.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/20_1.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/20_1.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/20_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "添加带编号的研究建议列表并设置字体为\"楷体\"。",
+    "Feasible API sequence": "add_list_item(doc_path, \"加强跨学科合作\", style=\"List Number\");add_list_item(doc_path, \"增加样本多样性\", style=\"List Number\");add_list_item(doc_path, \"探索新兴技术\", style=\"List Number\");set_font_style(\"楷体\");",
+    "Base File": "Word_Base_File/Edit_Word_template/20_2.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/20_2.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/20_2.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/20_2.docx"
+  }
+] 

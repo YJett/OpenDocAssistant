@@ -1,0 +1,29 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "添加一级标题\"研究展望\"并设置字体为\"微软雅黑\"。",
+    "Feasible API sequence": "add_heading(doc_path, \"研究展望\", level=1);set_font_style(\"Microsoft YaHei\");",
+    "Base File": "Word_Base_File/Edit_Word_template/25_0.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/25_0.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/25_0.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/25_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "插入一个折线图显示未来五年的研究趋势预测。",
+    "Feasible API sequence": "create_line_chart([\"2024年\", \"2025年\", \"2026年\", \"2027年\", \"2028年\"], [100, 150, 200, 280, 350], title=\"研究趋势预测\", xlabel=\"年份\", ylabel=\"预计研究数量\");",
+    "Base File": "Word_Base_File/Edit_Word_template/25_1.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/25_1.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/25_1.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/25_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "在图表下方添加一个4行3列的表格总结主要研究方向。",
+    "Feasible API sequence": "add_table(doc_path, 4, 3);set_cell_text(table, 0, 0, \"研究方向\");set_cell_text(table, 0, 1, \"预期目标\");set_cell_text(table, 0, 2, \"所需资源\");",
+    "Base File": "Word_Base_File/Edit_Word_template/25_2.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/25_2.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/25_2.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/25_2.docx"
+  }
+] 

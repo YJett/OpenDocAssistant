@@ -1,0 +1,47 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建新文档并添加标题\"项目验收报告\"，添加水印\"待审核\"。",
+    "Feasible API sequence": "create_and_save_docx(doc_path, \"\");add_heading(doc_path, \"项目验收报告\", level=1);add_watermark(doc_path, \"待审核\");",
+    "Base File": "Word_Base_File/Create_new_doc/82_0.docx",
+    "Label File": "Word_Label_File/Create_new_doc/82_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/82_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/82_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "添加二级标题\"验收内容\"、\"验收结果\"和\"遗留问题\"。",
+    "Feasible API sequence": "add_heading(doc_path, \"验收内容\", level=2);add_heading(doc_path, \"验收结果\", level=2);add_heading(doc_path, \"遗留问题\", level=2);",
+    "Base File": "Word_Base_File/Create_new_doc/82_1.docx",
+    "Label File": "Word_Label_File/Create_new_doc/82_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/82_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/82_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "在\"验收结果\"下插入一个饼图展示验收项目的通过率。",
+    "Feasible API sequence": "create_pie_chart([\"通过\", \"有条件通过\", \"未通过\"], [75, 20, 5], title=\"验收结果分布\");",
+    "Base File": "Word_Base_File/Create_new_doc/82_2.docx",
+    "Label File": "Word_Label_File/Create_new_doc/82_2.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/82_2.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/82_2.docx"
+  },
+  {
+    "Turn": 3,
+    "User instruction": "在图表下方添加一个5行3列的表格展示详细验收数据。",
+    "Feasible API sequence": "add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, \"验收项目\");set_cell_text(table, 0, 1, \"验收结果\");set_cell_text(table, 0, 2, \"备注\");",
+    "Base File": "Word_Base_File/Create_new_doc/82_3.docx",
+    "Label File": "Word_Label_File/Create_new_doc/82_3.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/82_3.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/82_3.docx"
+  },
+  {
+    "Turn": 4,
+    "User instruction": "将表格第一行背景设置为浅灰色，字体加粗。",
+    "Feasible API sequence": "set_cell_bg_color(table, 0, 0, \"light gray\");set_cell_bg_color(table, 0, 1, \"light gray\");set_cell_bg_color(table, 0, 2, \"light gray\");set_font_bold();",
+    "Base File": "Word_Base_File/Create_new_doc/82_4.docx",
+    "Label File": "Word_Label_File/Create_new_doc/82_4.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/82_4.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/82_4.docx"
+  }
+] 

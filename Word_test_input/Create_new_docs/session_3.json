@@ -1,0 +1,29 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "在文档中央插入一张关于学习的图片。",
+    "Feasible API sequence": "add_image(doc_path, 0, \"study.jpg\");align_image_center(paragraph);",
+    "Base File": "Word_Base_File/Create_new_doc/3_0.docx",
+    "Label File": "Word_Label_File/Create_new_doc/3_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/3_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/3_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "创建一个正方形并将其移至文档中央。",
+    "Feasible API sequence": "add_shape(doc_path, \"rectangle\");align_shape_center();",
+    "Base File": "Word_Base_File/Create_new_doc/3_1.docx",
+    "Label File": "Word_Label_File/Create_new_doc/3_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/3_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/3_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "添加标题\"英雄联盟\"，并在正文中添加\"英雄联盟是一个拥有140多个英雄的团队游戏。现在免费游玩。\"",
+    "Feasible API sequence": "add_heading(doc_path, \"英雄联盟\", level=1);add_paragraph(doc_path, \"英雄联盟是一个拥有140多个英雄的团队游戏。现在免费游玩。\");",
+    "Base File": "Word_Base_File/Create_new_doc/3_2.docx",
+    "Label File": "Word_Label_File/Create_new_doc/3_2.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/3_2.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/3_2.docx"
+  }
+] 

@@ -1,0 +1,47 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建新文档并添加标题\"质量检测标准\"，添加页眉显示\"质检部\"。",
+    "Feasible API sequence": "create_and_save_docx(doc_path, \"\");add_heading(doc_path, \"质量检测标准\", level=1);add_header(doc_path, \"质检部\");",
+    "Base File": "Word_Base_File/Create_new_doc/118_0.docx",
+    "Label File": "Word_Label_File/Create_new_doc/118_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/118_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/118_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "添加二级标题\"检测项目\"、\"检测方法\"和\"质量要求\"。",
+    "Feasible API sequence": "add_heading(doc_path, \"检测项目\", level=2);add_heading(doc_path, \"检测方法\", level=2);add_heading(doc_path, \"质量要求\", level=2);",
+    "Base File": "Word_Base_File/Create_new_doc/118_1.docx",
+    "Label File": "Word_Label_File/Create_new_doc/118_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/118_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/118_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "在\"检测项目\"下添加带编号的列表项。",
+    "Feasible API sequence": "add_list_item(doc_path, \"外观检查\", style=\"List Number\");add_list_item(doc_path, \"性能测试\", style=\"List Number\");add_list_item(doc_path, \"可靠性测试\", style=\"List Number\");add_list_item(doc_path, \"安全性测试\", style=\"List Number\");",
+    "Base File": "Word_Base_File/Create_new_doc/118_2.docx",
+    "Label File": "Word_Label_File/Create_new_doc/118_2.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/118_2.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/118_2.docx"
+  },
+  {
+    "Turn": 3,
+    "User instruction": "在\"质量要求\"下插入一个5行3列的表格。",
+    "Feasible API sequence": "add_table(doc_path, 5, 3);set_cell_text(table, 0, 0, \"检测项目\");set_cell_text(table, 0, 1, \"合格标准\");set_cell_text(table, 0, 2, \"不合格处理\");",
+    "Base File": "Word_Base_File/Create_new_doc/118_3.docx",
+    "Label File": "Word_Label_File/Create_new_doc/118_3.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/118_3.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/118_3.docx"
+  },
+  {
+    "Turn": 4,
+    "User instruction": "添加页码并设置水印\"质量标准\"。",
+    "Feasible API sequence": "add_page_numbers(doc_path);add_watermark(doc_path, \"质量标准\");",
+    "Base File": "Word_Base_File/Create_new_doc/118_4.docx",
+    "Label File": "Word_Label_File/Create_new_doc/118_4.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/118_4.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/118_4.docx"
+  }
+] 

@@ -1,0 +1,63 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建一个文档标题填入\"Human Assessment\"。",
+    "Feasible API sequence": [
+      "init_docx()",
+      "add_heading(\"Human Assessment\", level=1)",
+      "text_align_right()"
+    ],
+    "Base File": "Word_Base_File/Create_new_docs/0_0.docx",
+    "Label File": "Word_Label_File/Create_new_docs/0_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/0_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/0_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "在正文中添加以下内容：\"通常情况下，翻译质量由多位评审员匿名评分，最终分数通过综合所有评审员的评估结果得出\"。",
+    "Feasible API sequence": [
+      "add_paragraph(\"通常情况下，翻译质量由多位评审员匿名评分，最终分数通过综合所有评审员的评估结果得出\")"
+    ],
+    "Base File": "Word_Base_File/Create_new_docs/0_1.docx",
+    "Label File": "Word_Label_File/Create_new_docs/0_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/0_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/0_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "插入一个2行2列的表格。",
+    "Feasible API sequence": [
+      "add_table(2, 2)"
+    ],
+    "Base File": "Word_Base_File/Create_new_docs/0_2.docx",
+    "Label File": "Word_Label_File/Create_new_docs/0_2.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/0_2.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/0_2.docx"
+  },
+  {
+    "Turn": 3,
+    "User instruction": "在左侧两个单元格中填入\"Advantages\"和\"Disadvantages\"。在右侧两个单元格中填入\"Accurately reflect the translation quality of sentences, the most authoritative, the highest credibility\"和\"Long time assessment\"。",
+    "Feasible API sequence": [
+      "set_cell_text(0, 0, \"Advantages\")",
+      "set_cell_text(1, 0, \"Disadvantages\")",
+      "set_cell_text(0, 1, \"Accurately reflect the translation quality of sentences, the most authoritative, the highest credibility\")",
+      "set_cell_text(1, 1, \"Long time assessment\")"
+    ],
+    "Base File": "Word_Base_File/Create_new_docs/0_3.docx",
+    "Label File": "Word_Label_File/Create_new_docs/0_3.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/0_3.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/0_3.docx"
+  },
+  {
+    "Turn": 4,
+    "User instruction": "将内容字体大小调整为20，字体样式改为\"Arial\"。",
+    "Feasible API sequence": [
+      "set_font_size(20)",
+      "set_font_style(\"Arial\")"
+    ],
+    "Base File": "Word_Base_File/Create_new_docs/0_4.docx",
+    "Label File": "Word_Label_File/Create_new_docs/0_4.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/0_4.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/0_4.docx"
+  }
+] 

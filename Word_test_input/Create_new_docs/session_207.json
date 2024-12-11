@@ -1,0 +1,56 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建新文档并添加标题\"投资分析报告\"，设置字体为\"STXihei\"。",
+    "Feasible API sequence": "create_and_save_docx(doc_path, \"\");add_heading(doc_path, \"投资分析报告\", level=1);set_font_style(\"STXihei\");",
+    "Base File": "Word_Base_File/Create_new_docs/208_0.docx",
+    "Label File": "Word_Label_File/Create_new_docs/208_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/208_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/208_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "添加目录，并设置为三级目录。",
+    "Feasible API sequence": "add_table_of_contents(doc_path, levels=3);",
+    "Base File": "Word_Base_File/Create_new_docs/208_1.docx",
+    "Label File": "Word_Label_File/Create_new_docs/208_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/208_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/208_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "添加二级标题\"市场分析\"、\"财务预测\"和\"风险评估\"。",
+    "Feasible API sequence": "add_heading(doc_path, \"市场分析\", level=2);add_heading(doc_path, \"财务预测\", level=2);add_heading(doc_path, \"风险评估\", level=2);",
+    "Base File": "Word_Base_File/Create_new_docs/208_2.docx",
+    "Label File": "Word_Label_File/Create_new_docs/208_2.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/208_2.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/208_2.docx"
+  },
+  {
+    "Turn": 3,
+    "User instruction": "在\"市场分析\"下插入一个折线图展示市场趋势。",
+    "Feasible API sequence": "create_line_chart([\"2023Q1\", \"2023Q2\", \"2023Q3\", \"2023Q4\", \"2024Q1\", \"2024Q2\"], [100, 120, 135, 155, 180, 210], title=\"市场规模趋势\", xlabel=\"季度\", ylabel=\"市场规模(亿元)\");",
+    "Base File": "Word_Base_File/Create_new_docs/208_3.docx",
+    "Label File": "Word_Label_File/Create_new_docs/208_3.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/208_3.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/208_3.docx"
+  },
+  {
+    "Turn": 4,
+    "User instruction": "在\"财务预测\"下添加一个5行4列的表格。",
+    "Feasible API sequence": "add_table(doc_path, 5, 4);set_cell_text(table, 0, 0, \"财务指标\");set_cell_text(table, 0, 1, \"第一年\");set_cell_text(table, 0, 2, \"第二年\");set_cell_text(table, 0, 3, \"第三年\");",
+    "Base File": "Word_Base_File/Create_new_docs/208_4.docx",
+    "Label File": "Word_Label_File/Create_new_docs/208_4.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/208_4.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/208_4.docx"
+  },
+  {
+    "Turn": 5,
+    "User instruction": "在\"风险评估\"下添加带编号的列表项。",
+    "Feasible API sequence": "add_list_item(doc_path, \"市场风险\", style=\"List Number\");add_list_item(doc_path, \"政策风险\", style=\"List Number\");add_list_item(doc_path, \"财务风险\", style=\"List Number\");add_list_item(doc_path, \"运营风险\", style=\"List Number\");",
+    "Base File": "Word_Base_File/Create_new_docs/208_5.docx",
+    "Label File": "Word_Label_File/Create_new_docs/208_5.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/208_5.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/208_5.docx"
+  }
+] 

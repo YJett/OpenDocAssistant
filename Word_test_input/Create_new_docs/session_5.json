@@ -1,0 +1,29 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建新文档并添加一个红色的标题\"三月日程\"。",
+    "Feasible API sequence": "add_heading(doc_path, \"三月日程\", level=1);set_font_color(\"red\");",
+    "Base File": "Word_Base_File/Create_new_doc/5_0.docx",
+    "Label File": "Word_Label_File/Create_new_doc/5_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/5_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/5_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "将标题字体大小设为28磅，颜色改为深蓝色。",
+    "Feasible API sequence": "set_font_size(28);set_font_color(\"dark blue\");",
+    "Base File": "Word_Base_File/Create_new_doc/5_1.docx",
+    "Label File": "Word_Label_File/Create_new_doc/5_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/5_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/5_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "插入一个1行3列的表格，在第一行填入\"1-10日学习\"、\"11-20日工作\"和\"21-31日旅行\"。",
+    "Feasible API sequence": "add_table(doc_path, 1, 3);set_cell_text(table, 0, 0, \"1-10日学习\");set_cell_text(table, 0, 1, \"11-20日工作\");set_cell_text(table, 0, 2, \"21-31日旅行\");",
+    "Base File": "Word_Base_File/Create_new_doc/5_2.docx",
+    "Label File": "Word_Label_File/Create_new_doc/5_2.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/5_2.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/5_2.docx"
+  }
+] 

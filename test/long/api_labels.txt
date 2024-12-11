@@ -1,0 +1,234 @@
+set_font_color("black");
+set_background_color("white");
+add_paragraph("这是一个示例段落");
+set_font_bold();
+
+add_heading("海洋保护", level=1);
+add_table(3, 4);
+add_header("机密文件");
+set_font_color("yellow");
+
+add_heading("项目概述", level=1);
+add_paragraph("本项目旨在...");
+set_font_style("Arial");set_font_size(12);
+add_table(2, 3);
+
+add_watermark("机密文件");
+set_font_style("Times New Roman");
+add_paragraph("数据更新时间：2024年");
+
+add_heading("数据分析报告", level=1);set_font_size(24);
+add_paragraph("我们正在招聘！");
+set_font_color("purple");set_font_underline();
+
+set_image_size(height=5);add_heading("青年艺术", level=1);set_font_underline();
+add_heading("玩伴", level=1);set_font_bold();
+rotate_element(45);add_heading("亚洲时尚", level=1);text_align_center();
+
+add_heading("全球用户分布", level=1);set_font_bold();add_heading("公司利润", level=1);
+add_paragraph("需要更新图片中的数据点");
+set_background_color("blue");set_background_color("red");
+
+add_heading("全球变暖！", level=1);set_font_underline();
+text_align_left();
+add_heading("当前团队成员", level=1);
+set_background_color("blue");
+
+set_background_color("yellow");add_heading("看到以下图片会让你想起哪部电影？", level=1);set_font_bold();
+add_heading("欢迎来到我们的电影节！", level=1);
+delete_text();
+
+add_heading("判断是否坠入爱河的三个关键", level=1);add_heading("你和爱人可以一起做的事", level=1);set_font_underline();
+add_paragraph("我们的地址是：xxx");
+set_background_color("blue");
+
+rotate_element(90);add_heading("芯片", level=1);
+set_cell_text(0, 1, "收入报表");set_cell_text(1, 1, "1450");set_cell_text(2, 1, "1567");set_cell_text(3, 1, "1456");set_cell_text(4, 1, "8900");
+set_cell_text(0, 1, "成本");set_cell_text(0, 2, "收入");
+
+set_font_color("black");set_font_bold();delete_text();
+add_paragraph("我们公司成立于2012年");
+set_image_size(height=10);
+
+add_heading("缤纷世界", level=1);add_heading("欢迎加入我们的团队", level=1);set_font_underline();set_font_size(19);
+set_cell_text(1, -1, "17");set_cell_text(-1, -1, "0");
+add_heading("公司全景图", level=1);
+
+text_align_top();
+add_heading("我们团队的顶尖专家", level=1);
+add_heading("第二轮", level=1);
+
+add_heading("欢迎来到AI时代", level=1);set_font_bold();
+add_heading("我们的年轻科学家", level=1);add_heading("我们最新的产品", level=1);
+set_font_underline();
+
+add_paragraph("7.18");text_align_top();
+set_font_color("yellow");set_font_color("green");set_font_color("red");set_font_color("purple");set_font_color("blue");
+set_font_bold();set_background_color("yellow");set_image_size(height=3);
+
+add_paragraph("Hi");text_align_center();
+add_paragraph("Hi");set_font_color("green");add_paragraph("Hi");set_font_color("yellow");add_paragraph("Hi");set_font_color("red");add_paragraph("Hi");set_font_color("blue");
+rotate_element(15);rotate_element(30);rotate_element(45);rotate_element(60);
+
+set_background_color("yellow");set_background_color("green");set_background_color("red");set_background_color("red");set_background_color("yellow");
+add_paragraph("这里有一个表格");
+set_cell_text(1, 0, "绿色");set_cell_text(1, 1, "11");set_cell_text(1, 2, "20");set_cell_text(1, 3, "7");
+
+add_paragraph("便宜");add_paragraph("质量");add_paragraph("高效");text_align_right();
+align_image_right();set_font_size(3);
+add_paragraph("此页面有一个需要填写的表格");
+
+delete_text();add_paragraph("Justin");align_image_left();
+delete_text();add_paragraph("冬季运动简介");set_image_size(height=7);
+rotate_element(45);
+
+delete_text();add_paragraph("外部债务");
+set_image_size(height=2);set_image_size(height=3);set_image_size(height=4);
+set_background_color("yellow");set_image_size(height=3);set_background_color("red");
+set_font_size(4);set_font_color("yellow");
+
+delete_text();add_paragraph("苹果公司");set_font_color("yellow");
+set_font_bold();rotate_element(45);
+set_font_bold();set_font_underline();
+
+set_background_color("green");set_background_color("blue");
+set_font_bold();set_font_underline();
+text_align_left();
+set_font_color("yellow");
+
+delete_text();add_paragraph("议程1");add_paragraph("议程2");add_paragraph("议程3");
+set_cell_text(0, 0, "T1");set_cell_text(0, 1, "T2");set_cell_text(0, 2, "T3");set_cell_text(0, 3, "T4");
+set_background_color("yellow");add_paragraph("准备就绪");
+
+set_font_underline();
+set_font_color("yellow");set_background_color("red");
+align_image_right();
+
+set_background_color("red");set_image_size(height=4);
+align_image_left();
+
+align_image_right();
+set_font_bold();set_background_color("red");set_font_underline();
+delete_text();
+
+set_cell_text(0, 0, "暗影之谜");set_cell_text(0, 1, "玛雅·苏利文");
+rotate_element(45);rotate_element(90);
+set_font_color("blue");set_background_color("yellow");
+
+set_font_color("green");set_font_color("red");
+text_align_right();text_align_left();text_align_center();
+delete_text();add_paragraph("绿色更好");
+set_width(3000);set_height(3500);set_width(4000);set_height(4500);
+
+align_image_left();set_font_color("green");set_font_size(4);
+text_align_left();
+set_font_bold();set_font_size(2);set_font_underline();
+
+text_align_top();set_font_color("yellow");
+rotate_element(45);rotate_element(60);rotate_element(90);
+delete_text();add_paragraph("132");add_paragraph("654");add_paragraph("897");
+
+set_font_color("blue");
+set_background_color("red");set_background_color("blue");align_image_right();
+delete_text();add_paragraph("待办事项");
+
+set_image_size(height=2);set_background_color("yellow");
+set_font_color("red");set_background_color("blue");
+
+align_image_right();
+text_align_right();
+set_image_size(height=2);set_font_size(10);
+delete_text();add_paragraph("谷歌");
+
+add_paragraph("此页包含表格");
+text_align_top();set_font_underline();
+delete_text();add_paragraph("K1");add_paragraph("K2");add_paragraph("K3");add_paragraph("K4");add_paragraph("K5");add_paragraph("K6");
+delete_text();add_paragraph("1300万");set_image_size(height=3);
+
+delete_text();add_paragraph("00");add_paragraph("这是第三页");
+text_align_bottom();
+set_font_color("yellow");set_font_color("red");set_background_color("green");
+
+text_align_top();text_align_bottom();
+set_font_size(4);set_font_size(5);
+set_font_color("yellow");set_font_color("red");
+
+set_font_color("green");set_background_color("yellow");
+delete_text();add_paragraph("图书");
+set_font_size(6);set_font_size(7);text_align_bottom();
+
+set_background_color("yellow");set_font_color("red");
+text_align_left();
+add_shape("rectangle");add_shape("circle");
+
+set_background_color("blue");set_background_color("yellow");set_background_color("red");
+set_cell_text(0, 0, "g1");set_cell_text(1, 0, "g2");set_cell_text(0, 1, "g3");set_cell_text(1, 1, "g4");
+add_paragraph("0");add_paragraph("1");add_paragraph("2");add_paragraph("3");add_paragraph("4");add_paragraph("5");
+
+set_font_size(2);set_font_color("red");
+align_image_left();
+set_background_color("green");set_font_color("yellow");
+
+set_font_color("black");set_font_bold();delete_text();
+add_paragraph("我们公司成立于2012年");
+set_image_size(height=10);
+
+add_heading("缤纷世界", level=1);add_heading("欢迎加入我们", level=1);set_font_underline();set_font_size(19);
+set_cell_text(1, -1, "17");set_cell_text(-1, -1, "0");
+add_heading("公司全景", level=1);
+
+text_align_top();
+add_heading("团队专家", level=1);
+add_heading("第二轮", level=1);
+
+add_heading("迎接AI时代", level=1);set_font_bold();
+add_heading("年轻科学家", level=1);add_heading("最新产品", level=1);
+set_font_underline();
+
+add_paragraph("7.18");text_align_top();
+set_font_color("yellow");set_font_color("green");set_font_color("red");set_font_color("purple");set_font_color("blue");
+set_font_bold();set_background_color("yellow");
+
+add_heading("人工智能时代", level=1);set_font_bold();
+set_cell_text(2, 1, "85%");
+add_watermark("机密文件");
+
+add_table(3, 4);
+set_font_style("Times New Roman");
+add_footer("版本1.0");
+
+add_heading("数据分析报告", level=1);set_font_size(28);
+add_table_row();set_cell_text(-1, 0, "项目A");set_cell_text(-1, 1, "2024");set_cell_text(-1, 2, "进行中");
+set_background_color("light blue");
+
+add_header("年度报告2024");
+set_font_bold();text_align_center();
+delete_text();
+
+add_heading("市场分析", level=1);set_font_underline();
+add_table(2, 5);
+set_font_color("dark blue");
+
+add_table_of_contents(levels=2);
+set_image_size(width=6, height=4);
+add_page_numbers();
+
+set_font_bold();
+add_paragraph("项目总结");
+set_background_color("light green");
+
+add_paragraph("数据更新时间：2024年1月");
+set_font_size(16);
+add_header("机密文件");
+
+add_heading("财务报告", level=1);text_align_center();
+merge_cells(0, 0, 0, -1);
+add_watermark("草稿版本");
+
+add_paragraph("执行摘要");
+set_cell_bg_color(0, 0, "blue");
+delete_header();
+
+set_font_italic();
+add_table(3, 3);
+add_footer("保密文件");

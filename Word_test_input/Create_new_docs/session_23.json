@@ -1,0 +1,20 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建新文档并添加标题\"用户手册\"，设置背景颜色为浅蓝色。",
+    "Feasible API sequence": "create_and_save_docx(doc_path, \"\");add_heading(doc_path, \"用户手册\", level=1);set_background_color(\"light blue\");",
+    "Base File": "Word_Base_File/Create_new_doc/24_0.docx",
+    "Label File": "Word_Label_File/Create_new_doc/24_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/24_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/24_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "在正文中添加三个带编号的列表项：\"安装说明\"、\"使用方法\"和\"常见问题\"。",
+    "Feasible API sequence": "add_list_item(doc_path, \"安装说明\", style=\"List Number\");add_list_item(doc_path, \"使用方法\", style=\"List Number\");add_list_item(doc_path, \"常见问题\", style=\"List Number\");",
+    "Base File": "Word_Base_File/Create_new_doc/24_1.docx",
+    "Label File": "Word_Label_File/Create_new_doc/24_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/24_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/24_1.docx"
+  }
+] 

@@ -1,0 +1,29 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "添加一级标题\"摘要\"并将字体设置为\"Georgia\"。",
+    "Feasible API sequence": "add_heading(doc_path, \"摘要\", level=1);set_font_style(\"Georgia\");",
+    "Base File": "Word_Base_File/Edit_Word_template/6_0.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/6_0.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/6_0.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/6_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "创建一个3行3列的研究目标表格，并将表头加粗。",
+    "Feasible API sequence": "add_table(doc_path, 3, 3);set_cell_text(table, 0, 0, \"研究目标\");set_cell_text(table, 0, 1, \"研究方法\");set_cell_text(table, 0, 2, \"预期成果\");set_font_bold();",
+    "Base File": "Word_Base_File/Edit_Word_template/6_1.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/6_1.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/6_1.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/6_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "在页脚添加页码并将背景设置为浅蓝色。",
+    "Feasible API sequence": "add_page_numbers(doc_path);set_background_color(\"light blue\");",
+    "Base File": "Word_Base_File/Edit_Word_template/6_2.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/6_2.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/6_2.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/6_2.docx"
+  }
+] 

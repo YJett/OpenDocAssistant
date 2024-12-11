@@ -1,0 +1,29 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "添加一级标题\"研究意义\"并设置字体为\"宋体\"。",
+    "Feasible API sequence": "add_heading(doc_path, \"研究意义\", level=1);set_font_style(\"宋体\");",
+    "Base File": "Word_Base_File/Edit_Word_template/19_0.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/19_0.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/19_0.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/19_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "在标题下方插入一个3行3列的表格，用于总结研究的影响。",
+    "Feasible API sequence": "add_table(doc_path, 3, 3);set_cell_text(table, 0, 0, \"影响领域\");set_cell_text(table, 0, 1, \"影响程度\");set_cell_text(table, 0, 2, \"建议措施\");",
+    "Base File": "Word_Base_File/Edit_Word_template/19_1.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/19_1.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/19_1.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/19_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "在表格下方插入一个饼图显示影响分布。",
+    "Feasible API sequence": "create_pie_chart([\"经济\", \"社会\", \"环境\", \"技术\"], [30, 25, 20, 25], title=\"影响分布\");",
+    "Base File": "Word_Base_File/Edit_Word_template/19_2.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/19_2.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/19_2.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/19_2.docx"
+  }
+] 

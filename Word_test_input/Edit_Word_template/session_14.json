@@ -1,0 +1,29 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "添加一级标题\"讨论\"并在其下方创建流程图。",
+    "Feasible API sequence": "add_heading(doc_path, \"讨论\", level=1);add_shape(doc_path, \"flowchart\");",
+    "Base File": "Word_Base_File/Edit_Word_template/14_0.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/14_0.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/14_0.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/14_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "插入一个饼图显示研究结果的分布。",
+    "Feasible API sequence": "create_pie_chart([\"正面\", \"负面\", \"中性\", \"未定论\"], [45, 25, 20, 10], title=\"研究结果分布\");",
+    "Base File": "Word_Base_File/Edit_Word_template/14_1.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/14_1.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/14_1.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/14_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "添加一个3行3列的表格总结影响并加粗。",
+    "Feasible API sequence": "add_table(doc_path, 3, 3);set_cell_text(table, 0, 0, \"影响\");set_cell_text(table, 0, 1, \"影响程度\");set_cell_text(table, 0, 2, \"建议\");set_font_bold();",
+    "Base File": "Word_Base_File/Edit_Word_template/14_2.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/14_2.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/14_2.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/14_2.docx"
+  }
+] 

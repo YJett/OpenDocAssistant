@@ -1,0 +1,29 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建新文档并添加标题\"团队介绍\"，添加水印\"内部文件\"。",
+    "Feasible API sequence": "create_and_save_docx(doc_path, \"\");add_heading(doc_path, \"团队介绍\", level=1);add_watermark(doc_path, \"内部文件\");",
+    "Base File": "Word_Base_File/Create_new_doc/26_0.docx",
+    "Label File": "Word_Label_File/Create_new_doc/26_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/26_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/26_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "在正文中添加三个带编号的列表项：\"研发团队\"、\"市场团队\"和\"运营团队\"。",
+    "Feasible API sequence": "add_list_item(doc_path, \"研发团队\", style=\"List Number\");add_list_item(doc_path, \"市场团队\", style=\"List Number\");add_list_item(doc_path, \"运营团队\", style=\"List Number\");",
+    "Base File": "Word_Base_File/Create_new_doc/26_1.docx",
+    "Label File": "Word_Label_File/Create_new_doc/26_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/26_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/26_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "插入一张团队合影，并将其居中显示。",
+    "Feasible API sequence": "add_image(doc_path, 0, \"team_photo.jpg\");align_image_center(paragraph);",
+    "Base File": "Word_Base_File/Create_new_doc/26_2.docx",
+    "Label File": "Word_Label_File/Create_new_doc/26_2.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/26_2.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/26_2.docx"
+  }
+] 

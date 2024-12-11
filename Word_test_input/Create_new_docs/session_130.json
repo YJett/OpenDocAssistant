@@ -1,0 +1,65 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建新文档并添加标题\"软件测试规范\"，设置字体为\"STXihei\"。",
+    "Feasible API sequence": "create_and_save_docx(doc_path, \"\");add_heading(doc_path, \"软件测试规范\", level=1);set_font_style(\"STXihei\");",
+    "Base File": "Word_Base_File/Create_new_doc/131_0.docx",
+    "Label File": "Word_Label_File/Create_new_doc/131_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/131_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/131_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "添加目录，并设置为三级目录。",
+    "Feasible API sequence": "add_table_of_contents(doc_path, levels=3);",
+    "Base File": "Word_Base_File/Create_new_doc/131_1.docx",
+    "Label File": "Word_Label_File/Create_new_doc/131_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/131_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/131_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "添加二级标题\"测试计划\"、\"测试用例\"和\"测试报告\"。",
+    "Feasible API sequence": "add_heading(doc_path, \"测试计划\", level=2);add_heading(doc_path, \"测试用例\", level=2);add_heading(doc_path, \"测试报告\", level=2);",
+    "Base File": "Word_Base_File/Create_new_doc/131_2.docx",
+    "Label File": "Word_Label_File/Create_new_doc/131_2.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/131_2.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/131_2.docx"
+  },
+  {
+    "Turn": 3,
+    "User instruction": "在每个二级标题下添加三级标题\"编写要求\"和\"模板示例\"。",
+    "Feasible API sequence": "add_heading(doc_path, \"编写要求\", level=3);add_heading(doc_path, \"模板示例\", level=3);add_heading(doc_path, \"编写要求\", level=3);add_heading(doc_path, \"模板示例\", level=3);add_heading(doc_path, \"编写要求\", level=3);add_heading(doc_path, \"模板示例\", level=3);",
+    "Base File": "Word_Base_File/Create_new_doc/131_3.docx",
+    "Label File": "Word_Label_File/Create_new_doc/131_3.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/131_3.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/131_3.docx"
+  },
+  {
+    "Turn": 4,
+    "User instruction": "在\"测试用例\"下的\"模板示例\"下插入一个5行4列的表格。",
+    "Feasible API sequence": "add_table(doc_path, 5, 4);set_cell_text(table, 0, 0, \"用例编号\");set_cell_text(table, 0, 1, \"测试步骤\");set_cell_text(table, 0, 2, \"预期结果\");set_cell_text(table, 0, 3, \"实际结果\");",
+    "Base File": "Word_Base_File/Create_new_doc/131_4.docx",
+    "Label File": "Word_Label_File/Create_new_doc/131_4.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/131_4.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/131_4.docx"
+  },
+  {
+    "Turn": 5,
+    "User instruction": "在\"测试报告\"下的\"模板示例\"下插入一个饼图展示测试结果分布。",
+    "Feasible API sequence": "create_pie_chart([\"通过\", \"未通过\", \"阻塞\", \"未执行\"], [75, 15, 5, 5], title=\"测试结果分布\");",
+    "Base File": "Word_Base_File/Create_new_doc/131_5.docx",
+    "Label File": "Word_Label_File/Create_new_doc/131_5.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/131_5.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/131_5.docx"
+  },
+  {
+    "Turn": 6,
+    "User instruction": "添加页码并设置水印\"测试规范\"。",
+    "Feasible API sequence": "add_page_numbers(doc_path);add_watermark(doc_path, \"测试规范\");",
+    "Base File": "Word_Base_File/Create_new_doc/131_6.docx",
+    "Label File": "Word_Label_File/Create_new_doc/131_6.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/131_6.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/131_6.docx"
+  }
+] 

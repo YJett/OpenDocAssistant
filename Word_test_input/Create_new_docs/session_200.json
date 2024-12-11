@@ -1,0 +1,56 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建新文档并添加标题\"技术创新报告\"，设置字体为\"STXihei\"。",
+    "Feasible API sequence": "create_and_save_docx(doc_path, \"\");add_heading(doc_path, \"技术创新报告\", level=1);set_font_style(\"STXihei\");",
+    "Base File": "Word_Base_File/Create_new_docs/201_0.docx",
+    "Label File": "Word_Label_File/Create_new_docs/201_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/201_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/201_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "添加目录，并设置为三级目录。",
+    "Feasible API sequence": "add_table_of_contents(doc_path, levels=3);",
+    "Base File": "Word_Base_File/Create_new_docs/201_1.docx",
+    "Label File": "Word_Label_File/Create_new_docs/201_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/201_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/201_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "添加二级标题\"创新概述\"、\"技术突破\"和\"应用前景\"。",
+    "Feasible API sequence": "add_heading(doc_path, \"创新概述\", level=2);add_heading(doc_path, \"技术突破\", level=2);add_heading(doc_path, \"应用前景\", level=2);",
+    "Base File": "Word_Base_File/Create_new_docs/201_2.docx",
+    "Label File": "Word_Label_File/Create_new_docs/201_2.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/201_2.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/201_2.docx"
+  },
+  {
+    "Turn": 3,
+    "User instruction": "在\"技术突破\"下插入一个流程图。",
+    "Feasible API sequence": "add_shape(doc_path, \"flowchart\");",
+    "Base File": "Word_Base_File/Create_new_docs/201_3.docx",
+    "Label File": "Word_Label_File/Create_new_docs/201_3.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/201_3.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/201_3.docx"
+  },
+  {
+    "Turn": 4,
+    "User instruction": "在\"应用前景\"下插入一个柱状图展示市场预测。",
+    "Feasible API sequence": "create_bar_chart([\"2024年\", \"2025年\", \"2026年\", \"2027年\"], [100, 150, 220, 300], title=\"市场规模预测\", xlabel=\"年份\", ylabel=\"市场规模(亿元)\");",
+    "Base File": "Word_Base_File/Create_new_docs/201_4.docx",
+    "Label File": "Word_Label_File/Create_new_docs/201_4.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/201_4.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/201_4.docx"
+  },
+  {
+    "Turn": 5,
+    "User instruction": "在\"创新概述\"下添加带编号的列表项。",
+    "Feasible API sequence": "add_list_item(doc_path, \"创新背景\", style=\"List Number\");add_list_item(doc_path, \"创新内容\", style=\"List Number\");add_list_item(doc_path, \"创新价值\", style=\"List Number\");add_list_item(doc_path, \"创新团队\", style=\"List Number\");",
+    "Base File": "Word_Base_File/Create_new_docs/201_5.docx",
+    "Label File": "Word_Label_File/Create_new_docs/201_5.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/201_5.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/201_5.docx"
+  }
+] 

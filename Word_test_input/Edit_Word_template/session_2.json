@@ -1,0 +1,29 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "插入一个折线图显示实验结果，并标注x轴和y轴。",
+    "Feasible API sequence": "create_line_chart([\"第1天\", \"第2天\", \"第3天\", \"第4天\"], [10, 15, 12, 18], title=\"实验结果\", xlabel=\"时间\", ylabel=\"数值\");",
+    "Base File": "Word_Base_File/Edit_Word_template/2_0.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/2_0.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/2_0.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/2_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "在图表下方添加带编号的关键发现列表。",
+    "Feasible API sequence": "add_list_item(doc_path, \"发现1：观察到显著相关性\", style=\"List Number\");add_list_item(doc_path, \"发现2：确定积极趋势\", style=\"List Number\");add_list_item(doc_path, \"发现3：发现季节性变化\", style=\"List Number\");",
+    "Base File": "Word_Base_File/Edit_Word_template/2_1.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/2_1.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/2_1.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/2_1.docx"
+  },
+  {
+    "Turn": 2,
+    "User instruction": "在文档中添加水印\"草稿版本\"。",
+    "Feasible API sequence": "add_watermark(doc_path, \"草稿版本\");",
+    "Base File": "Word_Base_File/Edit_Word_template/2_2.docx",
+    "Label File": "Word_Label_File/Edit_Word_template/2_2.docx",
+    "API Lack Base File": "Word_Base_File/Edit_Word_template_API_lack/2_2.docx",
+    "API Lack Label File": "Word_Label_File/Edit_Word_template_API_lack/2_2.docx"
+  }
+] 

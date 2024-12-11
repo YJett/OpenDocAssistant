@@ -1,0 +1,20 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "创建新文档并添加标题\"产品说明书\"，添加水印\"机密文件\"。",
+    "Feasible API sequence": "create_and_save_docx(doc_path, \"\");add_heading(doc_path, \"产品说明书\", level=1);add_watermark(doc_path, \"机密文件\");",
+    "Base File": "Word_Base_File/Create_new_doc/19_0.docx",
+    "Label File": "Word_Label_File/Create_new_doc/19_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/19_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/19_0.docx"
+  },
+  {
+    "Turn": 1,
+    "User instruction": "添加一个超链接，链接文本为\"点击查看详情\"，链接地址为\"www.example.com\"。",
+    "Feasible API sequence": "add_hyperlink(doc_path, 0, \"点击查看详情\", \"www.example.com\");",
+    "Base File": "Word_Base_File/Create_new_doc/19_1.docx",
+    "Label File": "Word_Label_File/Create_new_doc/19_1.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/19_1.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/19_1.docx"
+  }
+] 

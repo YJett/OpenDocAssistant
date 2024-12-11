@@ -1,0 +1,11 @@
+[
+  {
+    "Turn": 0,
+    "User instruction": "插入一张塔的图片，并将其移至文档底部。",
+    "Feasible API sequence": "add_image(doc_path, 0, \"tower.jpg\");align_image_bottom(paragraph);",
+    "Base File": "Word_Base_File/Create_new_doc/1_0.docx",
+    "Label File": "Word_Label_File/Create_new_doc/1_0.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_doc_API_lack/1_0.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_doc_API_lack/1_0.docx"
+  }
+] 
