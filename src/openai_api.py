@@ -154,7 +154,6 @@ API();
 </code>
 
 目前，你可以使用以下Word文档API：
-API: create_and_save_docx(content, save_path)：此API用于创建并保存一个新的docx文档。
 API: rename_docx_name(original_path, new_name)：此API用于重命名现有的docx文档，但不改变其径。
 API: move_docx_to_new_path(original_path, new_directory)：此API用于将docx文件移动到一个新目录，但不改变文件名。
 API: add_paragraph(doc, content, font_name='Arial', font_size=Pt(12), color=RGBColor(0, 0, 0), spacing=Pt(1.15))：此API用于向docx文档添加一个段落，并设置格式。

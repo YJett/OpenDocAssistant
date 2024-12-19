@@ -18,8 +18,7 @@ class word_assistant(object):
         self.content_selection = args.content_selection
         self.model = args.model
         self.model_id = args.model_id
-        self.word = None
-        self.current_page_id = 0
+        self.doc = None
         self.prompt = ""
 
     def planner(self, instruction):
@@ -55,10 +54,37 @@ class word_assistant(object):
         error_info = word_executor.API_executor(apis, test=test, args=self.args)
         if error_info != "":
             print(error_info)
-        self.word = word_executor.get_word()
-        self.current_page_id = word_executor.get_current_page_id()
+        self.doc = word_executor.get_word()
+
+    def load_docx(self, path):
+        """加载或创建新的Word文档
+        
+        Args:
+            path: 文档路径,None表示创建新文档
+            
+        Returns:
+            Document对象
+        """
+        try:
+            word_executor.set_word(path)  # 如果path是None，则创建新文档
+            if path is None:
+                word_executor.create_docx()  # 创建新文档并添加空白段落
+            self.doc = word_executor.get_word()
+            self.chat_history = []  # 重置对话历史
+            return self.doc
+        except Exception as e:
+            logger.error(f"Error loading document: {e}")
+            return None
 
     def load_chat_history(self, instructions, labels):
+        """加载对话历史
+        
+        Args:
+            instructions: 指令列表
+            labels: 标签列表
+        Returns:
+            对话历史列表
+        """
         history = []
         for idx, instruction in enumerate(instructions):
             if self.args.api_lack:
@@ -73,24 +99,10 @@ class word_assistant(object):
         self.chat_history = history
         return history
 
-    def load_docx(self, docx_path=None):
-        # 如果提供了文档路径，则加载该文档；否则，创建一个新的文档
-        if docx_path:
-            doc = Document(docx_path)
-        else:
-            doc = Document()
-
-        # 返回当前文档对象
-        return doc
-
-    def chat(self, user_instruction, word_path=None, verbose=False):
+    def chat(self, user_instruction, doc_path=None, verbose=False):
         self.prompt = ""
         instruction_list = self.planner(user_instruction)
         reply_list = []
-
-        # 加载 Word 文档
-        doc = self.load_docx(word_path)
-        current_paragraph = doc.add_paragraph()  # 新建一个段落
 
         for instruction in instruction_list:
             if verbose:
@@ -101,17 +113,17 @@ class word_assistant(object):
             if verbose:
                 print(f"== Selected APIs ==\n{API_string}\n\n")
 
-            word_content = self.content_selector(word_path, instruction, self.args, self.word)
+            word_content = self.content_selector(doc_path, instruction, self.args, self.doc)
             if verbose:
                 print(word_content)
-
+            
             prompt = prompt_factor.get_instruction_to_API_code_prompt2(
                 API_string,
                 word_content,
                 self.chat_history,
                 instruction,
                 True,
-                self.current_page_id,
+                0,
             )
 
             exceeded = utils.check_token(self.model, prompt)
@@ -124,7 +136,7 @@ class word_assistant(object):
                     self.chat_history,
                     instruction,
                     True,
-                    self.current_page_id,
+                    0,
                 )
 
                 exceeded = utils.check_token(self.model, prompt)
@@ -137,28 +149,24 @@ class word_assistant(object):
                         self.chat_history,
                         instruction,
                         True,
-                        self.current_page_id,
+                        0,
                     )
             self.prompt += prompt + '\n\n'
             if verbose:
                 print(f"== Prompt ==\n{prompt}\n\n")
 
             try:
-                reply = openai_api.query_openai(prompt, model=self.model, id=self.model_id).strip()
-
+                reply = openai_api.query_azure_openai(prompt, model=self.model, id=self.model_id).strip()
                 print('#### Reply:')
                 print(reply)
                 print('#### Parsed:')
                 print(utils.parse_api(reply))
             except Exception as e:
-                print("Query Failed!")
-                print(e)
+                print("Query Failed:", e)
                 reply = "Query Failed!"
+            
             if verbose:
                 print(f"== Reply from AI ==\n{reply}\n\n")
-
-            # 将回复添加到 Word 文档中
-            current_paragraph.add_run(reply)
 
             self.chat_history += [
                 f"¬User¬\n{instruction}",
@@ -166,6 +174,4 @@ class word_assistant(object):
             ]
             reply_list.append(reply)
 
-        # 保存文档
-        doc.save("output.docx")  # 保存为 output.docx 文件
         return self.prompt, "\n".join(reply_list)

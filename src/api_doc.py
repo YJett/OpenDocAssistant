@@ -42,14 +42,11 @@ class API(object):
 
 # document
 document_APIs = [
-    API(
-        name="create_and_save_docx",
-        parameters="(content, save_path)",
-        description="此 API 创建并保存一个新的 docx 文档。",
-        parameter_description="content 是要添加到文档中的文本内容，save_path 是文档保存的路径。",
-        composition_instruction="你应该调用 create_and_save_docx() 来创建并保存一个包含指定内容的 docx 文档。",
-        api_desc="创建文档，保存内容"
-    ),
+    API(name="create_docx", 
+        parameters="()", 
+        description="此API创建新的Word文档",
+        api_desc="创建新的Word文档"
+        ),
 
     API(
         name="rename_docx_name",
@@ -67,24 +64,6 @@ document_APIs = [
         parameter_description="original_path 是文档的当前路径，new_directory 是文档将要移动到的新目录。",
         composition_instruction="你应该调用 move_docx_to_new_path() 来将文档移动到新的目录。",
         api_desc="移动文档"
-    ),
-
-    API(
-        name="add_paragraph",
-        parameters="(doc, content, font_name='Arial', font_size=Pt(12), color=RGBColor(0, 0, 0), spacing=Pt(1.15))",
-        description="此 API 向 docx 文档添加一个段落，并设置格式。",
-        parameter_description="doc 是 Document 对象，content 是要添加的段落文本，font_name 是字体名称，font_size 是字体大小，color 是字体颜色，spacing 是段落的行间距。",
-        composition_instruction="你应该调用 add_paragraph() 来向文档添加一个格式化的段落。",
-        api_desc="添加段落，设置文本格式"
-    ),
-
-    API(
-        name="add_heading",
-        parameters="(doc, content, level=1, font_name='Arial', font_size=Pt(14), color=RGBColor(0, 0, 0), spacing=Pt(1.15))",
-        description="此 API 向 docx 文档添加一个标题，并设置格式。",
-        parameter_description="doc 是 Document 对象，content 是标题文本，level 是标题级别（默认为 1），font_name 是字体名称，font_size 是字体大小，color 是字体颜色，spacing 是行间距。",
-        composition_instruction="你应该调用 add_heading() 来向文档添加一个格式化的标题。",
-        api_desc="添加标题，设置标题格式"
     ),
 
     API(
@@ -151,12 +130,22 @@ document_APIs = [
     ),
 
     API(
-        name="add_paragraph",
-        parameters="(doc_path, text, position=None, style=None)",
-        description="此 API 添加段落，支持自定义样式和插入位置。",
-        parameter_description="doc_path 是文档路径，text 是段落文本，position 是插入位置（可选），style 是段落样式名称（可选）。",
-        composition_instruction="你应该调用 add_paragraph() 来向文档添加段落。",
-        api_desc="添加段落"
+        name="add_heading",
+        parameters="(doc_path, text, level, position=None)",
+        description="此API用于添加标题",
+        parameter_description=(
+            "doc_path: 文档路径\n"
+            "text: 标题文本\n"
+            "level: 标题级别(1-9)\n"
+            "position: 插入位置(可选)"
+        ),
+        composition_instruction=(
+            "你应该调用 add_heading() 来添加标题。\n"
+            "level参数决定标题的级别，1是最高级标题。\n"
+            "如果需要在特定位置插入标题，可以通过position参数指定。"
+        ),
+        example="add_heading('doc.docx', '第一章', level=1)",
+        api_desc="添加标题"
     ),
 
     API(
@@ -243,6 +232,16 @@ document_APIs = [
 # text
 text_APIs = [
     API(
+        name="add_paragraph",
+        parameters="(text, style=None)",
+        description="此API用于添加段落并设置其样式",
+        parameter_description="text: 段落文本内容\nstyle: 段落样式(可选)",
+        composition_instruction="你应该调用 add_paragraph() 来添加一个新的段落。如果需要特定样式，可以通过style参数指定。",
+        example="add_paragraph('这是一个新段落', style='Normal')",
+        api_desc="添加段落"
+    ),
+
+    API(
         name="add_text",
         parameters="(doc_path, paragraph_index, text, position=None, bold=False, italic=False, underline=False, color=None, size=None)",
         description="此 API 用于在指定段落位置添加文本，可以设置文本样式。",
@@ -276,15 +275,6 @@ text_APIs = [
         parameter_description="doc_path 是文档路径，paragraph_index 是段落索引，link_index 是要删除的超链接索引。",
         composition_instruction="你应该调用 delete_hyperlink() 来删除指定段落中的超链接。",
         api_desc="删除超链接"
-    ),
-
-    API(
-        name="add_heading",
-        parameters="(doc_path, text, level, position=None)",
-        description="此 API 用于在文档中添加标题。",
-        parameter_description="doc_path 是文档路径，text 是标题文本，level 是标题级别，position 是插入位置。",
-        composition_instruction="你应该调用 add_heading() 来向文档添加标题。",
-        api_desc="添加标题"
     ),
 
     API(
@@ -420,15 +410,6 @@ text_APIs = [
         parameter_description="无参数。",
         composition_instruction="你应该调用 get_current_page_id() 来获取当前文档的页编号。",
         api_desc="获取当前页编号"
-    ),
-
-    API(
-        name="init_docx",
-        parameters="()",
-        description="此 API 用于初始化一个新的 Word 文档。",
-        parameter_description="无参数。",
-        composition_instruction="你应该调用 init_docx() 来初始化一个新的 Word 文档。",
-        api_desc="初始化新文档"
     ),
 
 

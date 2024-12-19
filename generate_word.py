@@ -51,7 +51,7 @@ def regenerate(word_assistant, args):
 
                 apis = pred_api
                 word_assistant.api_executor(apis, test=True)
-                word_executor.save_docx(f'Word_Pred_File1/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.docx')
+                word_executor.save_word(f'Word_Pred_File1/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.docx')
                 
                 with jsonlines.open(f"Word_test_output1/{set_name}/{args.exp_name}_session_{sess_id}.json", mode='a') as writer:
                     data = {
@@ -81,7 +81,7 @@ def regenerate(word_assistant, args):
 
                 apis = pred_api
                 word_assistant.api_executor(apis, test=True)
-                word_executor.save_docx(f'Word_Pred_File1/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.docx')
+                word_executor.save_word(f'Word_Pred_File1/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.docx')
 
                 with jsonlines.open(f"Word_test_output1/{set_name}/{args.exp_name}_session_{sess_id}.json", mode='a') as writer:
                     data = {

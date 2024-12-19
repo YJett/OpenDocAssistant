@@ -928,34 +928,6 @@ def set_current_heading(heading):
     global current_heading
     current_heading = heading
 
-
-# # 示例使用
-# doc = Document()
-#
-# # 全局变量
-# current_paragraph = None  # 当前选中的段落
-# paragraph = doc.add_paragraph("This is a sample paragraph.")
-# current_paragraph = paragraph  # 置当前段落
-#
-# # 示例调用函数设置样式
-# set_font_size(12)
-# set_font_color("blue")
-# set_font_bold()
-# set_font_italic()
-# set_font_underline()
-# set_font_style("Arial")
-# set_line_space(18)
-# text_align_center()
-#
-# # 保存文档
-# doc.save("text_document.docx")
-
-# table
-
-# 创建一个 Word 文档
-
-
-
 # 获取当前文档中已存在的表格数量
 def get_table_count(doc):
     """

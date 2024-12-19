@@ -79,83 +79,94 @@ def test(word_assistant, args):
     utils.makedir(args.user_path+f'Word_Prompt_File/{set_name}')
     
     for sess_id, session_path in enumerate(utils.sorted_list(args.user_path+f'Word_test_input/{set_name}')):
-        session = utils.parse_train_json(args.user_path+f'Word_test_input/{set_name}/{session_path}')
-        chat_history = []
-        
-        for turn_id, turn in tqdm(enumerate(session)):
-            logger.info(f"{sess_id}/{turn_id}")
-            
-            if args.resume:
-                if args.tf and os.path.exists(args.user_path+f'Word_Pred_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.docx'):
-                    logger.info('Exists!')
-                    continue 
-                if args.sess and os.path.exists(args.user_path+f'Word_Pred_File/{set_name}/{args.exp_name}_{sess_id}_{len(session)-1}.docx'):
-                    logger.info('Exists!')
-                    continue 
-                    
-            turn_id, instruction, label_api, base_doc_path, label_doc_path, api_lack_base_doc_path, api_lack_label_doc_path = turn
-            
-            if turn_id == 0 and args.sess:
-                if args.api_lack:
-                    word_assistant.load_docx(args.user_path+api_lack_base_doc_path)
-                    label_file = api_lack_label_doc_path
-                else:
-                    word_assistant.load_docx(args.user_path+base_doc_path)
-                    label_file = label_doc_path
-                    
-            splitted_instruction = instruction.split("##")[0]
-            
-            if args.tf:
-                if args.api_lack:
-                    word_assistant.load_docx(args.user_path+api_lack_base_doc_path)
-                    label_file = api_lack_label_doc_path
-                else:
-                    word_assistant.load_docx(args.user_path+base_doc_path)
-                    label_file = label_doc_path
-                    
-                word_assistant.load_chat_history([x[0] for x in chat_history],[x[1].strip(';').split(';') for x in chat_history])
-                prompt, reply = word_assistant.chat(splitted_instruction, doc_path=args.user_path+base_doc_path, verbose=False)
-                apis = utils.parse_api(reply)
-                word_assistant.api_executor(apis, test=True)
+        try:
+            # 每个新会话开始时创建新的 Word 文档
+            doc = word_assistant.load_docx(None)
+            if not doc:
+                logger.error(f"Failed to create document for session {sess_id}")
+                continue
                 
-                word_executor.save_docx(args.user_path+f'Word_Pred_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.docx')
-                utils.write_lines([prompt],args.user_path+f'Word_Prompt_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.txt')
-                
-                utils.makedir(f"Word_test_output/{set_name}")
-                with jsonlines.open(args.user_path+f"Word_test_output/{set_name}/{args.exp_name}_session_{sess_id}.json", mode='a') as writer:
-                    data = {
-                        'Turn': turn_id,
-                        'User instruction': instruction,
-                        'Feasible API sequence': label_api,
-                        'Reply': reply,
-                        'Pred API sequence': apis,
-                        'Pred File': f'Word_Pred_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.docx',
-                        'Label File': label_file,
-                        'Prompt File': f'Word_Prompt_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.txt'
-                    }
-                    writer.write(data)
-                chat_history.append([splitted_instruction, label_api])
+            session = utils.parse_train_json(args.user_path+f'Word_test_input/{set_name}/{session_path}')
+            chat_history = []
             
-            elif args.sess:
-                prompt, reply = word_assistant.chat(instruction, doc_path=None, verbose=False)
-                apis = utils.parse_api(reply)
-                word_assistant.api_executor(apis, test=True)
-
-                word_executor.save_docx(args.user_path+f'Word_Pred_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.docx')
-                utils.write_lines([prompt],args.user_path+f'Word_Prompt_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.txt')
-
-                with jsonlines.open(args.user_path+f"Word_test_output/{set_name}/{args.exp_name}_session_{sess_id}.json", mode='a') as writer:
-                    data = {
-                        'Turn': turn_id,
-                        'User instruction': instruction,
-                        'Feasible API sequence': label_api,
-                        'Reply': reply,
-                        'Pred API sequence': apis,
-                        'Pred File': f'Word_Pred_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.docx',
-                        'Label File': label_file,
-                        'Prompt File': f'Word_Prompt_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.txt'
-                    }
-                    writer.write(data)
+            for turn_id, turn in tqdm(enumerate(session)):
+                logger.info(f"{sess_id}/{turn_id}")
+                
+                if args.resume:
+                    if args.tf and os.path.exists(args.user_path+f'Word_Pred_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.docx'):
+                        logger.info('Exists!')
+                        continue 
+                    if args.sess and os.path.exists(args.user_path+f'Word_Pred_File/{set_name}/{args.exp_name}_{sess_id}_{len(session)-1}.docx'):
+                        logger.info('Exists!')
+                        continue 
+                        
+                turn_id, instruction, label_api, base_doc_path, label_doc_path, api_lack_base_doc_path, api_lack_label_doc_path = turn
+                
+                if turn_id == 0 and args.sess:
+                    if args.api_lack:
+                        word_assistant.load_docx(args.user_path+api_lack_base_doc_path)
+                        label_file = api_lack_label_doc_path
+                    else:
+                        word_assistant.load_docx(args.user_path+base_doc_path)
+                        label_file = label_doc_path
+                        
+                splitted_instruction = instruction.split("##")[0]
+                
+                if args.tf:
+                    if args.api_lack:
+                        word_assistant.load_docx(args.user_path+api_lack_base_doc_path)
+                        label_file = api_lack_label_doc_path
+                    else:
+                        word_assistant.load_docx(args.user_path+base_doc_path)
+                        label_file = label_doc_path
+                        
+                    word_assistant.load_chat_history([x[0] for x in chat_history],[x[1].strip(';').split(';') for x in chat_history])
+                    prompt, reply = word_assistant.chat(splitted_instruction, doc_path=args.user_path+base_doc_path, verbose=False)
+                    apis = utils.parse_api(reply)
+                    word_assistant.api_executor(apis, test=True)
+                    
+                    word_executor.save_word(args.user_path+f'Word_Pred_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.docx')
+                    utils.write_lines([prompt],args.user_path+f'Word_Prompt_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.txt')
+                    
+                    utils.makedir(f"Word_test_output/{set_name}")
+                    with jsonlines.open(args.user_path+f"Word_test_output/{set_name}/{args.exp_name}_session_{sess_id}.json", mode='a') as writer:
+                        data = {
+                            'Turn': turn_id,
+                            'User instruction': instruction,
+                            'Feasible API sequence': label_api,
+                            'Reply': reply,
+                            'Pred API sequence': apis,
+                            'Pred File': f'Word_Pred_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.docx',
+                            'Label File': label_file,
+                            'Prompt File': f'Word_Prompt_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.txt'
+                        }
+                        writer.write(data)
+                    chat_history.append([splitted_instruction, label_api])
+                
+                elif args.sess:
+                    prompt, reply = word_assistant.chat(instruction, doc_path=None, verbose=False)
+                    apis = utils.parse_api(reply)
+                    word_assistant.api_executor(apis, test=True)
+                    
+                    word_executor.save_word(args.user_path+f'Word_Pred_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.docx')
+                    utils.write_lines([prompt],args.user_path+f'Word_Prompt_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.txt')
+                    
+                    with jsonlines.open(args.user_path+f"Word_test_output/{set_name}/{args.exp_name}_session_{sess_id}.json", mode='a') as writer:
+                        data = {
+                            'Turn': turn_id,
+                            'User instruction': instruction,
+                            'Feasible API sequence': label_api,
+                            'Reply': reply,
+                            'Pred API sequence': apis,
+                            'Pred File': f'Word_Pred_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.docx',
+                            'Label File': label_file,
+                            'Prompt File': f'Word_Prompt_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.txt'
+                        }
+                        writer.write(data)
+                        
+        except Exception as e:
+            logger.error(f"Error processing session {sess_id}: {e}")
+            continue
 
 def test_api_selection(word_assistant):
     """测试API选择模块
