@@ -16,32 +16,111 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# 全局变量定义
+doc = None
+current_paragraph = None 
+current_table = None
+current_picture = None
+current_heading = None
 
-# document
-# 1. 创建并保存一个新的 docx 文档
-def create_and_save_docx(content, save_path):
+def set_word(docx_path=None):
+    """设置当前操作的Word文档
+    
+    Args:
+        docx_path: Word文档路径，如果为None则创建新文档
+    Returns:
+        Document对象
+    """
+    global doc, current_paragraph, current_table, current_picture, current_heading
+    
+    try:
+        if docx_path and os.path.exists(docx_path):
+            doc = Document(docx_path)
+            logger.info(f"Opened document: {docx_path}")
+        else:
+            doc = Document()
+            logger.info("Created new document")
+            
+        # 重置所有当前操作对象
+        current_paragraph = None
+        current_table = None
+        current_picture = None
+        current_heading = None
+        
+        return doc
+        
+    except Exception as e:
+        logger.error(f"Error in set_word: {e}")
+        raise
+
+def get_word():
+    """获取当前Word文档对象"""
+    global doc
+    return doc
+
+
+def create_docx():
+    """创建新的Word文档
+    
+    类似于PPT中的create_slide()函数，但Word不需要创建幻灯片。
+    初始化文档和全局状态变量。
+    """
+    global doc, current_paragraph, current_table, current_picture, current_heading
     try:
         doc = Document()
-        doc.add_paragraph(content)
-        doc.save(save_path)
-        print(f"文档已成功创建并保存到: {save_path}")
-        return True
+        logger.info("Created new document")
+        
+        # 重置所有当前操作对象
+        current_paragraph = None
+        current_table = None
+        current_picture = None
+        current_heading = None
+        
+        # 设置文档阅读器
+        word_reader.set_document(doc)
+        
+        return doc
     except Exception as e:
-        print(f"发生错误: {e}")
-        return False
+        logger.error(f"Error creating document: {e}")
+        return None
+
+def save_word(docx_path):
+    """保存Word文档到指定路径
     
-def save_docx(path):
-    """保存Word文档"""
+    Args:
+        docx_path: 保存路径
+    """
+    global doc
     try:
         # 确保目录存在
-        os.makedirs(os.path.dirname(path), exist_ok=True)
-        doc = Document()
-        doc.save(path)
-        logger.info(f"Document saved to: {path}")
+        os.makedirs(os.path.dirname(docx_path), exist_ok=True)
+        doc.save(docx_path)
+        logger.info(f"Document saved to: {docx_path}")
         return True
     except Exception as e:
         logger.error(f"Error saving document: {e}")
-        return False    
+        return False
+
+def save_state():
+    """保存当前文档状态"""
+    global doc, current_paragraph, current_table, current_picture, current_heading
+    state = {
+        "doc": doc,
+        "current_paragraph": current_paragraph,
+        "current_table": current_table,
+        "current_picture": current_picture,
+        "current_heading": current_heading
+    }
+    return state
+
+def load_state(state):
+    """加载保存的状态"""
+    global doc, current_paragraph, current_table, current_picture, current_heading
+    doc = state["doc"]
+    current_paragraph = state["current_paragraph"]
+    current_table = state["current_table"]
+    current_picture = state["current_picture"]
+    current_heading = state["current_heading"]
 
 
 # 2. 修改 docx 文件的名称（不改变路径）
@@ -69,7 +148,7 @@ def move_docx_to_new_path(original_path, new_directory):
         file_name = os.path.basename(original_path)
         new_path = os.path.join(new_directory, file_name)
         os.rename(original_path, new_path)
-        print(f"文件成功移动到新路径: {new_path}")
+        print(f"文件成功移动到新路: {new_path}")
         return True
     except Exception as e:
         print(f"发生错误: {e}")
@@ -78,7 +157,7 @@ def move_docx_to_new_path(original_path, new_directory):
 
 # 4. 创建段落并设置格式
 def add_paragraph(text, style=None):
-    """添加���落
+    """添加段落
     
     Args:
         text: 段落文本
@@ -94,8 +173,6 @@ def add_paragraph(text, style=None):
     except Exception as e:
         logger.error(f"Error adding paragraph: {e}")
         return None
-
-
 
 
 # 6. 根据标题查找段落
@@ -137,6 +214,45 @@ def delete_header(doc_path, section_index=None):
             section.header.paragraphs[0].text = ""
     doc.save(doc_path)
 
+def add_header(doc_path, text, section_index=None):
+    """
+    添加页眉
+    如果指定section_index,则只为该节添加页眉
+    否则为所有节添加页眉
+    """
+    doc = Document(doc_path)
+    if section_index is not None:
+        if 0 <= section_index < len(doc.sections):
+            section = doc.sections[section_index]
+            # 断开与前一节的链接
+            section.header.is_linked_to_previous = False
+            section.header.paragraphs[0].text = text
+    else:
+        for i, section in enumerate(doc.sections):
+            # 断开与前一节的链接
+            section.header.is_linked_to_previous = False
+            section.header.paragraphs[0].text = text
+    doc.save(doc_path)
+
+def add_footer(doc_path, text, section_index=None):
+    """
+    添加页脚
+    如果指定section_index,则只为该节添加页脚
+    否则为所有节添加页脚
+    """
+    doc = Document(doc_path)
+    if section_index is not None:
+        if 0 <= section_index < len(doc.sections):
+            section = doc.sections[section_index]
+            # 断开与前一节的链接
+            section.footer.is_linked_to_previous = False
+            section.footer.paragraphs[0].text = text
+    else:
+        for section in doc.sections:
+            # 断开与前一节的链接
+            section.footer.is_linked_to_previous = False
+            section.footer.paragraphs[0].text = text
+    doc.save(doc_path)
 
 def delete_footer(doc_path, section_index=None):
     """
@@ -251,7 +367,7 @@ def delete_style(doc_path, style_name):
     参数:
     - style_name: 要删除的样式名称
 
-    返���: bool 是否删除成功
+    返回: bool 是否删除成功
     """
     doc = Document(doc_path)
     try:
@@ -364,7 +480,7 @@ def add_watermark(doc_path, text):
                 <v:shape id="_x0000_i1025" type="#_x0000_t136" style="position:absolute;margin-left:0;margin-top:0;width:468pt;height:351pt;rotation:315;z-index:-251654144">
                     <v:textpath style="font-family:'Calibri';font-size:1pt" string="{text}"/>
                 </v:shape>
-            </w:pict>
+            </w:pict> 
             ''')
 
         run._r.append(hdr)
@@ -572,7 +688,7 @@ def delete_hyperlink(doc_path, paragraph_index, link_index):
 def add_heading(doc_path, text, level, position=None):
     """
     添加标题
-
+    
     参数:
     - level: 标题级别(1-9)
     - position: 如果指定,在特定位置插入标题
@@ -607,10 +723,9 @@ def delete_heading(doc_path, level, occurrence):
     doc.save(doc_path)
 
 
-
-
 # 设置字体大小
 def set_font_size(size):
+    """设置字体大小"""
     global current_paragraph
     for run in current_paragraph.runs:
         run.font.size = Pt(size)
@@ -618,6 +733,7 @@ def set_font_size(size):
 
 # 设置字体颜色
 def set_font_color(color):
+    """设置字体颜色"""
     global current_paragraph
     for run in current_paragraph.runs:
         run.font.color.rgb = RGBColor.from_string(color2hex[color])
@@ -625,6 +741,7 @@ def set_font_color(color):
 
 # 设置加粗字体
 def set_font_bold():
+    """设置字体加粗"""
     global current_paragraph
     for run in current_paragraph.runs:
         run.font.bold = True
@@ -632,6 +749,7 @@ def set_font_bold():
 
 # 设置斜体
 def set_font_italic():
+    """设置字体斜体"""
     global current_paragraph
     for run in current_paragraph.runs:
         run.font.italic = True
@@ -639,6 +757,7 @@ def set_font_italic():
 
 # 设置下划线
 def set_font_underline():
+    """设置字体下划线"""
     global current_paragraph
     for run in current_paragraph.runs:
         run.font.underline = True
@@ -646,13 +765,15 @@ def set_font_underline():
 
 # 设置字体样式
 def set_font_style(font_name):
+    """设置字体样式"""
     global current_paragraph
     for run in current_paragraph.runs:
         run.font.name = font_name
 
 
 # 设置行间距
-def set_line_space(line_space_level):
+def set_line_space(line_space_level=0):
+    """设置行间距"""
     global current_paragraph
     current_paragraph.paragraph_format.line_spacing = Pt(line_space_level)
 
@@ -660,43 +781,22 @@ def set_line_space(line_space_level):
 # 左对齐
 def text_align_left():
     """文本左对齐"""
-    global doc, current_paragraph
-    try:
-        if current_paragraph is None:
-            current_paragraph = doc.add_paragraph()
-        current_paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
-        return current_paragraph
-    except Exception as e:
-        logger.error(f"Error aligning text left: {e}")
-        return None
+    global current_paragraph
+    current_paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
 
 
 # 居中对齐
 def text_align_center():
     """文本居中对齐"""
-    global doc, current_paragraph
-    try:
-        if current_paragraph is None:
-            current_paragraph = doc.add_paragraph()
-        current_paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        return current_paragraph
-    except Exception as e:
-        logger.error(f"Error aligning text center: {e}")
-        return None
+    global current_paragraph
+    current_paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
 
 # 右对齐
 def text_align_right():
-    """文本右对"""
-    global doc, current_paragraph
-    try:
-        if current_paragraph is None:
-            current_paragraph = doc.add_paragraph()
-        current_paragraph.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-        return current_paragraph
-    except Exception as e:
-        logger.error(f"Error aligning text right: {e}")
-        return None
+    """文本右对齐"""
+    global current_paragraph
+    current_paragraph.alignment = WD_ALIGN_PARAGRAPH.RIGHT
 
 
 def add_run(doc, text, font_size=12, font_color='000000', bold=False, italic=False, underline=False):
@@ -709,14 +809,6 @@ def add_run(doc, text, font_size=12, font_color='000000', bold=False, italic=Fal
     run.font.underline = underline
 
 
-doc = None
-
-
-def get_word():
-    global doc
-    return doc
-
-
 def get_current_page_id():
     global doc
     # 在Word中，我们可以使用段落的数量来模拟页面编号
@@ -725,11 +817,6 @@ def get_current_page_id():
     return len(doc.paragraphs)
 
 
-def init_docx():
-    """初始化新文档"""
-    doc = Document()
-    word_reader.set_document(doc)  # 设置当前文档
-    return doc
 
 
 def check_api_in_list(api_call, api_list):
@@ -801,43 +888,6 @@ def API_executor(lines, test=False, args=None):
     
     return error_info
 
-def set_word(docx_path=None):
-    """设置当前操作的Word文档并初始化全局变量
-    
-    Args:
-        docx_path: Word文档路径，如果为None则创建新文档
-        
-    全局变量:
-        doc: 当前Word文档对象
-        current_paragraph: 当前操作的段落
-        current_table: 当前操作的表格
-        current_picture: 当前操作的图片
-        current_heading: 当前操作的标题
-    """
-    global doc, current_paragraph, current_table, current_picture, current_heading
-    
-    # 载或创建文
-    if docx_path:
-        doc = Document(docx_path)
-    else:
-        doc = Document()
-    
-    # 重置所有当前操作对象
-    current_paragraph = None
-    current_table = None
-    current_picture = None
-    current_heading = None
-    
-    # 设置文档阅读器的文档对象
-    word_reader.set_document(doc)
-    
-    return doc
-
-def get_word():
-    """获取当前Word文档对象"""
-    global doc
-    return doc
-
 def get_current_paragraph():
     """获取当前操作的段落"""
     global current_paragraph
@@ -878,9 +928,6 @@ def set_current_heading(heading):
     global current_heading
     current_heading = heading
 
-def init_docx():
-    """始化一个新的Word文档"""
-    return set_word()
 
 # # 示例使用
 # doc = Document()
@@ -906,7 +953,7 @@ def init_docx():
 # table
 
 # 创建一个 Word 文档
-doc = Document()
+
 
 
 # 获取当前文档中已存在的表格数量
@@ -915,25 +962,15 @@ def get_table_count(doc):
     获取文档中表格的数量，返回已添加表格的数量。
     """
     return len(doc.tables)
-
-
-def add_table(doc_path, rows, cols, position=None, style=None):
+def add_table(doc_path, rows, cols):
     """
-    添加表格
-
-    参数:
-    - rows: 行数
-    - cols: 列数
-    - position: 插入位置
-    - style: 表格样式
+    Add a table to the document
     """
     doc = Document(doc_path)
     table = doc.add_table(rows=rows, cols=cols)
-    if style:
-        table.style = style
-    if position is not None:
-        doc._body._body.insert(position, table._element)
     doc.save(doc_path)
+    return table
+
 
 # 设置表格标题
 def set_table_title(doc, title, font_size=12, bold=True, color="black", alignment=WD_PARAGRAPH_ALIGNMENT.CENTER):
@@ -1112,7 +1149,7 @@ def delete_list_item(doc_path, item_index):
 
 def set_column_width(table, col_idx, width_in_inches):
     """
-    设置表格某列的宽度。
+    设置表格某列的宽度
 
     参数：
         table (Table): 表格对象
@@ -1209,20 +1246,6 @@ def align_cell_text(table, row, col, alignment=WD_ALIGN_PARAGRAPH.CENTER):
         paragraph.alignment = alignment
 
 
-# 注意：在调用set_three_line_table函数之前，确保表格已经添加了所有行和单元格内容。
-if __name__ == "__main__":
-    # # 创建一个表格
-    # # 创建一个表格
-    # table = add_table(doc, 3, 3)
-    #
-    # # 设置三线表的边框
-    # set_table_borders(table, border_color="FF0000", border_width=2, is_threeline=True)
-    #
-    # # 保存文档
-    # doc.save("three_line_table1.docx")
-    pass
-
-
 # picture
 
 
@@ -1262,61 +1285,38 @@ def replace_picture(doc, old_picture_path, new_picture_path, width_inch=None, he
         print(f"错误: 找不到路为 {new_picture_path} 的文件。")
 
 
-def add_image(image_path, width=None, height=None):
-    """添加图片"""
-    global doc, current_paragraph
-    try:
-        # 打印当前工作目录
-        current_working_dir = os.getcwd()
-        logger.info(f"Current working directory: {current_working_dir}")
+def add_image(doc_path, paragraph_index, image_path, width=None, height=None, position=None):
+    """
+    在指定段落中添加图片
+    
+    参数:
+    - paragraph_index: 段落索引
+    - image_path: 图片文件路径
+    - width: 图片宽度(单位为英寸)
+    - height: 图片高度(单位为英寸)
+    - position: 在段落中插入的位置(如果不指定,则在段落末尾添加)
+    """
+    doc = Document(doc_path)
+    if 0 <= paragraph_index < len(doc.paragraphs):
+        paragraph = doc.paragraphs[paragraph_index]
         
-        # 检查图片路径
-        if not os.path.isabs(image_path):
-            # 获取当前脚本的目录
-            current_dir = os.path.dirname(os.path.abspath(__file__))
-            project_root = os.path.dirname(current_dir)
-            logger.info(f"Script directory: {current_dir}")
-            logger.info(f"Project root: {project_root}")
-            
-            # 尝试在多个位置查找图片
-            possible_paths = [
-                os.path.join(project_root, image_path),
-                os.path.join(project_root, 'images', image_path),
-                os.path.join(project_root, 'resources', image_path),
-                os.path.join(project_root, 'assets', image_path),
-                image_path,
-                os.path.join('images', image_path),
-                os.path.join('resources', image_path),
-                os.path.join('assets', image_path)
-            ]
-            
-            # 检查每个可能的路径
-            logger.info("Checking possible paths:")
-            for path in possible_paths:
-                logger.info(f"Checking path: {path} - Exists: {os.path.exists(path)}")
-                if os.path.exists(path):
-                    image_path = path
-                    logger.info(f"Found image at: {path}")
-                    break
-            else:
-                raise FileNotFoundError(f"Image not found in any of these locations: {possible_paths}")
+        # 创建新的 run 并移动到指定位置
+        new_run = paragraph.add_run()
+        if position is not None and 0 <= position < len(paragraph.runs):
+            paragraph._p.insert(position, new_run._r)
+            paragraph.runs.insert(position, new_run)
+            paragraph.runs.pop()
         
-        # 创建新段落并添加图片
-        current_paragraph = doc.add_paragraph()
         if width and height:
-            image = current_paragraph.add_run().add_picture(image_path, width=Inches(width), height=Inches(height))
+            new_run.add_picture(image_path, width=Inches(width), height=Inches(height))
         elif width:
-            image = current_paragraph.add_run().add_picture(image_path, width=Inches(width))
+            new_run.add_picture(image_path, width=Inches(width))
         elif height:
-            image = current_paragraph.add_run().add_picture(image_path, height=Inches(height))
+            new_run.add_picture(image_path, height=Inches(height))
         else:
-            image = current_paragraph.add_run().add_picture(image_path)
-            
-        return image, current_paragraph
-    except Exception as e:
-        logger.error(f"Error adding image: {e}")
-        logger.error(f"Image path attempted: {image_path}")
-        return None, None
+            new_run.add_picture(image_path)
+    
+    doc.save(doc_path)
 
 
 def delete_image(doc_path, paragraph_index, image_index):
@@ -1404,34 +1404,13 @@ def add_caption(doc, text, font_size=10):
     """
     为图片添加文字说明。
 
-    :param doc: Document ���象
+    :param doc: Document 象
     :param text: 图片说明文字
     :param font_size: 字体大小（单位：Pt）
     """
     caption_paragraph = doc.add_paragraph()
     run = caption_paragraph.add_run(text)
     run.font.size = Pt(font_size)
-
-
-# # 示例操作：插入图片并调整大小和对齐
-# image_path = '/Users/ywootae/Desktop/研/半身.jpg'
-# image_paragraph = doc.add_paragraph()
-# image = insert_image(doc, image_path, width=2, height=2)  # 插入图片并设置大小
-# align_image_center(image_paragraph)  # 居中对齐图片
-# add_caption(doc, "图片说明文本", font_size=10)  # 添加说明文字
-#
-# # 保存文档
-# doc.save('output.docx')
-
-# # 替换图片例使用
-# new_picture_path = "/Users/ywootae/Desktop/研/半身.jpg"  # 这里替换为实际的旧图片路径
-# old_picture_path = "/Users/ywootae/Desktop/研/冠.jpg"  # 这里替换为实际的新图片路径
-#
-# # 替换图片并将新图片大小调整为 3 英宽，2 英寸高
-# replace_picture(doc, old_picture_path, new_picture_path, width_inch=3, height_inch=2)
-#
-# # 保存修改后的文档
-# doc.save("output_with_resized_picture.docx")
 
 
 # chart
@@ -1476,23 +1455,20 @@ def create_pie_chart(labels, sizes, title="Pie Chart", save_path='pie_chart.png'
 
 
 # 4. 将图片插入到 Word 文档中
-def insert_image_into_docx(image_path, docx_path):
+def insert_image(doc, image_path, width=None, height=None):
     """
-    将图片插入到 Word 文档中。
+    插入图片并可选设置宽度高度。
 
-    参数：
-        image_path (str): 图片的路径
-        docx_path (str): 要保存的 Word 文档路径
+    :param doc: Document 对象
+    :param image_path: 图片文件路径
+    :param width: 图片宽度（单位：英寸）
+    :param height: 图片高度（单位：英寸）
+    :return: 插入的图片对象
     """
-    # 创建一个新的 Word 文档
-    doc = Document()
-
-    # 插入图表图片
-    doc.add_picture(image_path, width=Inches(6), height=Inches(4))  # 调整图片大小
-
-    # 保存文档
-    doc.save(docx_path)
-    print(f"Word document saved as {docx_path}")
+    # 插入图片
+    image = doc.add_picture(image_path, width=Inches(width) if width else None,
+                            height=Inches(height) if height else None)
+    return image
 
 
 # 5. 主函数
@@ -1513,222 +1489,4 @@ def generate_chart(chart_type, data, chart_title="Chart", docx_path='output.docx
     else:
         print("Unsupported chart type!")
 
-# # 示例调用
-# chart_data = {
-#     "line": ([1, 2, 3, 4], [19.2, 21.4, 16.7, 18.5]),
-#     "bar": (['A', 'B', 'C'], [12, 17, 8]),
-#     "pie": (['Red', 'Blue', 'Green'], [40, 30, 30])
-# }
-#
-# # 生成折线图并插入到 Word 文档
-# generate_chart("line", chart_data["line"], "Line Chart Example", 'line_chart_output.docx')
-#
-# # 生成柱状图并插入到 Word 文档
-# generate_chart("bar", chart_data["bar"], "Bar Chart Example", 'bar_chart_output.docx')
-#
-# # 生成饼图并插入到 Word 文档
-# generate_chart("pie", chart_data["pie"], "Pie Chart Example", 'pie_chart_output.docx')
 
-def add_heading(text, level=1):
-    """添加标题
-    
-    Args:
-        text: 标题文本
-        level: 标题级别(1-9)
-    
-    Returns:
-        新添加的标题段落对象
-    """
-    global doc, current_heading
-    try:
-        current_heading = doc.add_heading(text, level=level)
-        return current_heading
-    except Exception as e:
-        logger.error(f"Error adding heading: {e}")
-        return None
-
-def add_footer(text):
-    """添加页脚
-    
-    Args:
-        text: 页脚文本
-    """
-    global doc
-    try:
-        section = doc.sections[0]
-        footer = section.footer
-        paragraph = footer.paragraphs[0] if footer.paragraphs else footer.add_paragraph()
-        paragraph.text = text
-        return paragraph
-    except Exception as e:
-        logger.error(f"Error adding footer: {e}")
-        return None
-
-def add_header(text):
-    """添加页眉
-    
-    Args:
-        text: 页眉文本
-    """
-    global doc
-    try:
-        section = doc.sections[0]
-        header = section.header
-        paragraph = header.paragraphs[0] if header.paragraphs else header.add_paragraph()
-        paragraph.text = text
-        return paragraph
-    except Exception as e:
-        logger.error(f"Error adding header: {e}")
-        return None
-
-def add_table(rows, cols, style=None):
-    """添加表格
-    
-    Args:
-        rows: 行数
-        cols: 列数
-        style: 表格样式(可选)
-    
-    Returns:
-        新添加的表格对象
-    """
-    global doc, current_table
-    try:
-        current_table = doc.add_table(rows=rows, cols=cols, style=style)
-        return current_table
-    except Exception as e:
-        logger.error(f"Error adding table: {e}")
-        return None
-
-def set_cell_text(row, col, text):
-    """设置表格单元格文本
-    
-    Args:
-        row: 行索引
-        col: 列索引
-        text: 单元格文本
-    """
-    global current_table
-    try:
-        if current_table is None:
-            logger.error("No table selected")
-            return None
-        cell = current_table.cell(row, col)
-        cell.text = text
-        return cell
-    except Exception as e:
-        logger.error(f"Error setting cell text: {e}")
-        return None
-
-def set_table_style(style_name):
-    """设置表格样式
-    
-    Args:
-        style_name: 样式名称
-    """
-    global current_table
-    try:
-        if current_table is None:
-            logger.error("No table selected")
-            return None
-        current_table.style = style_name
-        return current_table
-    except Exception as e:
-        logger.error(f"Error setting table style: {e}")
-        return None
-
-def add_shape(shape_type):
-    """添加形状
-    
-    Args:
-        shape_type: 形状类型 ('rectangle', 'oval', 'line', etc.)
-    
-    Returns:
-        新添加的形状对象
-    """
-    global doc, current_paragraph
-    try:
-        current_paragraph = doc.add_paragraph()
-        shape = current_paragraph._element.add_shape(
-            shape_type,
-            width=Inches(1),
-            height=Inches(1)
-        )
-        return shape
-    except Exception as e:
-        logger.error(f"Error adding shape: {e}")
-        return None
-
-def set_fill_color(color):
-    """设置形状填充颜色
-    
-    Args:
-        color: 颜色名称或RGB值
-    """
-    global current_paragraph
-    try:
-        if current_paragraph is None:
-            logger.error("No shape selected")
-            return None
-        
-        # 将颜色名称转换为RGB值
-        color_map = {
-            'red': (255, 0, 0),
-            'green': (0, 255, 0),
-            'blue': (0, 0, 255),
-            'yellow': (255, 255, 0),
-            'purple': (128, 0, 128),
-            'orange': (255, 165, 0)
-        }
-        
-        rgb = color_map.get(color.lower(), color)
-        if isinstance(rgb, str):
-            # 如果是十六进制颜色值
-            rgb = tuple(int(rgb.lstrip('#')[i:i+2], 16) for i in (0, 2, 4))
-            
-        shape = current_paragraph._element.find('.//v:shape', namespaces={'v': 'urn:schemas-microsoft-com:vml'})
-        if shape is not None:
-            shape.set('fillcolor', f'#{rgb[0]:02x}{rgb[1]:02x}{rgb[2]:02x}')
-            return True
-    except Exception as e:
-        logger.error(f"Error setting fill color: {e}")
-    return None
-
-def set_background_color(color):
-    """设置文档背景颜色
-    
-    Args:
-        color: 颜色名称或RGB值
-    """
-    global doc
-    try:
-        # 颜色映射表
-        color_map = {
-            'red': (255, 0, 0),
-            'green': (0, 255, 0),
-            'blue': (0, 0, 255),
-            'yellow': (255, 255, 0),
-            'purple': (128, 0, 128),
-            'orange': (255, 165, 0),
-            'light gray': (211, 211, 211),
-            'light blue': (173, 216, 230),
-            'light green': (144, 238, 144)
-        }
-        
-        # 获取RGB值
-        rgb = color_map.get(color.lower(), color)
-        if isinstance(rgb, str):
-            # 如果是十六进制颜色值
-            rgb = tuple(int(rgb.lstrip('#')[i:i+2], 16) for i in (0, 2, 4))
-            
-        # 设置背景色
-        background = doc.sections[0]._sectPr.xpath("./w:background")
-        if not background:
-            background = OxmlElement('w:background')
-            doc.sections[0]._sectPr.append(background)
-        background.set(qn('w:color'), f'{rgb[0]:02x}{rgb[1]:02x}{rgb[2]:02x}')
-        return True
-        
-    except Exception as e:
-        logger.error(f"Error setting background color: {e}")
-        return None
