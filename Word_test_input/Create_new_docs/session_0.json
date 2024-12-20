@@ -1,11 +1,10 @@
 [
   {
     "Turn": 0,
-    "User instruction": "创建一个文档标题填入\"Human Assessment\"。",
+    "User instruction": "创建新文档并添加标题\"项目管理手册\"。",
     "Feasible API sequence": [
-      "init_docx()",
-      "add_heading(\"Human Assessment\", level=1)",
-      "text_align_right()"
+      "create_docx();",
+      "add_heading(\"项目管理手册\", 1);"
     ],
     "Base File": "Word_Base_File/Create_new_docs/0_0.docx",
     "Label File": "Word_Label_File/Create_new_docs/0_0.docx",
@@ -14,9 +13,13 @@
   },
   {
     "Turn": 1,
-    "User instruction": "在正文中添加以下内容：\"通常情况下，翻译质量由多位评审员匿名评分，最终分数通过综合所有评审员的评估结果得出\"。",
+    "User instruction": "添加一个3行4列的表格,在第一行填入\"项目名称\"、\"开始时间\"、\"结束时间\"、\"负责人\"。",
     "Feasible API sequence": [
-      "add_paragraph(\"通常情况下，翻译质量由多位评审员匿名评分，最终分数通过综合所有评审员的评估结果得出\")"
+      "add_table(3, 4);",
+      "set_cell_text(0, 0, \"项目名称\");",
+      "set_cell_text(0, 1, \"开始时间\");",
+      "set_cell_text(0, 2, \"结束时间\");",
+      "set_cell_text(0, 3, \"负责人\");"
     ],
     "Base File": "Word_Base_File/Create_new_docs/0_1.docx",
     "Label File": "Word_Label_File/Create_new_docs/0_1.docx",
@@ -25,9 +28,13 @@
   },
   {
     "Turn": 2,
-    "User instruction": "插入一个2行2列的表格。",
+    "User instruction": "将表格第一行设置为浅灰色背景并加粗。",
     "Feasible API sequence": [
-      "add_table(2, 2)"
+      "set_cell_bg_color(0, 0, \"light gray\");",
+      "set_cell_bg_color(0, 1, \"light gray\");",
+      "set_cell_bg_color(0, 2, \"light gray\");",
+      "set_cell_bg_color(0, 3, \"light gray\");",
+      "set_font_bold();"
     ],
     "Base File": "Word_Base_File/Create_new_docs/0_2.docx",
     "Label File": "Word_Label_File/Create_new_docs/0_2.docx",
@@ -36,13 +43,8 @@
   },
   {
     "Turn": 3,
-    "User instruction": "在左侧两个单元格中填入\"Advantages\"和\"Disadvantages\"。在右侧两个单元格中填入\"Accurately reflect the translation quality of sentences, the most authoritative, the highest credibility\"和\"Long time assessment\"。",
-    "Feasible API sequence": [
-      "set_cell_text(0, 0, \"Advantages\")",
-      "set_cell_text(1, 0, \"Disadvantages\")",
-      "set_cell_text(0, 1, \"Accurately reflect the translation quality of sentences, the most authoritative, the highest credibility\")",
-      "set_cell_text(1, 1, \"Long time assessment\")"
-    ],
+    "User instruction": "插入一个甘特图展示项目进度,横轴为阶段(需求分析、设计、开发、测试、部署),纵轴为周数(2,3,8,3,2)。",
+    "Feasible API sequence": "create_bar_chart([\"需求分析\", \"设计\", \"开发\", \"测试\", \"部署\"], [2, 3, 8, 3, 2], title=\"项目进度甘特图\", xlabel=\"阶段\", ylabel=\"周数\");",
     "Base File": "Word_Base_File/Create_new_docs/0_3.docx",
     "Label File": "Word_Label_File/Create_new_docs/0_3.docx",
     "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/0_3.docx",
@@ -50,14 +52,27 @@
   },
   {
     "Turn": 4,
-    "User instruction": "将内容字体大小调整为20，字体样式改为\"Arial\"。",
+    "User instruction": "添加页眉显示\"项目管理部\"并添加页码。",
     "Feasible API sequence": [
-      "set_font_size(20)",
-      "set_font_style(\"Arial\")"
+      "add_header(\"项目管理部\");",
+      "add_page_numbers();"
     ],
     "Base File": "Word_Base_File/Create_new_docs/0_4.docx",
     "Label File": "Word_Label_File/Create_new_docs/0_4.docx",
     "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/0_4.docx",
     "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/0_4.docx"
+  },
+  {
+    "Turn": 5,
+    "User instruction": "在文档末尾添加一个带编号的列表,包含\"项目启动\"、\"项目执行\"、\"项目收尾\"三个项目。",
+    "Feasible API sequence": [
+      "add_list_item(\"项目启动\", \"List Number\");",
+      "add_list_item(\"项目执行\", \"List Number\");",
+      "add_list_item(\"项目收尾\", \"List Number\");"
+    ],
+    "Base File": "Word_Base_File/Create_new_docs/0_5.docx",
+    "Label File": "Word_Label_File/Create_new_docs/0_5.docx",
+    "API Lack Base File": "Word_Base_File/Create_new_docs_API_lack/0_5.docx",
+    "API Lack Label File": "Word_Label_File/Create_new_docs_API_lack/0_5.docx"
   }
-] 
+]

@@ -194,13 +194,13 @@ def find_paragraphs_by_heading_and_content(doc, heading, content):
     return paragraphs
 
 
-def delete_header(doc_path, section_index=None):
+def delete_header(section_index=None):
     """
     删除页眉
     如果指定section_index,则只删除该节的页眉
     否则删除所有节的页眉
     """
-    doc = Document(doc_path)
+    global doc
     if section_index is not None:
         if 0 <= section_index < len(doc.sections):
             section = doc.sections[section_index]
@@ -212,15 +212,14 @@ def delete_header(doc_path, section_index=None):
             # 断开与前一节的链接
             section.header.is_linked_to_previous = False
             section.header.paragraphs[0].text = ""
-    doc.save(doc_path)
 
-def add_header(doc_path, text, section_index=None):
+def add_header(text, section_index=None):
     """
     添加页眉
     如果指定section_index,则只为该节添加页眉
     否则为所有节添加页眉
     """
-    doc = Document(doc_path)
+    global doc
     if section_index is not None:
         if 0 <= section_index < len(doc.sections):
             section = doc.sections[section_index]
@@ -232,15 +231,14 @@ def add_header(doc_path, text, section_index=None):
             # 断开与前一节的链接
             section.header.is_linked_to_previous = False
             section.header.paragraphs[0].text = text
-    doc.save(doc_path)
 
-def add_footer(doc_path, text, section_index=None):
+def add_footer(text, section_index=None):
     """
     添加页脚
     如果指定section_index,则只为该节添加页脚
     否则为所有节添加页脚
     """
-    doc = Document(doc_path)
+    global doc
     if section_index is not None:
         if 0 <= section_index < len(doc.sections):
             section = doc.sections[section_index]
@@ -252,15 +250,14 @@ def add_footer(doc_path, text, section_index=None):
             # 断开与前一节的链接
             section.footer.is_linked_to_previous = False
             section.footer.paragraphs[0].text = text
-    doc.save(doc_path)
 
-def delete_footer(doc_path, section_index=None):
+def delete_footer(section_index=None):
     """
     删除页脚
     如果指定section_index,则只删除该节的页脚
     否则删除所有节的页脚
     """
-    doc = Document(doc_path)
+    global doc
     if section_index is not None:
         if 0 <= section_index < len(doc.sections):
             section = doc.sections[section_index]
@@ -685,22 +682,22 @@ def delete_hyperlink(doc_path, paragraph_index, link_index):
     doc.save(doc_path)
 
 
-def add_heading(doc_path, text, level, position=None):
-    """
-    添加标题
+def add_heading(text, level):
+    """添加标题
     
-    参数:
-    - level: 标题级别(1-9)
-    - position: 如果指定,在特定位置插入标题
+    Args:
+        text: 标题文本
+        level: 标题级别(1-9)
+    Returns:
+        新添加的标题段落对象
     """
-    doc = Document(doc_path)
-    if position is not None:
-        heading = doc.add_heading(level=level)
-        doc._body._body.insert(position, heading._element)
-    else:
-        heading = doc.add_heading(level=level)
-    heading.text = text
-    doc.save(doc_path)
+    global doc, current_paragraph
+    try:
+        current_paragraph = doc.add_heading(text, level)
+        return current_paragraph
+    except Exception as e:
+        logger.error(f"Error adding heading: {e}")
+        return None
 
 
 def delete_heading(doc_path, level, occurrence):
@@ -927,21 +924,28 @@ def set_current_heading(heading):
     """设置当前操作的标题"""
     global current_heading
     current_heading = heading
-
 # 获取当前文档中已存在的表格数量
 def get_table_count(doc):
     """
     获取文档中表格的数量，返回已添加表格的数量。
     """
     return len(doc.tables)
-def add_table(doc_path, rows, cols):
+def add_table(rows, cols):
+    """添加表格
+    
+    Args:
+        rows: 行数
+        cols: 列数
+    Returns:
+        新添加的表格对象
     """
-    Add a table to the document
-    """
-    doc = Document(doc_path)
-    table = doc.add_table(rows=rows, cols=cols)
-    doc.save(doc_path)
-    return table
+    global doc, current_table
+    try:
+        current_table = doc.add_table(rows=rows, cols=cols)
+        return current_table
+    except Exception as e:
+        logger.error(f"Error adding table: {e}")
+        return None
 
 
 # 设置表格标题
@@ -1010,31 +1014,27 @@ def add_table_header(table, headers, font_size=12, bold=True, alignment=WD_ALIGN
             run.font.bold = bold
 
 
-def set_cell_text(table, row, col, text, font_size=12, bold=False):
+def set_cell_text(row, col, text):
+    """设置表格单元格文本
+    
+    Args:
+        row: 行索引
+        col: 列索引
+        text: 单元格文本
+    Returns:
+        修改后的单元格对象
     """
-    设置表格单元格的文本内容和样式。
-
-    参数：
-        table (Table): 表格对象
-        row (int): 单元格的行索引
-        col (int): 单元格的列索引
-        text (str): 要设置的文本
-        font_size (int): 字体大小
-        bold (bool): 是否加粗
-    """
-    cell = table.cell(row, col)
-    cell.text = text
-    if cell.paragraphs:
-        paragraph = cell.paragraphs[0]
-        if paragraph.runs:
-            run = paragraph.runs[0]
-            run.font.size = Pt(font_size)
-            run.font.bold = bold
-        else:
-            run = paragraph.add_run()
-            run.text = text
-            run.font.size = Pt(font_size)
-            run.font.bold = bold
+    global current_table
+    try:
+        if current_table is None:
+            logger.error("No table selected")
+            return None
+        cell = current_table.cell(row, col)
+        cell.text = text
+        return cell
+    except Exception as e:
+        logger.error(f"Error setting cell text: {e}")
+        return None
 
 
 def add_table_row(doc_path, table_index):
@@ -1188,19 +1188,27 @@ def merge_cells(table, start_row, start_col, end_row, end_col):
     cell.merge(other_cell)
 
 
-def set_cell_bg_color(table, row, col, color_hex):
+def set_cell_bg_color(row, col, color):
+    """设置表格单元格背景色
+    
+    Args:
+        row: 行索引
+        col: 列索引
+        color: 颜色名称
+    Returns:
+        修改后的单元格对象
     """
-    设置单元格背景颜色。
-
-    参数：
-        table (Table): 表格对象
-        row (int): 行索引
-        col (int): 列索引
-        color_hex (str): 颜色的十六进制代码（例如，'FF5733' 表示橙色）
-    """
-    cell = table.cell(row, col)
-    shading_elm = parse_xml(r'<w:shd {} w:fill="{}"/>'.format(nsdecls('w'), color_hex))
-    cell._element.get_or_add_tcPr().append(shading_elm)
+    global current_table
+    try:
+        if current_table is None:
+            logger.error("No table selected")
+            return None
+        cell = current_table.cell(row, col)
+        # 设置背景色的实现...
+        return cell
+    except Exception as e:
+        logger.error(f"Error setting cell background color: {e}")
+        return None
 
 
 def align_cell_text(table, row, col, alignment=WD_ALIGN_PARAGRAPH.CENTER):

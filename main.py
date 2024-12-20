@@ -55,17 +55,17 @@ def prepare_data(word_assistant, args):
                 
                 # 保存基础文件
                 if args.api_lack:
-                    word_executor.save_docx(args.user_path+f"Word_Base_File/{set_name}_API_lack/{idx}_{step}.docx")
+                    word_executor.save_word(args.user_path+f"Word_Base_File/{set_name}_API_lack/{idx}_{step}.docx")
                 else:
-                    word_executor.save_docx(args.user_path+f"Word_Base_File/{set_name}/{idx}_{step}.docx")
+                    word_executor.save_word(args.user_path+f"Word_Base_File/{set_name}/{idx}_{step}.docx")
 
                 word_assistant.api_executor(labels[idx][step], test=False)
 
                 # 保存标签文件
                 if args.api_lack:
-                    word_executor.save_docx(args.user_path+f"Word_Label_File/{set_name}_API_lack/{idx}_{step}.docx")
+                    word_executor.save_word(args.user_path+f"Word_Label_File/{set_name}_API_lack/{idx}_{step}.docx")
                 else:
-                    word_executor.save_docx(args.user_path+f"Word_Label_File/{set_name}/{idx}_{step}.docx")
+                    word_executor.save_word(args.user_path+f"Word_Label_File/{set_name}/{idx}_{step}.docx")
                 logger.info(f"{idx}/{step} done!")
                 
             except Exception as e:

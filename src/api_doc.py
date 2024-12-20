@@ -75,38 +75,97 @@ document_APIs = [
         api_desc="查找段落，搜索内容"
     ),
 
+    
+    API(
+        name="add_page_numbers",
+        parameters="(doc_path)",
+        description="此 API 为文档添加页码。",
+        parameter_description="doc_path 是文档路径。",
+        composition_instruction="你应该调用 add_page_numbers() 来为文档添加页码。",
+        api_desc="添加页码"
+    ),
+
+    API(
+        name="delete_page_numbers",
+        parameters="(doc_path)",
+        description="此 API 删除文档的页码。",
+        parameter_description="doc_path 是文档路径。",
+        composition_instruction="你应该调用 delete_page_numbers() 来从文档中删除页码。",
+        api_desc="删除页码"
+    ),
+
+    API(
+        name="add_table_of_contents",
+        parameters="(doc_path, levels=3)",
+        description="此 API 添加目录，支持指定级别。",
+        parameter_description="doc_path 是文档路径，levels 是目录级别（1-9）。",
+        composition_instruction="你应该调用 add_table_of_contents() 来为文档添加目录。",
+        api_desc="添加目录"
+    ),
+
+    API(
+        name="delete_table_of_contents",
+        parameters="(doc_path)",
+        description="此 API 删除目录。",
+        parameter_description="doc_path 是文档路径。",
+        composition_instruction="你应该调用 delete_table_of_contents() 来删除文档中的目录。",
+        api_desc="删除目录"
+    ),
+
+    API(
+        name="add_watermark",
+        parameters="(doc_path, text)",
+        description="此 API 添加文字水印。",
+        parameter_description="doc_path 是文档路径，text 是水印文本。",
+        composition_instruction="你应该调用 add_watermark() 来为文档添加水印。",
+        api_desc="添加水印"
+    ),
+
+    API(
+        name="delete_watermark",
+        parameters="(doc_path)",
+        description="此 API 删除水印。",
+        parameter_description="doc_path 是文档路径。",
+        composition_instruction="你应该调用 delete_watermark() 来从文档中删除水印。",
+        api_desc="删除水印"
+    )
+    
+]
+
+# text
+text_APIs = [
     API(
         name="add_header",
-        parameters="(doc_path, text, section_index=None)",
+        parameters="(text, section_index=None)",
         description="此 API 添加页眉。如果指定 section_index，则仅为该节添加页眉；否则为所有节添加页眉。",
-        parameter_description="doc_path 是文档路径，text 是要添加的页眉文本，section_index 是可选的节索引。",
+        parameter_description="text 是要添加的页眉文本，section_index 是可选的节索引。",
         composition_instruction="你应该调用 add_header() 来在文档中添加页眉。",
         api_desc="添加页眉"
     ),
 
     API(
         name="delete_header",
-        parameters="(doc_path, section_index=None)",
-        description="此 API 删除页眉。如果指定 section_index，则仅删除该节的页眉；否则删除所有节的页眉。",
-        parameter_description="doc_path 是文档路径，section_index 是可选的节索引。",
-        composition_instruction="你应该调用 delete_header() 来删除文档中的页眉。",
-        api_desc="删除页眉"
+        parameters="(section_index=None)",
+        description="此 API 删除页眉。如果指定 section_index，则仅删除该节的页眉并断开与前一节的链接；否则删除所有节的页眉并断开所有节的链接。",
+        parameter_description="section_index 是可选的节索引（0到节数-1之间的整数）。",
+        composition_instruction="你应该调用 delete_header() 来删除文档中的页眉。如果要删除特定节的页眉，需要提供有效的section_index参数。",
+        api_desc="删除页眉并断开节链接"
     ),
 
     API(
         name="add_footer",
-        parameters="(doc_path, text, section_index=None)",
+        parameters="(text, section_index=None)",
         description="此 API 添加页脚。如果指定 section_index，则仅为该节添加页脚；否则为所有节添加页脚。",
-        parameter_description="doc_path 是文档路径，text 是要添加的页脚文本，section_index 是可选的节索引。",
+        parameter_description="text 是要添加的页脚文本，section_index 是可选的节索引。",
         composition_instruction="你应该调用 add_footer() 来在文档中添加页脚。",
         api_desc="添加页脚"
     ),
 
     API(
         name="delete_footer",
-        parameters="(doc_path, section_index=None)",
+        parameters="(section_index=None)",
         description="此 API 删除页脚。如果指定 section_index，则仅删除该节的页脚；否则删除所有节的页脚。",
-        parameter_description="doc_path 是文档路径，section_index 是可选的节索引。",
+        parameter_description="section_index 是可选的节索引。",
         composition_instruction="你应该调用 delete_footer() 来删除文档中的页脚。",
         api_desc="删除页脚"
     ),
@@ -167,57 +226,13 @@ document_APIs = [
     ),
 
     API(
-        name="add_page_numbers",
-        parameters="(doc_path)",
-        description="此 API 为文档添加页码。",
-        parameter_description="doc_path 是文档路径。",
-        composition_instruction="你应该调用 add_page_numbers() 来为文档添加页码。",
-        api_desc="添加页码"
-    ),
-
-    API(
-        name="delete_page_numbers",
-        parameters="(doc_path)",
-        description="此 API 删除文档的页码。",
-        parameter_description="doc_path 是文档路径。",
-        composition_instruction="你应该调用 delete_page_numbers() 来从文档中删除页码。",
-        api_desc="删除页码"
-    ),
-
-    API(
-        name="add_table_of_contents",
-        parameters="(doc_path, levels=3)",
-        description="此 API 添加目录，支持指定级别。",
-        parameter_description="doc_path 是文档路径，levels 是目录级别（1-9）。",
-        composition_instruction="你应该调用 add_table_of_contents() 来为文档添加目录。",
-        api_desc="添加目录"
-    ),
-
-    API(
-        name="delete_table_of_contents",
-        parameters="(doc_path)",
-        description="此 API 删除目录。",
-        parameter_description="doc_path 是文档路径。",
-        composition_instruction="你应该调用 delete_table_of_contents() 来删除文档中的目录。",
-        api_desc="删除目录"
-    ),
-
-    API(
-        name="add_watermark",
-        parameters="(doc_path, text)",
-        description="此 API 添加文字水印。",
-        parameter_description="doc_path 是文档路径，text 是水印文本。",
-        composition_instruction="你应该调用 add_watermark() 来为文档添加水印。",
-        api_desc="添加水印"
-    ),
-
-    API(
-        name="delete_watermark",
-        parameters="(doc_path)",
-        description="此 API 删除水印。",
-        parameter_description="doc_path 是文档路径。",
-        composition_instruction="你应该调用 delete_watermark() 来从文档中删除水印。",
-        api_desc="删除水印"
+        name="add_paragraph",
+        parameters="(text, style=None)",
+        description="此API用于添加段落并设置其样式",
+        parameter_description="text: 段落文本内容\nstyle: 段落样式(可选)",
+        composition_instruction="你应该调用 add_paragraph() 来添加一个新的段落。如果需要特定样式，可以通过style参数指定。",
+        example="add_paragraph('这是一个新段落', style='Normal')",
+        api_desc="添加段落"
     ),
     API(
         name="delete_paragraph",
@@ -226,19 +241,6 @@ document_APIs = [
         parameter_description="doc_path 是文档的文件路径，paragraph_index 是要删除的段落的索引。",
         composition_instruction="你应该调用 delete_paragraph() 来从文档中删除指定索引的段落。",
         api_desc="删除指定段落"
-    )
-]
-
-# text
-text_APIs = [
-    API(
-        name="add_paragraph",
-        parameters="(text, style=None)",
-        description="此API用于添加段落并设置其样式",
-        parameter_description="text: 段落文本内容\nstyle: 段落样式(可选)",
-        composition_instruction="你应该调用 add_paragraph() 来添加一个新的段落。如果需要特定样式，可以通过style参数指定。",
-        example="add_paragraph('这是一个新段落', style='Normal')",
-        api_desc="添加段落"
     ),
 
     API(
@@ -288,10 +290,18 @@ text_APIs = [
 
     API(
         name="add_table",
-        parameters="(doc_path, rows, cols, position=None, style=None)",
-        description="此 API 用于在文档中添加表格。",
-        parameter_description="doc_path 是文档路径，rows 是行数，cols 是列数，position 是插入位置，style 是表格样式。",
-        composition_instruction="你应该调用 add_table() 来在文档中添加表格。",
+        parameters="(doc_path, rows, cols)",
+        description="此API用于在文档中添加表格",
+        parameter_description=(
+            "doc_path: 文档路径\n"
+            "rows: 表格的行数\n"
+            "cols: 表格的列数"
+        ),
+        composition_instruction=(
+            "你应该调用 add_table() 来添加表格。\n"
+            "创建表格后可以使用set_cell_text()设置单元格内容。\n"
+            "可以使用set_cell_bg_color()设置单元格背景色。"
+        ),
         api_desc="添加表格"
     ),
 
@@ -430,7 +440,6 @@ text_APIs = [
         composition_instruction="你应该调用 set_current_paragraph() 来设置当前操作的段落。",
         api_desc="设置当前段落"
     )
-
 ]
 
 # table
@@ -732,79 +741,7 @@ basic_APIs = [
         parameter_description="该 API 接受一个参数 'color'，表示要设置的填充颜色，可以是 '红色'、'紫色'、'蓝色'、'绿色'、'黄色' 或 '橙色'。",
         composition_instruction="可以设置内容、标题或文本框的填充颜色。",
         api_desc="填充颜色：红色，紫色，蓝色，绿色，黄色，橙色"),
-
-    # API(name="align_top_right_corner", parameters="()",
-    #     description="此 API 将所选对象移动到文档的右上角。",
-    #     composition_instruction="在调用 align_top_right_corner() 之前，请先选择一个对象。"),
-    #
-    # API(name="align_top_left_corner", parameters="()",
-    #     description="此 API 将所选对象移动到文档的左上角。",
-    #     composition_instruction="在调用 align_top_left_corner() 之前，请先选择一个对象。"),
-    #
-    # API(name="align_bottom_right_corner", parameters="()",
-    #     description="此 API 将所选对象移动到文档的右下角。",
-    #     composition_instruction="在调用 align_bottom_right_corner() 之前，请先选择一个对象。"),
-    #
-    # API(name="align_bottom_left_corner", parameters="()",
-    #     description="此 API 将所选对象移动到文档的左下角。",
-    #     composition_instruction="在调用 align_bottom_left_corner() 之前，请先选择一个对象。"),
-    #
-    # API(name="align_slide_top", parameters="()",
-    #     description="此 API 将所选对象移动到文档的顶部。",
-    #     composition_instruction="在调用 align_slide_top() 之前，请先选择一个对象。"),
-    #
-    # API(name="align_slide_bottom", parameters="()",
-    #     description="此 API 将所选对象移动到文档的底部。",
-    #     composition_instruction="在调用 align_slide_bottom() 之前，请先选择一个对象。"),
-    #
-    # API(name="align_slide_left", parameters="()",
-    #     description="此 API 将所选对象移动到文档的左侧。",
-    #     composition_instruction="在调用 align_slide_left() 之前，请先选择一个对象。"),
-    #
-    # API(name="align_slide_right", parameters="()",
-    #     description="此 API 将所选对象移动到文档的右侧。",
-    #     composition_instruction="在调用 align_slide_right() 之前，请先选择一个对象。"),
-    #
-    # API(name="align_slide_center", parameters="()",
-    #     description="此 API 将所选对象移动到文档的中心。",
-    #     composition_instruction="在调用 align_slide_center() 之前，请先选择一个对象。"),
-
-    # ??
-    # API(name="set_left",
-    #     parameters="(left)",
-    #     description="此API用于移动和改变对象的位置。它设置选定对象的最左边点的x坐标。",
-    #     parameter_description="它接受一个参数，即设置的x坐标。",
-    #     composition_instruction="你应该先选择一个对象，然后才能更改它的最左边点位置。",
-    #     api_desc="移动对象，设置左边、中间、右边的位置。"),
-    #
-    # API(name="set_top",
-    #     parameters="(top)",
-    #     description="此API用于移动和改变对象的位置。它设置选定对象的最上边点的y坐标。",
-    #     parameter_description="它接受一个参数，即设置的y坐标。",
-    #     composition_instruction="你应该先选择一个对象，然后才能更改它的最上边点位置。",
-    #     api_desc="移动对象，设置顶部、中间、底部的位置。")
-
 ]
-#
-# # shape
-# shape_APIs = [
-#     API(name="insert_rectangle", parameters="()",
-#         description="This API inserts a rectangle or square shape onto the slide.", api_desc="rectangle, square"),
-#     API(name="insert_right_arrow", parameters="()", description="This API inserts an arrow shape onto the slide.",
-#         api_desc="arrow"),
-#     API(name="insert_rounded_rectangle", parameters="()",
-#         description="This API inserts a rounded rectangle shape onto the slide.", api_desc="rounded rectangle"),
-#     API(name="insert_triangle", parameters="()", description="This API inserts a triangle shape onto the slide.",
-#         api_desc="triangle"),
-#     API(name="insert_callout", parameters="()", description="This API inserts a callout shape onto the slide.",
-#         api_desc="callout"),
-#     API(name="insert_cloud", parameters="()", description="This API inserts a cloud shape onto the slide.",
-#         api_desc="cloud"),
-#     API(name="insert_star", parameters="()", description="This API inserts a star shape onto the current slide.",
-#         api_desc="star"),
-#     API(name="insert_circle", parameters="()",
-#         description="This API inserts a circle or oval shape into the current slide.", api_desc="circle, oval"),
-# ]
 
 lack_APIs = [
     API(name="seek_assistance", parameters="()",
@@ -848,7 +785,7 @@ def get_must_APIs(args):
     if args.dataset == 'long':
         # 长文档处理场景
         must_APIs = [
-            document_APIs[0],  # create_and_save_docx - 创建和保存文档
+            document_APIs[0],  # create_docx - 创建和保存文档
             text_APIs[0],      # add_text - 添加文本
             text_APIs[4],      # add_heading - 添加标题
             table_APIs[0]      # get_table_count - 获取表格数量
