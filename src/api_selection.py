@@ -4,10 +4,6 @@ from langchain_core.output_parsers import JsonOutputParser
 import json
 import os
 import sys
-
-# 添加项目根目录到 Python 路径
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 from src import api_doc, utils, openai_api
 from langchain_openai import ChatOpenAI
 import numpy as np

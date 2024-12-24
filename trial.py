@@ -1,7 +1,6 @@
 import json
 
-# 定义JSON文件路径
-json_path = 'Word_test_input/Create_new_docs/session_0.json'
+
 
 def parse_train_json(path):
     """解析训练数据的JSON文件
@@ -132,9 +131,12 @@ def parse_test_json(path):
                     except json.JSONDecodeError:
                         continue
     return turns
+if __name__ == "__main__":
+    # 定义JSON文件路径
+    # main()
+    # 测试代码:解析训练数据并打印第一个样本的信息
+    turns = parse_train_json(json_path)
+    print(len(turns))
+    for x in turns[0]:
+        print(x)
 
-# 测试代码:解析训练数据并打印第一个样本的信息
-turns = parse_train_json(json_path)
-print(len(turns))
-for x in turns[0]:
-    print(x)

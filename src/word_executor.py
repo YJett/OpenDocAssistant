@@ -9,8 +9,10 @@ from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
 from docx import Document
 from docx.shared import Inches, Pt, RGBColor
 import os
-
+import matplotlib
+from pptx import Presentation
 import logging
+
 
 # 设置日志
 logging.basicConfig(level=logging.INFO)
@@ -22,6 +24,17 @@ current_paragraph = None
 current_table = None
 current_picture = None
 current_heading = None
+chart = None
+# 图表相关的全局常量
+CONTENT_WIDTH = Inches(6)  # 内容区域宽度
+CONTENT_HEIGHT = Inches(4) # 内容区域高度
+CONTENT_LEFT = Inches(1)   # 内容区域左边距
+CONTENT_TOP = Inches(1)    # 内容区域上边距
+
+# 图片相关的全局常量
+PIC_PATH = "test/pics"  # 图片路径
+PIC_LEFT = CONTENT_LEFT  # 图片默认左边距
+PIC_TOP = CONTENT_TOP   # 图片默认上边距
 
 def set_word(docx_path=None):
     """设置当前操作的Word文档
@@ -102,25 +115,27 @@ def save_word(docx_path):
         return False
 
 def save_state():
-    """保存当前文档状态"""
-    global doc, current_paragraph, current_table, current_picture, current_heading
-    state = {
-        "doc": doc,
-        "current_paragraph": current_paragraph,
-        "current_table": current_table,
-        "current_picture": current_picture,
-        "current_heading": current_heading
+    """保存当前状态"""
+    global doc, current_paragraph, current_table, current_picture, current_heading, chart
+    return {
+        'doc': doc,
+        'current_paragraph': current_paragraph,
+        'current_table': current_table,
+        'current_picture': current_picture,
+        'current_heading': current_heading,
+        'chart': chart
     }
     return state
 
 def load_state(state):
     """加载保存的状态"""
-    global doc, current_paragraph, current_table, current_picture, current_heading
-    doc = state["doc"]
-    current_paragraph = state["current_paragraph"]
-    current_table = state["current_table"]
-    current_picture = state["current_picture"]
-    current_heading = state["current_heading"]
+    global doc, current_paragraph, current_table, current_picture, current_heading, chart
+    doc = state['doc']
+    current_paragraph = state['current_paragraph']
+    current_table = state['current_table']
+    current_picture = state['current_picture']
+    current_heading = state['current_heading']
+    chart = state['chart']
 
 
 # 2. 修改 docx 文件的名称（不改变路径）
@@ -176,7 +191,8 @@ def add_paragraph(text, style=None):
 
 
 # 6. 根据标题查找段落
-def find_paragraphs_by_heading_and_content(doc, heading, content):
+def find_paragraphs_by_heading_and_content(heading, content):
+    global doc
     paragraphs = []
     found_heading = False
     for para in doc.paragraphs:
@@ -269,18 +285,17 @@ def delete_footer(section_index=None):
             # 断开与前一节的链接
             section.footer.is_linked_to_previous = False
             section.footer.paragraphs[0].text = ""
-    doc.save(doc_path)
 
 
-def add_line_break(doc_path, paragraph_index, position=None):
+def add_line_break(paragraph_index, position=None):
     """
     在指定段落中添加换行符
 
     参数:
-    - paragraph_index: 段落索引
+    - paragraph_index: 段落索引 
     - position: 在段落中插入的位置(如果不指定,则在段落末尾添加)
     """
-    doc = Document(doc_path)
+    global doc
     if 0 <= paragraph_index < len(doc.paragraphs):
         paragraph = doc.paragraphs[paragraph_index]
 
@@ -293,10 +308,8 @@ def add_line_break(doc_path, paragraph_index, position=None):
 
         new_run.add_break(WD_BREAK.LINE)
 
-    doc.save(doc_path)
 
-
-def delete_line_break(doc_path, paragraph_index, break_index):
+def delete_line_break(paragraph_index, break_index):
     """
     删除指定段落中的换行符
 
@@ -304,7 +317,7 @@ def delete_line_break(doc_path, paragraph_index, break_index):
     - paragraph_index: 段落索引
     - break_index: 换行符在段落中的索引
     """
-    doc = Document(doc_path)
+    global doc
     if 0 <= paragraph_index < len(doc.paragraphs):
         paragraph = doc.paragraphs[paragraph_index]
         breaks = paragraph._element.findall('.//w:br', namespaces={
@@ -319,71 +332,71 @@ def delete_line_break(doc_path, paragraph_index, break_index):
                     parent.getparent().remove(parent)
 
 
-def add_style(doc_path, style_name, font_name=None, font_size=None, bold=None, italic=None, color=None):
-    """
-    添加新样式
+# def add_style(doc_path, style_name, font_name=None, font_size=None, bold=None, italic=None, color=None):
+#     """
+#     添加新样式
 
-    参数:
-    - style_name: 样式名称
-    - font_name: 字名称
-    - font_size: 字体大小(磅)
-    - bold: 是否加粗
-    - italic: 是否斜体
-    - color: RGB颜色元组,如(255, 0, 0)
+#     参数:
+#     - style_name: 样式名称
+#     - font_name: 字名称
+#     - font_size: 字体大小(磅)
+#     - bold: 是否加粗
+#     - italic: 是否斜体
+#     - color: RGB颜色元组,如(255, 0, 0)
 
-    返回: bool 是否添加成功
-    """
-    doc = Document(doc_path)
+#     返回: bool 是否添加成功
+#     """
+#     doc = Document(doc_path)
 
-    # 检查样式是否已存在
-    if style_name in doc.styles:
-        return False
+#     # 检查样式是否已存在
+#     if style_name in doc.styles:
+#         return False
 
-    try:
-        style = doc.styles.add_style(style_name, WD_STYLE_TYPE.PARAGRAPH)
-        if font_name:
-            style.font.name = font_name
-        if font_size:
-            style.font.size = Pt(font_size)
-        if bold is not None:
-            style.font.bold = bold
-        if italic is not None:
-            style.font.italic = italic
-        if color:
-            style.font.color.rgb = RGBColor(*color)
-        doc.save(doc_path)
-        return True
-    except Exception:
-        return False
-
-
-def delete_style(doc_path, style_name):
-    """
-    删除指定样式
-
-    参数:
-    - style_name: 要删除的样式名称
-
-    返回: bool 是否删除成功
-    """
-    doc = Document(doc_path)
-    try:
-        # 将使用样式的段落重置为默认样式
-        for paragraph in doc.paragraphs:
-            if paragraph.style.name == style_name:
-                paragraph.style = doc.styles['Normal']
-
-        # 删除样式
-        doc.styles._element.remove(doc.styles[style_name]._element)
-        doc.save(doc_path)
-        return True
-    except Exception:
-        return False
+#     try:
+#         style = doc.styles.add_style(style_name, WD_STYLE_TYPE.PARAGRAPH)
+#         if font_name:
+#             style.font.name = font_name
+#         if font_size:
+#             style.font.size = Pt(font_size)
+#         if bold is not None:
+#             style.font.bold = bold
+#         if italic is not None:
+#             style.font.italic = italic
+#         if color:
+#             style.font.color.rgb = RGBColor(*color)
+#         doc.save(doc_path)
+#         return True
+#     except Exception:
+#         return False
 
 
-def add_page_numbers(doc_path):
+# def delete_style(doc_path, style_name):
+#     """
+#     删除指定样式
+
+#     参数:
+#     - style_name: 要删除的样式名称
+
+#     返回: bool 是否删除成功
+#     """
+#     doc = Document(doc_path)
+#     try:
+#         # 将使用样式的段落重置为默认样式
+#         for paragraph in doc.paragraphs:
+#             if paragraph.style.name == style_name:
+#                 paragraph.style = doc.styles['Normal']
+
+#         # 删除样式
+#         doc.styles._element.remove(doc.styles[style_name]._element)
+#         doc.save(doc_path)
+#         return True
+#     except Exception:
+#         return False
+
+
+def add_page_numbers():
     """添加页码（为了测试删除页码功能）"""
-    doc = Document(doc_path)
+    global doc
     sections = doc.sections
     for section in sections:
         footer = section.footer
@@ -403,14 +416,11 @@ def add_page_numbers(doc_path):
         fldChar2.set(qn('w:fldCharType'), 'end')
         run._r.append(fldChar2)
 
-    doc.save(doc_path)
-
-
-def delete_page_numbers(doc_path):
+def delete_page_numbers():
     """
     删除页码
     """
-    doc = Document(doc_path)
+    global doc
     for section in doc.sections:
         # 检查页眉
         for paragraph in section.header.paragraphs:
@@ -422,17 +432,14 @@ def delete_page_numbers(doc_path):
             if 'PAGE' in paragraph._element.xml:
                 paragraph._element.getparent().remove(paragraph._element)
 
-    doc.save(doc_path)
-
-
-def add_table_of_contents(doc_path, levels=3):
+def add_table_of_contents(levels=3):
     """
     添加目录
 
     参数:
     - levels: 目录级别(1-9)
     """
-    doc = Document(doc_path)
+    global doc
     paragraph = doc.add_paragraph()
     run = paragraph.add_run()
 
@@ -448,24 +455,20 @@ def add_table_of_contents(doc_path, levels=3):
     fldChar.set(qn('w:fldCharType'), 'end')
     run._element.append(fldChar)
 
-    doc.save(doc_path)
 
-
-def delete_table_of_contents(doc_path):
+def delete_table_of_contents():
     """
     删除目录
     """
-    doc = Document(doc_path)
+    global doc
     for paragraph in doc.paragraphs:
         if 'TOC' in paragraph._element.xml:
             paragraph._element.getparent().remove(paragraph._element)
 
-    doc.save(doc_path)
 
-
-def add_watermark(doc_path, text):
+def add_watermark(text):
     """添加文字水印"""
-    doc = Document(doc_path)
+    global doc
     for section in doc.sections:
         header = section.header
         paragraph = header.paragraphs[0]
@@ -482,14 +485,11 @@ def add_watermark(doc_path, text):
 
         run._r.append(hdr)
 
-    doc.save(doc_path)
-
-
-def delete_watermark(doc_path):
+def delete_watermark():
     """
     删除水印
     """
-    doc = Document(doc_path)
+    global doc
     for section in doc.sections:
         header = section.header
         for paragraph in header.paragraphs:
@@ -497,18 +497,15 @@ def delete_watermark(doc_path):
                 if 'pict' in run._element.xml:
                     run._element.getparent().remove(run._element)
 
-    doc.save(doc_path)
 
-
-def delete_paragraph(doc_path, paragraph_index):
+def delete_paragraph(paragraph_index):
     """
     删除指定索引的段落
     """
-    doc = Document(doc_path)
+    global doc
     if 0 <= paragraph_index < len(doc.paragraphs):
         p = doc.paragraphs[paragraph_index]._element
         p.getparent().remove(p)
-    doc.save(doc_path)
 
 
 # # 示例使用：
@@ -542,9 +539,9 @@ color2hex = {
 }
 
 
-def add_text(doc_path, paragraph_index, text, position=None, bold=False, italic=False, underline=False, color=None,
+def add_text(paragraph_index, text, position=None, bold=False, italic=False, underline=False, color=None,
              size=None):
-    doc = Document(doc_path)
+    global doc
     if 0 <= paragraph_index < len(doc.paragraphs):
         paragraph = doc.paragraphs[paragraph_index]
         if position is not None:
@@ -567,11 +564,8 @@ def add_text(doc_path, paragraph_index, text, position=None, bold=False, italic=
         if size:
             run.font.size = Pt(size)
 
-    doc.save(doc_path)
-
-
-def delete_text(doc_path, paragraph_index, start, end):
-    doc = Document(doc_path)
+def delete_text(paragraph_index, start, end):
+    global doc
     if 0 <= paragraph_index < len(doc.paragraphs):
         paragraph = doc.paragraphs[paragraph_index]
         runs = paragraph.runs
@@ -615,13 +609,10 @@ def delete_text(doc_path, paragraph_index, start, end):
                         run.font.size = fmt['size']
                     current_pos = new_end
 
-    doc.save(doc_path)
-
-
 from docx.oxml.shared import OxmlElement, qn
 
 
-def add_hyperlink(doc_path, paragraph_index, text, url, position=None):
+def add_hyperlink(paragraph_index, text, url, position=None):
     """
     在指定段落中添加超链接
 
@@ -631,7 +622,7 @@ def add_hyperlink(doc_path, paragraph_index, text, url, position=None):
     - url: 链接地址
     - position: 在段落中插入的位置(如果不指定,则在段落末尾添加)
     """
-    doc = Document(doc_path)
+    global doc
     if 0 <= paragraph_index < len(doc.paragraphs):
         paragraph = doc.paragraphs[paragraph_index]
 
@@ -658,10 +649,7 @@ def add_hyperlink(doc_path, paragraph_index, text, url, position=None):
         else:
             paragraph._p.append(hyperlink)
 
-    doc.save(doc_path)
-
-
-def delete_hyperlink(doc_path, paragraph_index, link_index):
+def delete_hyperlink(paragraph_index, link_index):
     """
     删除指定段落中的超链接
 
@@ -669,7 +657,7 @@ def delete_hyperlink(doc_path, paragraph_index, link_index):
     - paragraph_index: 段落索引
     - link_index: 超链接在段落中的索引
     """
-    doc = Document(doc_path)
+    global doc
     if 0 <= paragraph_index < len(doc.paragraphs):
         paragraph = doc.paragraphs[paragraph_index]
         hyperlinks = paragraph._p.xpath('.//w:hyperlink')
@@ -678,9 +666,6 @@ def delete_hyperlink(doc_path, paragraph_index, link_index):
             for run in hyperlink.xpath('.//w:r'):
                 hyperlink.addnext(run)
             hyperlink.getparent().remove(hyperlink)
-
-    doc.save(doc_path)
-
 
 def add_heading(text, level):
     """添加标题
@@ -700,7 +685,7 @@ def add_heading(text, level):
         return None
 
 
-def delete_heading(doc_path, level, occurrence):
+def delete_heading(level, occurrence):
     """
     删除指定级别的第n个标题
 
@@ -708,7 +693,7 @@ def delete_heading(doc_path, level, occurrence):
     - level: 标题级别
     - occurrence: 第几个该级别的标题(从1开始)
     """
-    doc = Document(doc_path)
+    global doc
     count = 0
     for i, paragraph in enumerate(doc.paragraphs):
         if paragraph.style.name.startswith(f'Heading {level}'):
@@ -717,8 +702,6 @@ def delete_heading(doc_path, level, occurrence):
                 p = doc.paragraphs[i]._element
                 p.getparent().remove(p)
                 break
-    doc.save(doc_path)
-
 
 # 设置字体大小
 def set_font_size(size):
@@ -796,7 +779,8 @@ def text_align_right():
     current_paragraph.alignment = WD_ALIGN_PARAGRAPH.RIGHT
 
 
-def add_run(doc, text, font_size=12, font_color='000000', bold=False, italic=False, underline=False):
+def add_run(text, font_size=12, font_color='000000', bold=False, italic=False, underline=False):
+    global doc
     p = doc.paragraphs[-1]  # 添加到最新的段落
     run = p.add_run(text)
     run.font.size = Pt(font_size)
@@ -924,12 +908,15 @@ def set_current_heading(heading):
     """设置当前操作的标题"""
     global current_heading
     current_heading = heading
+
 # 获取当前文档中已存在的表格数量
-def get_table_count(doc):
+def get_table_count():
     """
     获取文档中表格的数量，返回已添加表格的数量。
     """
+    global doc
     return len(doc.tables)
+
 def add_table(rows, cols):
     """添加表格
     
@@ -949,18 +936,19 @@ def add_table(rows, cols):
 
 
 # 设置表格标题
-def set_table_title(doc, title, font_size=12, bold=True, color="black", alignment=WD_PARAGRAPH_ALIGNMENT.CENTER):
+def set_table_title(title, font_size=12, bold=True, color="black", alignment=WD_PARAGRAPH_ALIGNMENT.CENTER):
     """
     设置表格标题并为表格添加编号。
 
     参数：
         doc (Document): docx 文档对象
         title (str): 表格标题文本
-        font_size (int): 标字体大小
+        font_size (int): 标题字体大小
         bold (bool): 是否加粗
         color (str): 标题字体颜色
         alignment (WD_PARAGRAPH_ALIGNMENT): 标题文本对齐方式
     """
+    global doc
     table_count = get_table_count(doc) + 1  # 表格的编号是当前表格数 + 1
     table_title = f"Table {table_count}: {title}"
 
@@ -976,15 +964,14 @@ def set_table_title(doc, title, font_size=12, bold=True, color="black", alignmen
     set_line_space(15)  # 设置标题的行间距
 
 
-def delete_table(doc_path, table_index):
+def delete_table(table_index):
     """
     删除指定索引的表格
     """
-    doc = Document(doc_path)
+    global doc
     if 0 <= table_index < len(doc.tables):
         table = doc.tables[table_index]._element
         table.getparent().remove(table)
-    doc.save(doc_path)
 
 
 def add_table_header(table, headers, font_size=12, bold=True, alignment=WD_ALIGN_PARAGRAPH.CENTER):
@@ -995,7 +982,7 @@ def add_table_header(table, headers, font_size=12, bold=True, alignment=WD_ALIGN
         table (Table): 表格对象
         headers (list): 表头文本的列表
         font_size (int): 表头字体大小
-        bold (bool): 否加粗
+        bold (bool): 是否加粗
         alignment (WD_ALIGN_PARAGRAPH): 表头文本的对齐方式
     """
     if all(cell.text == '' for cell in table.rows[0].cells):
@@ -1037,21 +1024,19 @@ def set_cell_text(row, col, text):
         return None
 
 
-def add_table_row(doc_path, table_index):
+def add_table_row(table_index):
     """
     向指定表格添加行
     """
-    doc = Document(doc_path)
+    global doc
     if 0 <= table_index < len(doc.tables):
         doc.tables[table_index].add_row()
-    doc.save(doc_path)
 
-
-def add_table_column(doc_path, table_index):
+def add_table_column(table_index):
     """
     向指定表格添加列
     """
-    doc = Document(doc_path)
+    global doc
     if 0 <= table_index < len(doc.tables):
         table = doc.tables[table_index]
         for row in table.rows:
@@ -1059,24 +1044,23 @@ def add_table_column(doc_path, table_index):
             table.cell(row._index, len(row.cells) - 1)._tc = cell
             cell = table.cell(row._index, len(row.cells) - 1)
             cell.width = Inches(1)  # 设置新列的宽度，可以根据需要调整
-    doc.save(doc_path)
 
 
-def delete_table_column(doc_path, table_index, col_index):
+def delete_table_column(table_index, col_index):
     """
     删除表格中的指定列
     """
-    doc = Document(doc_path)
+    global doc
     if 0 <= table_index < len(doc.tables):
         table = doc.tables[table_index]
         for row in table.rows:
             if 0 <= col_index < len(row.cells):
                 tc = row.cells[col_index]._element
                 tc.getparent().remove(tc)
-    doc.save(doc_path)
 
 
-def add_list_item(doc_path, text, level=0, style='List Bullet'):
+
+def add_list_item(text, level=0, style='List Bullet'):
     """
     添加列表项
 
@@ -1084,18 +1068,17 @@ def add_list_item(doc_path, text, level=0, style='List Bullet'):
     - level: 缩进级别
     - style: 列表样式('List Bullet'或'List Number')
     """
-    doc = Document(doc_path)
+    global doc
     paragraph = doc.add_paragraph(style=style)
     paragraph.text = text
     paragraph.paragraph_format.left_indent = Pt(level * 18)
-    doc.save(doc_path)
 
 
-def delete_list_item(doc_path, item_index):
+def delete_list_item(item_index):
     """
     删除指定的列表项及其所有子项
     """
-    doc = Document(doc_path)
+    global doc
     count = 0
     to_delete = []
     current_level = None
@@ -1116,8 +1099,6 @@ def delete_list_item(doc_path, item_index):
         p = doc.paragraphs[i]._element
         p.getparent().remove(p)
 
-    doc.save(doc_path)
-
 
 def set_column_width(table, col_idx, width_in_inches):
     """
@@ -1132,24 +1113,23 @@ def set_column_width(table, col_idx, width_in_inches):
         cell.width = Inches(width_in_inches)
 
 
-def delete_table_row(doc_path, table_index, row_index):
+def delete_table_row(table_index, row_index):
     """
     删除表格中的指定行
     """
-    doc = Document(doc_path)
+    global doc
     if 0 <= table_index < len(doc.tables):
         table = doc.tables[table_index]
         if 0 <= row_index < len(table.rows):
             tr = table.rows[row_index]._element
             tr.getparent().remove(tr)
-    doc.save(doc_path)
 
 
-def add_table_column(doc_path, table_index):
+def add_table_column(table_index):
     """
     向指定表格添加列
     """
-    doc = Document(doc_path)
+    global doc
     if 0 <= table_index < len(doc.tables):
         table = doc.tables[table_index]
         for row in table.rows:
@@ -1157,7 +1137,6 @@ def add_table_column(doc_path, table_index):
             table.cell(row._index, len(row.cells) - 1)._tc = cell
             cell = table.cell(row._index, len(row.cells) - 1)
             cell.width = Inches(1)  # 设置新列的宽度，可以根据需要调整
-    doc.save(doc_path)
 
 
 def set_row_height(table, row_idx, height_in_inches):
@@ -1230,7 +1209,7 @@ def align_cell_text(table, row, col, alignment=WD_ALIGN_PARAGRAPH.CENTER):
 
 
 # 替换图片并调整大小的函数
-def replace_picture(doc, old_picture_path, new_picture_path, width_inch=None, height_inch=None):
+def replace_picture(old_picture_path, new_picture_path, width_inch=None, height_inch=None):
     """
     替换文档中的旧图片为新图片，并调整图片的大小。
     :param doc: 文档对象
@@ -1240,6 +1219,7 @@ def replace_picture(doc, old_picture_path, new_picture_path, width_inch=None, he
     :param height_inch: 新图片的高度，单位为英寸（可选）
     """
     # 遍历文档中的段落，查找并删除旧图片
+    global doc
     for paragraph in doc.paragraphs:
         for run in paragraph.runs:
             if run._r.pic:  # 检查当前run是否包含图片
@@ -1265,7 +1245,7 @@ def replace_picture(doc, old_picture_path, new_picture_path, width_inch=None, he
         print(f"错误: 找不到路为 {new_picture_path} 的文件。")
 
 
-def add_image(doc_path, paragraph_index, image_path, width=None, height=None, position=None):
+def add_image(paragraph_index, image_path, width=None, height=None, position=None):
     """
     在指定段落中添加图片
     
@@ -1276,7 +1256,7 @@ def add_image(doc_path, paragraph_index, image_path, width=None, height=None, po
     - height: 图片高度(单位为英寸)
     - position: 在段落中插入的位置(如果不指定,则在段落末尾添加)
     """
-    doc = Document(doc_path)
+    global doc
     if 0 <= paragraph_index < len(doc.paragraphs):
         paragraph = doc.paragraphs[paragraph_index]
         
@@ -1295,11 +1275,10 @@ def add_image(doc_path, paragraph_index, image_path, width=None, height=None, po
             new_run.add_picture(image_path, height=Inches(height))
         else:
             new_run.add_picture(image_path)
-    
-    doc.save(doc_path)
 
 
-def delete_image(doc_path, paragraph_index, image_index):
+
+def delete_image(paragraph_index, image_index):
     """
     删除指定段落中的图片
 
@@ -1307,7 +1286,7 @@ def delete_image(doc_path, paragraph_index, image_index):
     - paragraph_index: 段落索引
     - image_index: 图片在段落中的索引
     """
-    doc = Document(doc_path)
+    global doc
     if 0 <= paragraph_index < len(doc.paragraphs):
         paragraph = doc.paragraphs[paragraph_index]
         images = paragraph._element.findall('.//w:drawing', namespaces={
@@ -1321,8 +1300,6 @@ def delete_image(doc_path, paragraph_index, image_index):
                 if not parent.getchildren():
                     parent.getparent().remove(parent)
 
-    doc.save(doc_path)
-
 
 def set_image_size(image, width=None, height=None):
     """
@@ -1330,7 +1307,7 @@ def set_image_size(image, width=None, height=None):
 
     :param image: 图片对象（在插入图片后返回的对象）
     :param width: 图片宽度（单位：英寸）
-    :param height: 图片高度（单位：英）
+    :param height: 图片高度（单位：英寸）
     """
     if width:
         image.width = Inches(width)
@@ -1380,14 +1357,15 @@ def align_image_center():
         return None
 
 
-def add_caption(doc, text, font_size=10):
+def add_caption(text, font_size=10):
     """
     为图片添加文字说明。
 
-    :param doc: Document 象
+
     :param text: 图片说明文字
     :param font_size: 字体大小（单位：Pt）
     """
+    global doc
     caption_paragraph = doc.add_paragraph()
     run = caption_paragraph.add_run(text)
     run.font.size = Pt(font_size)
@@ -1395,78 +1373,171 @@ def add_caption(doc, text, font_size=10):
 
 # chart
 
-# 1. 创建折线图
-def create_line_chart(x, y, title="Line Chart", xlabel="X Axis", ylabel="Y Axis", save_path='line_chart.png'):
-    plt.figure(figsize=(8, 5))
-    plt.plot(x, y, marker='o', linestyle='-', color='b', label='Line')
-    plt.title(title)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-    plt.legend()
-    plt.grid(True)
-    plt.savefig(save_path)
-    plt.close()
-    print(f"Line chart created and saved as '{save_path}'")
+from docx.shared import Inches
+from pptx.enum.chart import XL_CHART_TYPE
+from pptx.chart.data import ChartData
+
+# 图表相关的全局变量
+CHART_WIDTH = Inches(6)  # 图表默认宽度
+CHART_HEIGHT = Inches(4)  # 图表默认高度
+CHART_LEFT = Inches(1)   # 图表默认左边距
+CHART_TOP = Inches(1)    # 图表默认上边距
 
 
-# 2. 创建柱状图
-def create_bar_chart(x, y, title="Bar Chart", xlabel="X Axis", ylabel="Y Axis", save_path='bar_chart.png'):
-    plt.figure(figsize=(8, 5))
-    plt.bar(x, y, color='g', label='Bar')
-    plt.title(title)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-    plt.legend()
-    plt.grid(True)
-    plt.savefig(save_path)
-    plt.close()
-    print(f"Bar chart created and saved as '{save_path}'")
-
-
-# 3. 创建饼图
-def create_pie_chart(labels, sizes, title="Pie Chart", save_path='pie_chart.png'):
-    plt.figure(figsize=(8, 8))
-    plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90, colors=['#ff9999', '#66b3ff', '#99ff99', '#ffcc99'])
-    plt.title(title)
-    plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-    plt.savefig(save_path)
-    plt.close()
-    print(f"Pie chart created and saved as '{save_path}'")
-
-
-# 4. 将图片插入到 Word 文档中
-def insert_image(doc, image_path, width=None, height=None):
+def insert_picture(picture_name):
+    """插入图片
+    
+    Args:
+        picture_name: 图片名称(不含扩展名)
     """
-    插入图片并可选设置宽度高度。
+    global doc, current_paragraph, current_picture
+    try:
+        # 创建新段落
+        current_paragraph = doc.add_paragraph()
+        current_paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        run = current_paragraph.add_run()
+        
+        # 尝试插入图片
+        try:
+            current_picture = run.add_picture(f"{PIC_PATH}/{picture_name}.png")
+        except:
+            current_picture = run.add_picture(f"{PIC_PATH}/none.png")
+            
+        # 设置默认大小
+        current_picture.width = Inches(6)
+        current_picture.height = Inches(6)
+        
+        return current_picture
+    except Exception as e:
+        logger.error(f"Error inserting picture: {e}")
+        return None
 
-    :param doc: Document 对象
-    :param image_path: 图片文件路径
-    :param width: 图片宽度（单位：英寸）
-    :param height: 图片高度（单位：英寸）
-    :return: 插入的图片对象
+def insert_line_chart(x, y, title="Line Chart", xlabel="X Axis", ylabel="Y Axis"):
+    """插入折线图
+    
+    Args:
+        x: x轴标签列表
+        y: y轴数据列表
+        title: 图表标题
+        xlabel: x轴标签
+        ylabel: y轴标签
     """
-    # 插入图片
-    image = doc.add_picture(image_path, width=Inches(width) if width else None,
-                            height=Inches(height) if height else None)
-    return image
+    global doc, chart, current_paragraph
+    try:
+        # 创建新段落
+        current_paragraph = doc.add_paragraph()
+        current_paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        
+        # 创建图表
+        plt.figure(figsize=(8, 6))
+        plt.plot(x, y, marker='o')
+        plt.title(title)
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        plt.grid(True)
+        
+        # 保存为临时文件
+        temp_path = '_temp_line.png'
+        plt.savefig(temp_path)
+        plt.close()
+        
+        # 插入图片
+        run = current_paragraph.add_run()
+        chart = run.add_picture(temp_path)
+        
+        # 删除临时文件
+        os.remove(temp_path)
+        
+        return chart
+    except Exception as e:
+        logger.error(f"Error inserting line chart: {e}")
+        return None
 
+def insert_bar_chart(x, y, title="Bar Chart", xlabel="X Axis", ylabel="Y Axis"):
+    """插入柱状图"""
+    global doc, chart, current_paragraph
+    try:
+        # 创建新段落
+        current_paragraph = doc.add_paragraph()
+        current_paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        
+        # 创建图表
+        plt.figure(figsize=(8, 6))
+        plt.bar(x, y)
+        plt.title(title, fontsize=12)
+        plt.xlabel(xlabel, fontsize=10)
+        plt.ylabel(ylabel, fontsize=10)
+        plt.xticks(fontsize=9)
+        plt.yticks(fontsize=9)
+        plt.grid(True)
+        
+        # 保存为临时文件
+        temp_path = '_temp_bar.png'
+        plt.savefig(temp_path, dpi=300, bbox_inches='tight')
+        plt.close()
+        
+        # 插入图片
+        run = current_paragraph.add_run()
+        chart = run.add_picture(temp_path)
+        
+        # 删除临时文件
+        os.remove(temp_path)
+        
+        return chart
+    except Exception as e:
+        logger.error(f"Error inserting bar chart: {e}")
+        return None
 
-# 5. 主函数
-def generate_chart(chart_type, data, chart_title="Chart", docx_path='output.docx'):
-    # 解析数据
-    if chart_type == "line":
-        x, y = data
-        create_line_chart(x, y, title=chart_title, save_path='line_chart.png')
-        insert_image_into_docx('line_chart.png', docx_path)
-    elif chart_type == "bar":
-        x, y = data
-        create_bar_chart(x, y, title=chart_title, save_path='bar_chart.png')
-        insert_image_into_docx('bar_chart.png', docx_path)
-    elif chart_type == "pie":
-        labels, sizes = data
-        create_pie_chart(labels, sizes, title=chart_title, save_path='pie_chart.png')
-        insert_image_into_docx('pie_chart.png', docx_path)
-    else:
-        print("Unsupported chart type!")
+def insert_pie_chart(labels, sizes, title="Pie Chart"):
+    """插入饼图
+    
+    Args:
+        labels: 扇区标签列表
+        sizes: 扇区大小列表
+        title: 图表标题
+    """
+    global doc, chart, current_paragraph
+    try:
+        # 创建新段落
+        current_paragraph = doc.add_paragraph()
+        current_paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        
+        # 创建图表
+        plt.figure(figsize=(8, 8))
+        plt.pie(sizes, labels=labels, autopct='%1.1f%%')
+        plt.title(title)
+        plt.axis('equal')
+        
+        # 保存为临时文件
+        temp_path = '_temp_pie.png'
+        plt.savefig(temp_path)
+        plt.close()
+        
+        # 插入图片
+        run = current_paragraph.add_run()
+        chart = run.add_picture(temp_path)
+        
+        # 删除临时文件
+        os.remove(temp_path)
+        
+        return chart
+    except Exception as e:
+        logger.error(f"Error inserting pie chart: {e}")
+        return None
 
-
+def set_chart_title(title):
+    """设置图表标题
+    
+    Args:
+        title: 标题文本
+    """
+    global chart
+    try:
+        if chart is None:
+            logger.error("No chart selected")
+            return None
+        chart.chart_title.text_frame.text = title
+        return chart
+    except Exception as e:
+        logger.error(f"Error setting chart title: {e}")
+        return None
