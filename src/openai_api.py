@@ -1,63 +1,49 @@
 import openai
-from openai import (
-    RateLimitError,
-    APIConnectionError,
-    APIError as ServiceUnavailableError
-)
+from openai import OpenAI
 import backoff
 import os
 import tiktoken
 import time
 
-# 设置 OpenAI
-openai.api_key = os.getenv("OPENAI_API_KEY")
-openai.api_base = "https://xiaoai.plus/v1"
+# 创建 OpenAI 客户端
+client = OpenAI(
+    api_key=os.getenv("OPENAI_API_KEY"),
+    base_url="https://xiaoai.plus/v1"  # 使用 base_url 替代 api_base
+)
 
 # 设置代理
 os.environ['http_proxy'] = "http://127.0.0.1:7890"
 os.environ['https_proxy'] = "http://127.0.0.1:7890"
 
-# 增加重试装饰器的等待时间和最大重试次数
-@backoff.on_exception(backoff.expo, 
-                     (RateLimitError, APIConnectionError, ServiceUnavailableError),
-                     max_tries=8,
-                     max_time=300)
-def get_embedding_with_backoff(text, engine="text-embedding-ada-002"):
+@backoff.on_exception(backoff.expo, Exception, max_tries=8)
+def get_embedding_with_backoff(text, model="text-embedding-ada-002"):
     """获取文本嵌入的函数，带有重试机制"""
     try:
-        return openai.Embedding.create(
-            input=[text], 
-            engine=engine
-        )["data"][0]["embedding"]
+        response = client.embeddings.create(
+            input=[text],
+            model=model
+        )
+        return response.data[0].embedding
     except Exception as e:
         print(f"Error getting embedding: {e}")
         raise
 
-@backoff.on_exception(backoff.expo, 
-                     (RateLimitError, APIConnectionError, ServiceUnavailableError),
-                     max_tries=8,
-                     max_time=300)
-def completions_with_backoff(**kwargs):
-    return openai.Completion.create(**kwargs)
-
-@backoff.on_exception(backoff.expo, 
-                     (RateLimitError, APIConnectionError, ServiceUnavailableError),
-                     max_tries=8,
-                     max_time=300)
-def chat_with_backoff(**kwargs):
-    return openai.ChatCompletion.create(**kwargs)
-
-@backoff.on_exception(backoff.expo, RateLimitError)
-@backoff.on_exception(backoff.expo, APIConnectionError)
+@backoff.on_exception(backoff.expo, Exception, max_tries=8)
 def embeddings_with_backoff(**kwargs):
-    return openai.Embedding.create(**kwargs)
+    """获取文本嵌入向量"""
+    return client.embeddings.create(**kwargs)
+
+@backoff.on_exception(backoff.expo, Exception, max_tries=8)
+def chat_with_backoff(**kwargs):
+    """与ChatGPT对话"""
+    return client.chat.completions.create(**kwargs)
 
 def query_azure_openai(query, model="gpt-3.5-turbo"):
     """
     调用 OpenAI API，根据用户选择的模型进行查询。
     """
     if model == 'text3':
-        response = completions_with_backoff(
+        response = chat_with_backoff(
             model="text-davinci-003",
             prompt=query,
             temperature=0,
@@ -71,7 +57,7 @@ def query_azure_openai(query, model="gpt-3.5-turbo"):
 
     elif model == 'turbo':
         prompt = "<|im_start|>system\nYou are a helpful assistant.\n<|im_end|>\n<|im_start|>user\nHello!\n<|im_end|>\n<|im_start|>assistant\nHow can I help you?\n<|im_end|>\n<|im_start|>user\n{0}\n<|im_end|>\n<|im_start|>assistant\n".format(query)
-        response = completions_with_backoff(
+        response = chat_with_backoff(
             model="gpt-35-turbo",
             prompt=prompt,
             temperature=0,
@@ -110,7 +96,7 @@ def query_azure_openai(query, model="gpt-3.5-turbo"):
             return text
 
         truncated_input = query
-        completion = openai.ChatCompletion.create(
+        completion = client.chat.completions.create(
             model=model,
             messages=[
                 {"role": "system", "content": "You are a helpful AI assistant."},

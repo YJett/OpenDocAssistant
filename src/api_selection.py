@@ -4,7 +4,9 @@ from langchain_core.output_parsers import JsonOutputParser
 import json
 import os
 import sys
-from src import api_doc, utils, openai_api
+
+
+from . import api_doc, utils, openai_api
 from langchain_openai import ChatOpenAI
 import numpy as np
 from scipy import spatial
@@ -17,12 +19,12 @@ api_embeddings = None
 
 class APIDocAgent:
     def __init__(self, api_doc_path: str):
-        # 修改初始化OpenAI模型，使用本地配置
+        # 修改初始化OpenAI模型，使用新版本的配置
         self.llm = ChatOpenAI(
             model="gpt-3.5-turbo",
             temperature=0,
-            openai_api_key=openai_api.openai.api_key,
-            openai_api_base=openai_api.openai.api_base
+            openai_api_key=os.getenv("OPENAI_API_KEY"),
+            base_url="https://xiaoai.plus/v1"  # 使用 base_url 替代 api_base
         )
 
         # 读取API文档
@@ -131,8 +133,8 @@ def get_embedding(text):
         input=text,
         model='text-embedding-ada-002'
     )
-    embeddings = response['data'][0]['embedding']
-    return embeddings
+    # 新版本API返回格式不同，直接访问 embedding 属性
+    return response.data[0].embedding
 
 def get_api_embedding(args):
     """获取所有 API 描述的嵌入向量"""
@@ -177,6 +179,33 @@ def prepare_embedding(args):
     
     return agent, api_embeddings
 
+def cosine_similarity(v1, v2):
+    """计算两个向量的余弦相似度"""
+    return 1 - spatial.distance.cosine(v1, v2)
+
+def get_topk(scores, args, k=5):
+    """获取相似度最高的k个API"""
+    # 获取前k个最高分数的索引
+    top_indices = np.argsort(scores)[-k:][::-1]
+    # 传入 args 参数
+    return [api_doc.get_all_APIs(args)[i] for i in top_indices]
+
+def get_selected_apis(query, args):
+    """根据用户查询选择相关的API"""
+    # 获取查询的嵌入向量
+    query_embedding = get_embedding(query)
+    
+    # 获取所有API的嵌入向量
+    api_embeddings = get_api_embedding(args)
+    
+    # 计算相似度
+    scores = [cosine_similarity(query_embedding, api_emb) for api_emb in api_embeddings]
+    
+    # 选择最相关的API，传入 args 参数
+    selected_apis = get_topk(scores, args, k=args.api_topk)
+    
+    return selected_apis
+
 def main():
     """测试 API 选择功能"""
     # 创建测试参数
@@ -198,9 +227,8 @@ def main():
     
     # 测试一些用户请求
     test_requests = [
-        "创建一个新文档并添加标题",
-        "在文档中插入一个2x3的表格",
-        "添加一个居中的段落，内容是'Hello World'"
+        "创建新文档并添加标题项目管理手册"
+        "添加一个3行4列的表格,在第一行填入项目名称、开始时间、结束时间、负责人。"
     ]
     
     for request in test_requests:
@@ -213,5 +241,5 @@ def main():
             print(f"处理请求时出错: {str(e)}")
 
 if __name__ == "__main__":
-    # main()
-    pass
+    main()
+    # pass
