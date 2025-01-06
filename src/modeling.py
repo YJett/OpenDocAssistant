@@ -1,3 +1,4 @@
+from asyncio.log import logger
 from docx import Document
 from src import (
     word_executor,

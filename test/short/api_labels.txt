@@ -1,12 +1,6 @@
-add_heading("项目管理手册", 1);
-add_table(3, 4);set_cell_text(0, 0, "项目名称");set_cell_text(0, 1, "开始时间");set_cell_text(0, 2, "结束时间");set_cell_text(0, 3, "负责人");
-set_cell_bg_color(0, 0, "light gray");set_cell_bg_color(0, 1, "light gray");set_cell_bg_color(0, 2, "light gray");set_cell_bg_color(0, 3, "light gray");set_font_bold();
-insert_bar_chart(["需求分析", "设计", "开发", "测试", "部署"], [2, 3, 8, 3, 2], title="项目进度甘特图", xlabel="阶段", ylabel="周数");
-add_header("项目管理部");add_page_numbers();
-add_list_item("项目启动", level=1, style="List Number");add_list_item("项目执行", level=1, style="List Number");add_list_item("项目收尾", level=1, style="List Number");
-
-add_heading("2024年第一季度销售报告", 1);text_align_center();
-insert_pie_chart(["手机", "平板", "笔记本", "配件"], [30, 25, 35, 10], title="产品线销售占比");text_align_center();
-add_table(4, 2);set_cell_text(0, 0, "月份");set_cell_text(0, 1, "销售额(万元)");set_cell_text(1, 0, "1月");set_cell_text(1, 1, "180");set_cell_text(2, 0, "2月");set_cell_text(2, 1, "165");set_cell_text(3, 0, "3月");set_cell_text(3, 1, "210");
-add_list_item("销售业绩分析", level=1, style="List Number");add_list_item("市场竞争分析", level=1, style="List Number");add_list_item("下季度规划", level=1, style="List Number");
-add_header("销售部");add_page_numbers();
+create_docx();add_heading("项目管理手册", 1);
+add_table(3, 4);set_cell_text(0, 0, '项目名称');set_cell_text(0, 1, '开始时间');set_cell_text(0, 2, '结束时间');set_cell_text(0, 3, '负责人');
+add_table(3, 4);set_cell_bg_color(0, 0, 'light gray');set_font_bold(0, 0);
+处理请求时发生错误: Error code: 401 - {'error': {'message': '该令牌额度已用尽 (request id: 2025010622280415985976878529406)', 'type': 'shell_api_error'}};
+处理请求时发生错误: Error code: 401 - {'error': {'message': '该令牌额度已用尽 (request id: 2025010622280426939717283511452)', 'type': 'shell_api_error'}};
+处理请求时发生错误: Error code: 401 - {'error': {'message': '该令牌额度已用尽 (request id: 2025010622280437663914817281283)', 'type': 'shell_api_error'}};

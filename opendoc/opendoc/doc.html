@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <!-- 前面的 style 内容相同 -->
+    <style>
+        /* 前面的样式保持不变 */
+        
+        /* 添加新的按钮样式 */
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+        }
+        
+        .submit-btn {
+            padding: 10px 20px;
+            background-color: #52c41a;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .submit-btn:hover {
+            background-color: #73d13d;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(82, 196, 26, 0.25);
+        }
+        
+        .upload-btn {
+            padding: 10px 20px;
+            background-color: #1890ff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .upload-btn:hover {
+            background-color: #40a9ff;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="content-wrapper">
+            <div class="left-panel">
+                <div class="upload-section">
+                    <h3>上传Word文档</h3>
+                    <input type="file" id="file-input" accept=".doc,.docx">
+                    <label for="file-input" class="btn">选择文件</label>
+                    <p id="file-name"></p>
+                    <div class="action-buttons">
+                        <button id="upload-btn" class="upload-btn">上传文档</button>
+                    </div>
+                </div>
+                <div class="text-input-section">
+                    <textarea id="text-input" placeholder="请输入指令，每行一条..."></textarea>
+                    <div class="action-buttons">
+                        <button id="submit-btn" class="submit-btn">提交指令</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="center-divider">
+                <button class="btn" id="preview">预览文档</button>
+            </div>
+
+            <div class="right-panel">
+                <iframe id="iframe"></iframe>
+                <button class="btn" id="download-btn">
+                    <svg class="icon" viewBox="0 0 16 16">
+                        <path d="M8 0a.5.5 0 0 1 .5.5v7.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 8.293V.5A.5.5 0 0 1 8 0z"/>
+                        <path d="M0 13.5A1.5 1.5 0 0 1 1.5 12h13a1.5 1.5 0 0 1 1.5 1.5v2A1.5 1.5 0 0 1 14.5 16h-13A1.5 1.5 0 0 1 0 15.5v-2zm1.5-.5a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-13z"/>
+                    </svg>
+                    下载文档
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let uploadedFile = null;
+        
+        // 文件选择处理
+        document.getElementById('file-input').addEventListener('change', function(e) {
+            uploadedFile = e.target.files[0];
+            if (uploadedFile) {
+                document.getElementById('file-name').textContent = `已选择: ${uploadedFile.name}`;
+            }
+        });
+
+        // 文件上传处理
+        document.getElementById('upload-btn').addEventListener('click', function() {
+            if (!uploadedFile) {
+                alert('请先选择文件');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', uploadedFile);
+            
+            fetch('/src/word_executor.py', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('文件上传成功:', data);
+                alert('文件上传成功');
+            })
+            .catch(error => {
+                console.error('文件上传失败:', error);
+                alert('文件上传失败，请重试');
+            });
+        });
+
+        // 指令提交处理
+        document.getElementById('submit-btn').addEventListener('click', function() {
+            const textContent = document.getElementById('text-input').value;
+            if (!textContent.trim()) {
+                alert('请输入指令');
+                return;
+            }
+
+            // 将输入的文本内容转换为指令数组
+            const instructions = textContent.split('\n').filter(line => line.trim());
+            
+            // 发送到后端
+            fetch('/src/api_selection.py', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    test_requests: instructions
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('指令发送成功:', data);
+                alert('指令提交成功');
+            })
+            .catch(error => {
+                console.error('指令发送失败:', error);
+                alert('指令提交失败，请重试');
+            });
+        });
+
+        // 预览按钮点击处理
+        document.getElementById('preview').addEventListener('click', function() {
+            fetch('/preview', {
+                method: 'GET'
+            })
+            .then(response => response.text())
+            .then(data => {
+                const iframe = document.getElementById('iframe');
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                iframeDoc.open();
+                iframeDoc.write(data);
+                iframeDoc.close();
+            })
+            .catch(error => {
+                console.error('预览失败:', error);
+                alert('预览加载失败，请稍后重试');
+            });
+        });
+
+        // 下载按钮点击处理
+        document.getElementById('download-btn').addEventListener('click', function() {
+            fetch('/download', {
+                method: 'GET'
+            })
+            .then(response => response.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'processed_document.docx';
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+            })
+            .catch(error => {
+                console.error('下载失败:', error);
+                alert('文档下载失败，请重试');
+            });
+        });
+    </script>
+</body>
+</html>

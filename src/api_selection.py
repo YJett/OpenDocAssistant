@@ -5,7 +5,6 @@ import json
 import os
 import sys
 
-
 from . import api_doc, utils, openai_api
 from langchain_openai import ChatOpenAI
 import numpy as np
@@ -19,59 +18,56 @@ api_embeddings = None
 
 class APIDocAgent:
     def __init__(self, api_doc_path: str):
-        # 修改初始化OpenAI模型，使用新版本的配置
+        # 初始化OpenAI模型
         self.llm = ChatOpenAI(
             model="gpt-3.5-turbo",
             temperature=0,
             openai_api_key=os.getenv("OPENAI_API_KEY"),
-            base_url="https://xiaoai.plus/v1"  # 使用 base_url 替代 api_base
+            base_url="https://api.pumpkinaigc.online/v1"
+
         )
 
         # 读取API文档
         self.api_docs = self._read_api_docs(api_doc_path)
 
-        # 定义输出解析器
-        self.output_parser = JsonOutputParser()
+        self.system_template = """
+        你是一个 Word 文档处理专家，负责分析 API 文档并根据用户需求提供准确的 API 调用序列。
 
-        # 定义系统提示模板，使用双大括号来转义JSON式示例
-        self.system_template = """你是一个 Word 文档处理专家，负责分析 API 文档并根据用户需求提供准确的 API 调用序列。
+        API 文档包含以下几类 API：
+        1. 文档操作 API (document_APIs) - 用于创建、保存、重命名等文档基本操作
+        2. 文本操作 API (text_APIs) - 用于添加和修改文本内容
+        3. 表格操作 API (table_APIs) - 用于创建和修改表格
+        4. 图片操作 API (picture_APIs) - 用于处理文档中的图片
+        5. 图表操作 API (chart_APIs) - 用于创建和插入图表
+        6. 基础操作 API (basic_APIs) - 用于设置对象的基本属性
 
-API 文档包含以下几类 API：
-1. 文档操作 API (document_APIs) - 用于创建、保存、重命名等文档基本操作
-2. 文本操作 API (text_APIs) - 用于添加和修改文本内容
-3. 表格操作 API (table_APIs) - 用于创建和修改表格
-4. 图片操作 API (picture_APIs) - 用于处理文档中的图片
-5. 图表操作 API (chart_APIs) - 用于创建和插入图表
-6. 基础操作 API (basic_APIs) - 用于设置对象的基本属性
+        API 文档内容如下：
+        {api_docs}
 
-API 文档内容如下：
-{api_docs}
+        你的任务是直接输出API调用序列，输出格式遵循以下规则：
+        1. 只输出API调用代码，不要添加任何说明、注释或代码块标记
+        2. 所有API调用必须放在同一行，用分号(;)分隔，末尾也要加;
+        3. 每个API调用都要包含完整的参数
 
-你的任务是：
-1. 理解用户的需求
-2. 根据需求选择合适的 API 类别
-3. 分析哪些 API 需要按顺序调用来完成用户需求
-4. 对每个 API 调用，明确指出需要的参数和值
+        正确示例：
+        用户：创建文档，添加一级标题"月度报告"并居中，插入2行3列表格
+        输出：
+        create_docx();add_heading("月度报告", 1);text_align_center();insert_table(2, 3);
 
-请以 JSON 格式返回，格式如下：
-{{
-    "steps": [
-        {{
-            "step": 1,
-            "api_category": "API 类别",
-            "api_name": "API 名称",
-            "parameters": {{
-                "参数名": "参数值或描述"
-            }},
-            "description": "这一步的作用说明"
-        }}
-    ]
-}}"""
+        错误示例：
+        create_docx()  # 缺少分号
+        add_heading("标题",1);text_align_center()  # 最后缺少分号
+        insert_table(2, 3);set_cell_text(0, 0, 项目)  # 参数值缺少引号
+
+        注意事项：
+        1. 严格按照 API 文档中的参数顺序和类型
+        2. 确保所有必需参数都已提供
+        3. 优先使用最简洁有效的 API 组合
+        4. 保持代码的可读性和逻辑性
+        """
 
         # 定义用户提示模板
-        self.user_template = """用户需求：{user_request}
-
-                                请提供完成这个需求所需的API调用序列。"""
+        self.user_template = "用户需求：{user_request}\n\n请提供完成这个需求所需的API调用序列。"
 
         # 创建提示模板
         self.prompt = ChatPromptTemplate.from_messages([
@@ -80,16 +76,11 @@ API 文档内容如下：
         ])
 
         # 创建链
-        self.chain = (
-                self.prompt
-                | self.llm
-                | self.output_parser
-        )
+        self.chain = self.prompt | self.llm
 
     def _read_api_docs(self, file_path):
         """读取API文档文件"""
         try:
-            # 使用绝对路径
             current_dir = os.path.dirname(os.path.abspath(__file__))
             api_doc_path = os.path.join(current_dir, 'api_doc.py')
             
@@ -98,33 +89,30 @@ API 文档内容如下：
         except Exception as e:
             raise Exception(f"读取API文档文件失败: {str(e)}")
 
-    def analyze_request(self, user_request: str) -> dict:
+    def analyze_request(self, user_request: str) -> str:
         """分析用户请求并返回API调用序列"""
         try:
             response = self.chain.invoke({
                 "api_docs": self.api_docs,
                 "user_request": user_request
             })
-            return response
+            # 修改格式化逻辑
+            result = response.content.strip()
+            # 1. 移除多余的空行和换行
+            lines = [line.strip() for line in result.split('\n') if line.strip()]
+            # 2. 处理每一行
+            processed_lines = []
+            for line in lines:
+                # 移除行中可能存在的换行
+                line = line.replace('\n', '')
+                # 确保行末有分号
+                if not line.endswith(';'):
+                    line += ';'
+                processed_lines.append(line)
+            
+            return '\n'.join(processed_lines)
         except Exception as e:
-            return {"error": f"处理请求时发生错误: {str(e)}"}
-
-    @staticmethod
-    def format_output(result: dict) -> str:
-        """格式化输出结果"""
-        if "error" in result:
-            return f"错误: {result['error']}"
-
-        output = "API 调用序列：\n\n"
-        for step in result["steps"]:
-            output += f"步骤 {step['step']}:\n"
-            output += f"- API: {step['api_name']}\n"
-            output += "- 参数:\n"
-            for param, value in step['parameters'].items():
-                output += f"  * {param}: {value}\n"
-            output += f"- 说明: {step['description']}\n\n"
-
-        return output
+            return f"处理请求时发生错误: {str(e)}"
 
 def get_embedding(text):
     """获取文本的嵌入向量"""
@@ -133,7 +121,6 @@ def get_embedding(text):
         input=text,
         model='text-embedding-ada-002'
     )
-    # 新版本API返回格式不同，直接访问 embedding 属性
     return response.data[0].embedding
 
 def get_api_embedding(args):
@@ -147,14 +134,11 @@ def prepare_embedding(args):
     """准备API嵌入向量"""
     global api_embeddings
     
-    # 使用绝对路径
     current_dir = os.path.dirname(os.path.abspath(__file__))
     api_doc_path = os.path.join(current_dir, 'api_doc.py')
     
-    # 创建API文档代理
     agent = APIDocAgent(api_doc_path)
     
-    # 准备API嵌入向量
     if args.api_update:
         embedding_path = os.path.join(current_dir, "..", "update_api_embeddings.pkl")
     elif args.api_lack:
@@ -162,7 +146,6 @@ def prepare_embedding(args):
     else:
         embedding_path = os.path.join(current_dir, "..", "api_embeddings.pkl")
         
-    # 尝试从缓存加载嵌入向量
     try:
         if os.path.exists(embedding_path):
             print(f"Loading embeddings from {embedding_path}")
@@ -174,41 +157,14 @@ def prepare_embedding(args):
             utils.write_list(api_embeddings, embedding_path)
     except Exception as e:
         print(f"Error in prepare_embedding: {str(e)}")
-        # 如果出错，生成新的嵌入向量
         api_embeddings = get_api_embedding(args)
     
     return agent, api_embeddings
 
-def cosine_similarity(v1, v2):
-    """计算两个向量的余弦相似度"""
-    return 1 - spatial.distance.cosine(v1, v2)
-
-def get_topk(scores, args, k=5):
-    """获取相似度最高的k个API"""
-    # 获取前k个最高分数的索引
-    top_indices = np.argsort(scores)[-k:][::-1]
-    # 传入 args 参数
-    return [api_doc.get_all_APIs(args)[i] for i in top_indices]
-
-def get_selected_apis(query, args):
-    """根据用户查询选择相关的API"""
-    # 获取查询的嵌入向量
-    query_embedding = get_embedding(query)
+def run_api_selection_test():
+    """独立的API选择测试函数"""
+    print("\n=== Starting API Selection Test ===")
     
-    # 获取所有API的嵌入向量
-    api_embeddings = get_api_embedding(args)
-    
-    # 计算相似度
-    scores = [cosine_similarity(query_embedding, api_emb) for api_emb in api_embeddings]
-    
-    # 选择最相关的API，传入 args 参数
-    selected_apis = get_topk(scores, args, k=args.api_topk)
-    
-    return selected_apis
-
-def main():
-    """测试 API 选择功能"""
-    # 创建测试参数
     class Args:
         def __init__(self):
             self.api_update = False
@@ -218,28 +174,57 @@ def main():
             self.api_topk = 10
     
     args = Args()
+    agent, api_embeddings = prepare_embedding(args)
     
-    # 准备嵌入向量
-    prepare_embedding(args)
+    # 获取当前脚本所在目录的父目录
+    current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    # 构建输出文件路径
+    output_file = os.path.join(current_dir, "test", "short", "api_labels.txt")
     
-    # 创建 API 文档代理
-    agent = APIDocAgent("src/api_doc.py")  # 替换为你的 API 文档路径
+    # 确保目录存在
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
     
-    # 测试一些用户请求
+    # 存储所有api序列
+    all_results = []
+    
     test_requests = [
-        "创建新文档并添加标题项目管理手册"
-        "添加一个3行4列的表格,在第一行填入项目名称、开始时间、结束时间、负责人。"
+        "创建新文档并添加标题'项目管理手册'。",
+        "添加一个3行4列的表格,在第一行填入'项目名称'、'开始时间'、'结束时间'、'负责人'。",
+        "将表格第一行设置为浅灰色背景并加粗。",
+        "插入一个甘特图展示项目进度,横轴为阶段(需求分析、设计、开发、测试、部署),纵轴为周数(2,3,8,3,2)。",
+        "添加页眉显示'项目管理部'并添加页码。",
+        "在文档末尾添加一个带编号的列表,包含'项目启动'、'项目执行'、'项目收尾'三个项目。"
     ]
     
     for request in test_requests:
         print(f"\n测试请求: {request}")
         try:
             result = agent.analyze_request(request)
-            print("API 选结果:")
-            print(json.dumps(result, indent=2, ensure_ascii=False))
+            print("API 调用序列:")
+            print(result)
+            
+            # 处理结果
+            lines = result.split('\n')
+            processed_lines = []
+            for line in lines:
+                # 清理并确保每行末尾有分号
+                cleaned_line = line.strip()
+                if not cleaned_line.endswith(';'):
+                    cleaned_line += ';'
+                processed_lines.append(cleaned_line)
+            
+            all_results.extend(processed_lines)
+            
         except Exception as e:
-            print(f"处理请求时出错: {str(e)}")
+            print(f"错误: {str(e)}")
+    
+    # 写入文件
+    print(f"\n保存结果到: {output_file}")
+    with open(output_file, 'w', encoding='utf-8') as f:
+        for result in all_results:
+            f.write(f"{result}\n")
+    
+    print("=== API Selection Test Completed ===\n")
 
 if __name__ == "__main__":
-    main()
-    # pass
+    run_api_selection_test()

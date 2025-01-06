@@ -263,8 +263,14 @@ def test_planning(word_assistant):
                 continue
 
 if __name__ == "__main__":
+    # 1. 首先运行 API 选择测试
+    from src.api_selection import run_api_selection_test
+    run_api_selection_test()
+    # 2. 然后继续原来的主程序逻辑
     parser = argparse.ArgumentParser()
-    # Word assistant
+    parser.add_argument("--skip_api_test", action='store_true',
+                    help="Skip API selection test")
+
     parser.add_argument("--data_path", default="test", type=str,
                         help="The data path to load the instructions")
     parser.add_argument("--dataset", default="short", type=str,
@@ -316,7 +322,7 @@ if __name__ == "__main__":
                         help="Which robusted data") 
     parser.add_argument("--noisy", default=False, action='store_true',
                         help='Whether to test in noisy data')
-
+    
     args = parser.parse_args()
 
     # 设置日志
@@ -352,7 +358,11 @@ if __name__ == "__main__":
             evaluate.eval(args)
             logger.info("Evaluation completed")
             exit(0)
+        if not args.skip_api_test:
+            from src.api_selection import run_api_selection_test
+            run_api_selection_test()
             
     except Exception as e:
         logger.error(f"Error in main: {e}")
         raise
+
