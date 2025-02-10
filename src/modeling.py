@@ -21,6 +21,23 @@ class word_assistant(object):
         self.model_id = args.model_id
         self.doc = None
         self.prompt = ""
+        
+        class AgentArgs:
+            def __init__(self, api_update, api_lack, dataset, model, api_topk):
+                self.api_update = api_update
+                self.api_lack = api_lack
+                self.dataset = dataset
+                self.model = model
+                self.api_topk = api_topk
+
+        agent_args = {
+            "api_update": False,
+            "api_lack": False,
+            "dataset": 'short',
+            "model": "gpt-3.5-turbo",
+            "api_topk": 10
+        }
+        self.agent, _ = api_selection.prepare_embedding(AgentArgs(**agent_args))
 
     def planner(self, instruction):
         if not self.planning:
@@ -100,11 +117,17 @@ class word_assistant(object):
         self.chat_history = history
         return history
 
+    def chat_v2(self, user_instruction, doc_path=None, verbose=False):
+        self.prompt = ""
+        reply_list = []
+        api_list, prompt = self.agent.analyze_request_with_prompt(user_instruction)
+        apis = [part.strip() for part in api_list.split(';') if part.strip()]
+        return prompt, apis
+        
     def chat(self, user_instruction, doc_path=None, verbose=False):
         self.prompt = ""
         instruction_list = self.planner(user_instruction)
         reply_list = []
-
         for instruction in instruction_list:
             if verbose:
                 print('Executing instruction: ', instruction)

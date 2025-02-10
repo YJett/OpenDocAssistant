@@ -1,6 +1,6 @@
 create_docx();add_heading("项目管理手册", 1);
-add_table(3, 4);set_cell_text(0, 0, '项目名称');set_cell_text(0, 1, '开始时间');set_cell_text(0, 2, '结束时间');set_cell_text(0, 3, '负责人');
-add_table(3, 4);set_cell_bg_color(0, 0, 'light gray');set_font_bold(0, 0);
-处理请求时发生错误: Error code: 401 - {'error': {'message': '该令牌额度已用尽 (request id: 2025010622280415985976878529406)', 'type': 'shell_api_error'}};
-处理请求时发生错误: Error code: 401 - {'error': {'message': '该令牌额度已用尽 (request id: 2025010622280426939717283511452)', 'type': 'shell_api_error'}};
-处理请求时发生错误: Error code: 401 - {'error': {'message': '该令牌额度已用尽 (request id: 2025010622280437663914817281283)', 'type': 'shell_api_error'}};
+insert_table(3, 4);set_cell_text(0, 0, '项目名称');set_cell_text(0, 1, '开始时间');set_cell_text(0, 2, '结束时间');set_cell_text(0, 3, '负责人');
+set_table_style(1, "LightGray1");set_font_bold();
+insert_bar_chart(['需求分析', '设计', '开发', '测试', '部署'], [2, 3, 8, 3, 2], '项目进度甘特图');
+add_header('项目管理部', section_index=None);add_page_numbers();
+add_list_item('项目启动', style='List Bullet');add_list_item('项目执行', style='List Bullet');add_list_item('项目收尾', style='List Bullet');

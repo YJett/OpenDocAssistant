@@ -88,7 +88,6 @@ def test(word_assistant, args):
                 
             session = utils.parse_train_json(args.user_path+f'Word_test_input/{set_name}/{session_path}')
             chat_history = []
-            
             for turn_id, turn in tqdm(enumerate(session)):
                 logger.info(f"{sess_id}/{turn_id}")
                 
@@ -101,7 +100,6 @@ def test(word_assistant, args):
                         continue 
                         
                 turn_id, instruction, label_api, base_doc_path, label_doc_path, api_lack_base_doc_path, api_lack_label_doc_path = turn
-                
                 if turn_id == 0 and args.sess:
                     if args.api_lack:
                         word_assistant.load_docx(args.user_path+api_lack_base_doc_path)
@@ -111,7 +109,6 @@ def test(word_assistant, args):
                         label_file = label_doc_path
                         
                 splitted_instruction = instruction.split("##")[0]
-                
                 if args.tf:
                     if args.api_lack:
                         word_assistant.load_docx(args.user_path+api_lack_base_doc_path)
@@ -144,10 +141,10 @@ def test(word_assistant, args):
                     chat_history.append([splitted_instruction, label_api])
                 
                 elif args.sess:
-                    prompt, reply = word_assistant.chat(instruction, doc_path=None, verbose=False)
-                    apis = utils.parse_api(reply)
+                    prompt, reply = word_assistant.chat_v2(instruction, doc_path=None, verbose=False)
+                    # apis = utils.parse_api(reply)
+                    apis = reply
                     word_assistant.api_executor(apis, test=True)
-                    
                     word_executor.save_word(args.user_path+f'Word_Pred_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.docx')
                     utils.write_lines([prompt],args.user_path+f'Word_Prompt_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.txt')
                     
@@ -163,7 +160,6 @@ def test(word_assistant, args):
                             'Prompt File': f'Word_Prompt_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.txt'
                         }
                         writer.write(data)
-                        
         except Exception as e:
             logger.error(f"Error processing session {sess_id}: {e}")
             continue
@@ -265,7 +261,7 @@ def test_planning(word_assistant):
 if __name__ == "__main__":
     # 1. 首先运行 API 选择测试
     from src.api_selection import run_api_selection_test
-    run_api_selection_test()
+    # run_api_selection_test()
     # 2. 然后继续原来的主程序逻辑
     parser = argparse.ArgumentParser()
     parser.add_argument("--skip_api_test", action='store_true',

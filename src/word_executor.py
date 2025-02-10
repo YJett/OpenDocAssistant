@@ -797,8 +797,102 @@ def get_current_page_id():
     # 但可以作为一个参考
     return len(doc.paragraphs)
 
-
-
+def check_api_in_list_v2(api_call):
+    api_names = [
+    "set_word",
+    "get_word",
+    "create_docx",
+    "save_word",
+    "save_state",
+    "load_state",
+    "rename_docx_name",
+    "move_docx_to_new_path",
+    "get_current_page_id",
+    "find_paragraphs_by_heading_and_content",
+    "add_paragraph",
+    "delete_paragraph",
+    "add_text",
+    "delete_text",
+    "add_run",
+    "add_line_break",
+    "delete_line_break",
+    "get_current_paragraph",
+    "set_current_paragraph",
+    "add_heading",
+    "delete_heading",
+    "add_table_of_contents",
+    "delete_table_of_contents",
+    "get_current_heading",
+    "set_current_heading",
+    "add_hyperlink",
+    "delete_hyperlink",
+    "add_header",
+    "delete_header",
+    "add_footer",
+    "delete_footer",
+    "add_page_numbers",
+    "delete_page_numbers",
+    "add_watermark",
+    "delete_watermark",
+    "add_table",
+    "delete_table",
+    "add_table_header",
+    "set_table_title",
+    "set_cell_text",
+    "add_table_row",
+    "delete_table_row",
+    "add_table_column",
+    "delete_table_column",
+    "set_column_width",
+    "set_row_height",
+    "merge_cells",
+    "set_cell_bg_color",
+    "align_cell_text",
+    "get_table_count",
+    "get_current_table",
+    "set_current_table",
+    "add_list_item",
+    "delete_list_item",
+    "add_image",
+    "delete_image",
+    "set_image_size",
+    "align_image_left",
+    "align_image_right",
+    "align_image_center",
+    "add_caption",
+    "replace_picture",
+    "insert_picture",
+    "get_current_picture",
+    "set_current_picture",
+    "insert_line_chart",
+    "insert_bar_chart",
+    "insert_pie_chart",
+    "set_chart_title",
+    "set_font_size",
+    "set_font_color",
+    "set_font_bold",
+    "set_font_italic",
+    "set_font_underline",
+    "set_font_style",
+    "set_line_space",
+    "text_align_left",
+    "text_align_center",
+    "text_align_right",
+    "check_api_in_list",
+    "API_executor",
+    "check_paragraph_before",
+    "check_paragraph_after",
+    "check_heading_level",
+    "choose_paragraph",
+    "choose_heading",
+    "choose_table",
+    "choose_table_cell",
+    "choose_picture",
+    "choose_object",
+    "check"
+]
+    call_name = api_call.split('(')[0].strip()
+    return call_name in api_names
 
 def check_api_in_list(api_call, api_list):
     """检查API调用是否在指定的API列表中
@@ -860,6 +954,10 @@ def API_executor(lines, test=False, args=None):
             
             # 正模式
             else:
+                if not check_api_in_list_v2(line):
+                    print(f"不存在的api调用: {line}")
+                    eval("add_paragraph('API不可用: @@@@@@@@@@')")
+                    continue
                 eval(line)
                 
         except Exception as e:

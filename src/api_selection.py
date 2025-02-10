@@ -19,14 +19,27 @@ api_embeddings = None
 class APIDocAgent:
     def __init__(self, api_doc_path: str):
         # 初始化OpenAI模型
+        # self.llm = ChatOpenAI(
+        #     model="deepseek-ai/DeepSeek-V2.5",
+        #     temperature=0,
+        #     openai_api_key="sk-lutarydeakkcpstmsokjfiaqycdgaogkqjuomndbwwjeqyaj",
+        #     base_url="https://api.siliconflow.cn/v1"
+
+        # )
+        # self.llm = ChatOpenAI(
+        #     # model="deepseek-ai/DeepSeek-V2.5",
+        #     temperature=0,
+        #     openai_api_key="sk-MCCLTj4o2BLGJc0yX9CKqEAQ6zTWhIxfTVG9cd67v6xZdjtf",
+        #     base_url="https://xiaoai.plus/v1"
+
+        # )
         self.llm = ChatOpenAI(
-            model="gpt-3.5-turbo",
-            temperature=0,
-            openai_api_key=os.getenv("OPENAI_API_KEY"),
-            base_url="https://api.pumpkinaigc.online/v1"
+            model = "xdeepseekv3",
+            temperature=0.5,
+            openai_api_key="sk-WQgfUw9WdnuWRDC1521657C94676420b97D5084c89698647",
+            base_url="https://maas-api.cn-huabei-1.xf-yun.com/v1"
 
         )
-
         # 读取API文档
         self.api_docs = self._read_api_docs(api_doc_path)
 
@@ -89,6 +102,11 @@ class APIDocAgent:
         except Exception as e:
             raise Exception(f"读取API文档文件失败: {str(e)}")
 
+    def analyze_request_with_prompt(self, user_request: str):
+        prompt_content = self.user_template.format(user_request=user_request)
+        result = self.analyze_request(user_request)
+        return result, prompt_content
+    
     def analyze_request(self, user_request: str) -> str:
         """分析用户请求并返回API调用序列"""
         try:

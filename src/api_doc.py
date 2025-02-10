@@ -1041,7 +1041,7 @@ original_apis = [
 
     API(
         name="insert_line_chart",
-        parameters="(x, y, title="Line Chart", xlabel="X Axis", ylabel="Y Axis")",
+        parameters="(x, y, title=\"Line Chart\", xlabel=\"X Axis\", ylabel=\"Y Axis\")",
         description="Description for insert_line_chart",
         parameter_description="Parameter details for insert_line_chart",
         composition_instruction="Usage instructions for insert_line_chart",
@@ -1051,7 +1051,7 @@ original_apis = [
 
     API(
         name="insert_bar_chart",
-        parameters="(x, y, title="Bar Chart", xlabel="X Axis", ylabel="Y Axis")",
+        parameters="(x, y, title=\"Bar Chart\", xlabel=\"X Axis\", ylabel=\"Y Axis\")",
         description="Description for insert_bar_chart",
         parameter_description="Parameter details for insert_bar_chart",
         composition_instruction="Usage instructions for insert_bar_chart",
@@ -1061,7 +1061,7 @@ original_apis = [
 
     API(
         name="insert_pie_chart",
-        parameters="(labels, sizes, title="Pie Chart")",
+        parameters="(labels, sizes, title=\"Pie Chart\")",
         description="Description for insert_pie_chart",
         parameter_description="Parameter details for insert_pie_chart",
         composition_instruction="Usage instructions for insert_pie_chart",
