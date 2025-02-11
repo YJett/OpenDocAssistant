@@ -74,23 +74,47 @@ def prepare_data(word_assistant, args):
 
 def test(word_assistant, args):
     """测试模型"""
+    import time
+    import json
+    import os
+    from tqdm import tqdm
+    import jsonlines
+
     set_name = 'Create_new_docs' if args.dataset == 'short' else 'Edit_Word_template'
     utils.makedir(args.user_path+f'Word_Pred_File/{set_name}')
     utils.makedir(args.user_path+f'Word_Prompt_File/{set_name}')
-    
+
+    # 初始化时间统计数据结构
+    time_stats = {
+        "all_sessions": [],
+        "total_seconds": 0.0,
+        "sessions": {
+            "total": 0,
+            "avg_per_session": 0.0,
+            "min_session": float('inf'),
+            "max_session": 0.0
+        }
+    }
+
     for sess_id, session_path in enumerate(utils.sorted_list(args.user_path+f'Word_test_input/{set_name}')):
+        session_start = time.time()
+        session_success = False
+        
         try:
-            # 每个新会话开始时创建新的 Word 文档
+            # 创建新文档
             doc = word_assistant.load_docx(None)
             if not doc:
                 logger.error(f"Failed to create document for session {sess_id}")
                 continue
-                
+
             session = utils.parse_train_json(args.user_path+f'Word_test_input/{set_name}/{session_path}')
             chat_history = []
+            
+            # 处理每个对话轮次
             for turn_id, turn in tqdm(enumerate(session)):
                 logger.info(f"{sess_id}/{turn_id}")
                 
+                # 断点续传逻辑
                 if args.resume:
                     if args.tf and os.path.exists(args.user_path+f'Word_Pred_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.docx'):
                         logger.info('Exists!')
@@ -99,7 +123,10 @@ def test(word_assistant, args):
                         logger.info('Exists!')
                         continue 
                         
+                # 解析输入数据
                 turn_id, instruction, label_api, base_doc_path, label_doc_path, api_lack_base_doc_path, api_lack_label_doc_path = turn
+                
+                # 会话模式初始化
                 if turn_id == 0 and args.sess:
                     if args.api_lack:
                         word_assistant.load_docx(args.user_path+api_lack_base_doc_path)
@@ -109,7 +136,10 @@ def test(word_assistant, args):
                         label_file = label_doc_path
                         
                 splitted_instruction = instruction.split("##")[0]
+                
+                # 两种模式处理
                 if args.tf:
+                    # 文本反馈模式
                     if args.api_lack:
                         word_assistant.load_docx(args.user_path+api_lack_base_doc_path)
                         label_file = api_lack_label_doc_path
@@ -117,14 +147,19 @@ def test(word_assistant, args):
                         word_assistant.load_docx(args.user_path+base_doc_path)
                         label_file = label_doc_path
                         
-                    word_assistant.load_chat_history([x[0] for x in chat_history],[x[1].strip(';').split(';') for x in chat_history])
+                    word_assistant.load_chat_history(
+                        [x[0] for x in chat_history],
+                        [x[1].strip(';').split(';') for x in chat_history]
+                    )
                     prompt, reply = word_assistant.chat(splitted_instruction, doc_path=args.user_path+base_doc_path, verbose=False)
                     apis = utils.parse_api(reply)
                     word_assistant.api_executor(apis, test=True)
                     
+                    # 保存输出
                     word_executor.save_word(args.user_path+f'Word_Pred_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.docx')
-                    utils.write_lines([prompt],args.user_path+f'Word_Prompt_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.txt')
+                    utils.write_lines([prompt], args.user_path+f'Word_Prompt_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.txt')
                     
+                    # 记录日志
                     utils.makedir(f"Word_test_output/{set_name}")
                     with jsonlines.open(args.user_path+f"Word_test_output/{set_name}/{args.exp_name}_session_{sess_id}.json", mode='a') as writer:
                         data = {
@@ -141,12 +176,12 @@ def test(word_assistant, args):
                     chat_history.append([splitted_instruction, label_api])
                 
                 elif args.sess:
+                    # 会话模式
                     prompt, reply = word_assistant.chat_v2(instruction, doc_path=None, verbose=False)
-                    # apis = utils.parse_api(reply)
                     apis = reply
                     word_assistant.api_executor(apis, test=True)
                     word_executor.save_word(args.user_path+f'Word_Pred_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.docx')
-                    utils.write_lines([prompt],args.user_path+f'Word_Prompt_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.txt')
+                    utils.write_lines([prompt], args.user_path+f'Word_Prompt_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.txt')
                     
                     with jsonlines.open(args.user_path+f"Word_test_output/{set_name}/{args.exp_name}_session_{sess_id}.json", mode='a') as writer:
                         data = {
@@ -160,9 +195,45 @@ def test(word_assistant, args):
                             'Prompt File': f'Word_Prompt_File/{set_name}/{args.exp_name}_{sess_id}_{turn_id}.txt'
                         }
                         writer.write(data)
+            
+            session_success = True
+
         except Exception as e:
             logger.error(f"Error processing session {sess_id}: {e}")
-            continue
+        finally:
+            # 记录会话耗时（无论成功失败）
+            session_duration = time.time() - session_start
+            time_stats["all_sessions"].append({
+                "session_id": sess_id,
+                "duration": round(session_duration, 2),
+                "status": "success" if session_success else "failed",
+                "turns_processed": len(session) if session_success else 0
+            })
+            
+            # 更新统计指标
+            time_stats["total_seconds"] += session_duration
+            time_stats["sessions"]["total"] += 1
+            time_stats["sessions"]["min_session"] = min(time_stats["sessions"]["min_session"], session_duration)
+            time_stats["sessions"]["max_session"] = max(time_stats["sessions"]["max_session"], session_duration)
+
+    # 后处理统计指标
+    if time_stats["sessions"]["total"] > 0:
+        time_stats["sessions"]["avg_per_session"] = time_stats["total_seconds"] / time_stats["sessions"]["total"]
+        
+        # 数值格式化
+        time_stats["total_seconds"] = round(time_stats["total_seconds"], 2)
+        time_stats["sessions"]["min_session"] = round(time_stats["sessions"]["min_session"], 2)
+        time_stats["sessions"]["max_session"] = round(time_stats["sessions"]["max_session"], 2)
+        time_stats["sessions"]["avg_per_session"] = round(time_stats["sessions"]["avg_per_session"], 2)
+
+    # 保存统计结果
+    stats_dir = args.user_path + f'Word_test_output'
+    utils.makedir(stats_dir)
+    with open(os.path.join(stats_dir, 'time_stats.json'), 'w') as f:
+        json.dump(time_stats, f, indent=2, ensure_ascii=False)
+
+    logger.info(f"Time statistics saved to {stats_dir}/time_stats.json")
+
 
 def test_api_selection(word_assistant):
     """测试API选择模块
